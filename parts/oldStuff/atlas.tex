@@ -1,0 +1,792 @@
+
+The analyses done in this thesis were performed using data taken by the ATLAS experiment~\cite{physicstdr1}
+at the Large Hadron Collider~\cite{lhc}, therefore a description of the most relevant aspects of this experiment
+is important.
+This chapter starts by describing the overall geometry and subdivision of the ATLAS
+detector followed by some details on its subsystems. This chapter will be used as well to introduce some common notation and conventions.
+
+\section{The ATLAS detector}
+
+The Large Hadron Collider (LHC)~\cite{lhc} is a synchrotron located in a tunnel with a $27$ km circumference, in the border region between France
+and Switzerland.
+The LHC is $100$ m below the ground and it collides beams of protons at different points, so that
+particle detectors can analyse the results of the collisions. Figure~\ref{fig:lhc} shows a schematic overview of the LHC.
+This thesis analyses the measurements from the proton-proton collisions in the ATLAS~\cite{atlastdr1,physicstdr1} detector.
+
+\begin{figure}
+\centering
+\includegraphics[scale=1]{external/lhc.eps}
+\caption{Schematic view of the Large Hadron Collider and other particle accelerators with the indication for the experiments built in the LHC ring. All credits to \copyright CERN.}
+\label{fig:lhc}
+\end{figure}
+
+ATLAS' systems cover both the barrel of the cylinder and the endcaps, in a structure
+designed to cover as much of the full $4\pi$ sr solid angle as possible.
+A schematic of the ATLAS experiment is shown in Figure~\ref{fig:atlas}.
+It is a general purpose detector at the LHC, with many sub-detectors, which
+measure specific observables of the particles that come out of the collision.
+Its sub-detectors have cylindrical shapes, with increasing radius, each one
+encapsulating the smaller ones.
+It can be divided in four main parts: the Inner Detector; the Magnet System;
+the Calorimeters and the Muon Spectrometer.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=\linewidth]{figures/Atlas.eps}
+\end{center}
+\caption{A schematic view of the ATLAS experiment. All credits to \copyright CERN.}
+\label{fig:atlas}
+\end{figure}
+
+A few conventions used in ATLAS should be mentioned.
+The coordinate system~\cite{atlastdr1} used in ATLAS is centred at the collision point,
+in the beam pipe, with
+the $x$-axis pointing to the center of the LHC tunnel's circumference,
+the $y$ axis pointing upwards and
+the $z$-axis chosen so that a right-handed coordinate
+system is used.
+The azimuthal angle $\phi$, measured in the $x-y$ plane, and the polar angle
+$\theta$, measured from the positive $z$ direction, in the $z - y$ plane, are
+also used. Frequently,
+the pseudo-rapidity $\eta = - \ln (\tan{\frac{\theta}{2}})$ is used, instead
+of the angle $\theta$.
+
+A measure of the separation between two physical objects detected in ATLAS based only on the direction of their momenta is used in
+the physics analyses. It can be defined, for two objects $o_1$ and $o_2$ with directions, given in the $\eta - \phi$ plane, by $(\eta(o_1), \phi(o_1))$ and
+$(\eta(o_2), \phi(o_2))$ respectively as:
+
+\begin{eqnarray}
+\displaystyle
+\Delta R (o_1, o_2)&\triangleq&\sqrt{(\Delta \eta(o_1,o_2))^2 + (\Delta \phi(o_1, o_2))^2} \textrm{~~, where:} \\
+\Delta \eta(o_1, o_2)&\triangleq&\eta(o_2) - \eta(o_1), \nonumber \\
+\Delta \phi(o_1, o_2)&\triangleq&\min \left( \left|\phi(o_2) - \phi(o_1)\right|, 2\pi - \left|\phi(o_2) - \phi(o_1)\right|\right). \nonumber
+\label{eq:deltaR}
+\end{eqnarray}
+
+
+It is common to refer to the momentum of particles projected in the $x-y$ plane, which
+is called the ``transverse momentum'' and it is often represented as $p_T$, while the magnitude of the three-momentum is referred to as $p$ and
+the particle's energy is referred to as $E$.
+The transverse momentum and the momentum $p$ can be related by $p_T = p/\cosh(\eta)$.
+A ``transverse energy'' $E_T$ is defined by analogy, $E_T = E/\cosh(\eta)$.
+
+The ATLAS sub-detectors can be divided in the Inner Detector, the Calorimetry System and the Muon Spectrometer.
+The next sections will briefly describe these subsystems.
+
+\subsection{Inner Detector}
+
+The innermost subdetector of ATLAS is the Inner Detector~\cite{idtdr,detpaper} (ID),
+which is subdivided into
+the Pixel Detector, the Semi-Conductor Tracker (SCT), and the
+Transition Radiation Tracker (TRT).
+
+The precision tracking detectors, comprised of the Pixel Detector and the SCT, cover a region of $|\eta| < 2.5$.
+In the barrel region, they are arranged as cylinders around the beam axis, while in the endcap they are arranged as disks perpendicular to the $z$-axis.
+The Inner Detector's function is to measure tracks generated
+by charged particle's interaction with the detectors.
+Each point in which there is an interaction between the particle and the ID is called a ``hit''.
+
+A $2$ T solenoidal magnetic field, created by a thin superconducting solenoid surrounding the inner detector,
+bends the charged particles' trajectory.
+An estimate of the trajectory
+can be done by performing a fit of the hits, and the charge to momentum
+ratio of the particle can be estimated by calculating the curvature of the
+track. The direction of the bending also gives the sign of the particles'
+charge.
+
+The Pixel Detector has three layers, including one of them at a radius of $4$ cm, called $B$-layer, which
+is essential for good vertexing. The basic elements of the Pixel Detector are $50$ $\mu$m wide in $R - \phi$ and
+$400$ $\mu$m long in the $z$-axis. The SCT has four cylindrical layers of silicon strips aligned in the azimuthal direction in the barrel,
+and nine disks in each of the endcaps.
+In the barrel, the SCT uses eight layers of small-angle strips to measure both coordinates, with one set of strips parallel to the $z$-axis which measures the $R - \phi$ direction.
+Each silicon microstrip layer is $6.4$ cm long and has 768 sensors with a strip pitch of $80$ $\mu$m, in the barrel. In the endcaps, the strips are radial.
+The ID sub-detector with biggest radius is the TRT, which consists of $\sim$ 36 layers
+of $4$ mm diameter straw tubes, with a radiator between them to stimulate Transition Radiation (TR) from electrons. The TRT covers the region of $|\eta| < 2.0$.
+
+The tracks are fitted using different algorithms, which aim at a good estimate of the charge-to-momentum ratio, the particle's $p_T$, the trajectory
+and the point of closest approach to the primary vertex in the $x-y$ plane and in the $z$-axis.
+The distance of the track to the primary vertex in the $z$-axis and in the $x-y$ plane are referred to, respectively, as the longitudinal
+transverse parameter and the transverse impact parameter (frequently used symbols are $z_0$ and $d_0$).
+A set of basic track quality requirements are frequently used in the analyses to demand
+well-reconstructed tracks with demands on the number of hits and on the impact parameters.
+
+\subsection{Calorimeters}
+
+After the Inner Detector, the detectors with bigger radius are, respectively,
+the Liquid Argon Calorimeter and the Tile Calorimeter~\cite{detpaper}, which measure
+the energy of the particles.
+The objective of the calorimeters is to measure the energy and direction of the particles.
+The particle interacts with the calorimeter creating a shower of secondary particles.
+In a sampling calorimeter, such as the ones used in ATLAS, the calorimeter has alternate layers of a material that
+starts the shower (``absorber material'') and a material that measures the shower's energy (``sampling material'').
+
+The calorimeters have different structure, depending on whether they are designed to measure
+electromagnetic showers, produced by particles that interact primarily through the electromagnetic interaction; or hadronic
+showers, for particles that interact mainly through the strong nuclear force. ATLAS includes an electromagnetic calorimetry system and a hadronic
+calorimetry system.
+
+The Liquid Argon Calorimeters~\cite{lartdr1} are used to measure the energy of
+electromagnetic showers in the barrel and endcap regions and also for
+measurements of energy in hadronic showers in the endcaps.
+They are sampling calorimeters with accordion geometry in the barrel to provide symmetry in the measurement as a function
+of the $\phi$ coordinate.
+It is filled with liquid
+argon cooled by a cryogenic system. Layers of lead and stainless steel
+are interspaced with liquid argon, with the lead acting as an absorber, giving the
+initial shower development due to its short radiation length.
+The secondary electrons create ionisation in the gaps of liquid argon, and
+the copper electrodes register the signal induced by the ionisation
+electrons drifting across the gap. The electromagnetic calorimeter also includes a presampler
+detector, followed by three longitudinal layers of the EM calorimeter, called strip, middle and back layers.
+At high energy, most of the electromagnetic shower energy is detected in the middle layer. The strip layer
+has good discrimination against multiple photon showers, due to its small
+cells. The presampler detector complements the EM calorimeter
+with a good estimate of the energy lost in the material before the rest of the calorimetry system. The back layer collects the energy
+deposited by very high energy electromagnetic showers.
+The endcap calorimeters consist of the outer and inner wheels, which cover $|\eta| \in [1.375, 2.5]$ and $|\eta| \in [2.5, 3.2]$ respectively.
+
+Forward calorimeters are also available in the $|\eta| \in [3.1, 4.9]$ region. The innermost one is the forward
+electromagnetic calorimeter, which uses liquid argon as the active material and copper as the passive material.
+The hadronic forward calorimeters follow it and use tungsten as the passive material. 
+
+The Tile Calorimeter~\cite{tiletdr} is a sampling hadronic calorimeter surrounding the Liquid Argon Calorimeter in
+the barrel. It uses steel
+as the absorber material and scintillating plates read out by wavelength
+shifting (WLS) fibers as the active medium. The optical signals read by the WLS
+fibers are converted into electric signals by photomultipliers (PMTs).
+It is designed to absorb hadronic showers in the barrel region of the ATLAS
+experiment.
+
+\subsection{Muon Spectrometer}
+
+The final system is the Muon Spectrometer (MS)~\cite{detpaper}, which is a tracking device
+embedded in a toroidal magnetic field that measures the charge to
+momentum ratio of
+the muons escaping the calorimeters.
+The MS' layout is based on the magnetic deflection of muon tracks using a system of three superconducting air-core toroid
+magnets. A barrel toroid with eight coils surrounding the hadronic calorimeter provides the bending of the
+muon tracks in the $|\eta| <1.0$ region. For $|\eta| \in [1.4, 2.7]$, two smaller endcap magnets in both ends of the barrel toroid are used.
+A combination of the magnetic fields of the barrel and endcap toroids are used in the $|\eta| \in (1.0, 1.4)$ region, called the transition region.
+
+The Muon Spectrometer reconstructs tracks using three layers of Monitored Drift Tube (MDT) chambers in the
+$|\eta| < 2.0$ range, two layers of MDT behind one layer of Cathode Strip Chambers (CSC) in the range $|\eta| \in [2.0, 2.7]$.
+Three layers of Resistive Plate Chamber (RPC) in the $|\eta| < 1.05$ region and three layers of Thin Gap Chamber (TGC) in the
+$|\eta| \in [1.0, 2.4]$ region provide a fast response to select events containing muons.
+
+
+\subsection{The ATLAS Trigger System}
+
+The ATLAS detector systems process data with a very high rate of events,
+most of which are background processes to most physics analyses.
+The data acquisition system on ATLAS cannot cope with the
+high data rates and, even if it could, there are technical and financial
+constraints on the available permanent data storage facilities which limit the
+amount of data that can be collected.
+
+Furthermore, the time required to analyse the available data is quite
+long and the processing power necessary to implement the analyses has
+many constraints. As a consequence, a trigger system has been developed
+as part of the ATLAS Data Acquisition System to select only collision events
+with interest for the ATLAS physics analyses.
+
+The ATLAS Trigger System~\cite{atlastrigger} was developed in a very modular and flexible way, so
+that it could adapt itself to the physics analyses requirements, selecting
+events that are most relevant to a set of studies and rejecting most of the
+common backgrounds. There is a configurable infrastructure designed in a way
+that can be changed according to the decision of which analyses have priority
+and which analysis methods are used.
+
+The trigger system has three layers. The first layer is hardware-based and it implements a pre-selection
+of the events using a coarser granularity of the calorimeters and the muon spectrometer, than the next levels.
+The second and third levels are implemented in software and analyse data
+with a finer granularity, using the Inner Detector tracking system as well. The latter
+is frequently referred to as the High Level Trigger.
+The three-tier system is designed to work modularly: the Level 1 selects Regions
+of Interest, in which it detects a particle candidate; next, the Level 2
+software processes only the data in that Region of Interest to test the hypothesis
+that it contains a relevant signal; finally, the third level, or Event Filter, analyses
+the events accepted by the Level 2, scanning the whole detector with fine granularity.
+This division not only allows for a modular design, it also reduces the rate of events
+to be processed in the next layers, so that they can take more time
+to analyse each event with more complex algorithms. A schematic view of the ATLAS Trigger system is shown
+in Figure~\ref{fig:trigger}, with the approximate event rates in each layer.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth]{figures/trigger.eps}
+\caption{A simplified schematic view of the ATLAS Trigger System. Extracted from~\cite{bjet_proc_pelle}.}
+\label{fig:trigger}
+\end{figure}
+
+The first level of triggering, as far as the calorimetry system is concerned, only has access
+to $\Delta \eta \times \Delta \phi$ regions of $0.1 \times 0.1$, which are called ``trigger towers''. Its decision can only
+be made on the energies deposited in those towers. The Level 2 algorithms can use the high transverse energy deposition in the
+calorimeter as a seed to analyse regions of interest and also take advantage of the Inner Detector and Muon Spectrometer tracks. The Event Filter
+can also perform a full sliding window search in the event, with access to the full event data, in which the detector is scanned for high energy
+deposits.
+The first level of triggering also uses the RPC and the TGC, in the Muon Spectrometer to trigger on muon events with a minimum
+transverse momentum threshold.
+the Trigger System also allows for a finer granularity search in the Calorimetry System using the ``Level 1.5'', which can be used to seed the Level 2 algorithm instead.
+
+Besides this three layer division, each layer is further separated, depending on its physics goals.
+This means that if a particular physics object is desired,
+a specific algorithm will be designed to select only that object in the three layers.
+In case a muon and an electron are required for the analysis, the system could be configured in a way
+that the accepted events must have fulfilled the requirements for both the electron
+and muon selection algorithms. These algorithms are organised and configured using the concept of ``trigger chains''.
+
+Each trigger chain has a structure similar to the one shown in Figure~\ref{fig:chains}. The chain starts when the hardware-based Level 1
+triggers that the event passes the threshold configured for this chain. This is indicated in the ``L1 threshold'' block in the figure.
+If the threshold uses the calorimeter information, the Level 1 sums the energy in calorimeter
+Trigger Towers arranged in a specific way and checks if the sums (there might be more than one criteria) are above or below a threshold.
+For the electron- and photon-related triggers, for example, the Level 1 trigger looks for a
+region of four Trigger Towers as a square in the electromagnetic calorimeter,
+in which at least one of the four possible two-tower sums (the sum of two towers either vertically or horizontally) of the nearest neighbouring towers pass a
+pre-defined threshold. Isolation veto thresholds can also be configured for the Trigger Towers around the center four Trigger Towers, as well as for the hadronic calorimeter
+towers. The algorithm scans all squares with 16 Trigger Towers in the calorimeters.
+Figure~\ref{fig:l1egammatt} shows a representation of all these Trigger Tower sum configurations.
+
+The Level 1 jet trigger scans the calorimeters using elements of four Trigger Tower arranged in a square, summing the electromagnetic to the hadronic trigger towers.
+The Region of Interest is defined as the square region with four Trigger Towers in $\eta \times \phi$ space and the sum of the energy on these jet elements is calculated to check if
+it passes the minimum energy threshold. The window used for this scan can be configured for each chain to have different square sizes in $\eta \times \phi$ space: 4, 6 or 8 Trigger Tower elements.
+For regions with 36 Trigger Towers, the Region of Interest can be in four different positions, but for the regions with 8 Trigger Towers in each side, the Region of Interest is required to be in
+the center of the window, to avoid the possibility of finding two Regions of Interest in the same window.
+Figure~\ref{fig:l1jettt} shows a representation of the Region of Interest and its possible positions in the window configured.
+
+The Level 1 part of the muon-based trigger chains use the RPC sub-detector in the barrel and the TGC in the endcaps. In the barrel, the RPC is divided in three sectors:
+RPC1, RPC2 and RPC3, which are composed of two independent detector layers that measure both the pseudo-rapidity and the azimuthal angle of a hit. 
+When a first hit is found in a region of the detector
+another hit is searched for, in the region defined
+between the original hit and the interaction point, with an allowed
+perpendicular width. The allowed width is a parameter that depends on the transverse momentum
+threshold: the smaller the allowed deviation from a straight line, the higher is the minimum $p_T$ threshold. Two (three) trigger sectors in coincidence
+are required for low (high) transverse
+momentum algorithms.
+
+After a trigger from the configured Level 1 threshold, as shown schematically in Figure~\ref{fig:chains}, the High-Level Trigger starts to operate in Level 2,
+with the information that there was a Level 1 Region of Interest in a certain pseudo-rapidity and azimuthal angle. The general organisational
+structure of the Level 2 and the Event Filter are similar in that they are sub-divided in two types of elementary blocks: the Feature Extraction
+algorithm and the Hypothesis testing algorithm. The Feature Extraction algorithms calculate relevant variables using the available Inner Detector, calorimeter and Muon
+Spectrometer information. These variables are stored and can be refined by the next Feature Extraction algorithm in the sequence or used by the Hypothesis
+testing algorithm to demand that certain logical criteria are fulfilled. The Hypothesis testing algorithm simply decides whether to keep the event (if one or all
+of the criteria are fulfilled), or to reject it. If the event is accepted at the Level 2, it proceeds to be examined by the Event Filter, using the
+same organisation for Feature Extraction and Hypothesis testing algorithms. The event is finally accepted if it passes the Event Filter hypothesis testing.
+The algorithms used in the Level 2 and Event Filter Feature Extraction algorithms depend on which physics object the chain should accept. Consult~\cite{detpaper}
+for details.
+
+\begin{figure}[tbpb]
+\centering
+\begin{tikzpicture}[node distance=2cm, auto,
+   l1block/.style={rectangle, draw, text width=15em, text centered, minimum height=2em},
+   l2blockfex/.style={rectangle, draw, fill=blue!30, text width=15em, text centered, minimum height=2em},
+   l2blockhypo/.style={rectangle, draw, fill=green!30, text width=15em, text centered, minimum height=2em},
+   efblockfex/.style={rectangle, draw, fill=red!30, text width=15em, text centered, minimum height=2em},
+   efblockhypo/.style={rectangle, draw, fill=yellow!30, text width=15em, text centered, minimum height=2em},
+   res/.style={draw, text width=15em, text centered, minimum height=2em},
+   linetrig/.style={draw, ultra thick, color=black, -latex'}
+   ]
+
+  \node [l1block] (l1thre) {L1 threshold};
+
+  \node [l2blockfex, below of=l1thre] (l2fex1) {L2 Feature Extraction ($1$)};
+  \node [below of=l2fex1] (l2fex2) {$\vdots$};
+  \node [l2blockfex, below of=l2fex2] (l2fex3) {L2 Feature Extraction ($N$)};
+  \node [l2blockhypo, below of=l2fex3] (l2hypo) {L2 Hypothesis testing};
+  \node [res, below of=l2hypo, opacity=0.5] (l2res) {L2 chain accepted};
+  \draw [red,thick,dotted] ($(l2fex1.north west)+(-0.5,0.3)$) rectangle ($(l2res.south east)+(1.0,-0.5)$);
+  \node [rotate=270, yshift=2em] at ($(l2fex1.north east)!0.5!(l2res.south east)$) {Level 2};
+
+  \node [efblockfex, below of=l2res] (effex1) {EF Feature Extraction ($1$)};
+  \node [below of=effex1] (effex2) {$\vdots$};
+  \node [efblockfex, below of=effex2] (effex3) {EF Feature Extraction ($M$)};
+  \node [efblockhypo, below of=effex3] (efhypo) {EF Hypothesis testing};
+  \node [res, below of=efhypo, opacity=0.5] (efres) {EF chain accepted};
+  \draw [red,thick,dotted] ($(effex1.north west)+(-0.5,0.3)$) rectangle ($(efres.south east)+(1.0,-0.3)$);
+  \node [rotate=270, yshift=2em] at ($(effex1.north east)!0.5!(efres.south east)$) {Event Filter};
+
+  \draw [red,thick] ($(l1thre.north west)+(-0.7,0.8)$) rectangle ($(efres.south east)+(1.3,-0.8)$);
+  \node [above of=l1thre,yshift=-1em] {Chain};
+
+  \path [linetrig] (l1thre) --  (l2fex1);
+  \path [linetrig] (l2fex1) --  (l2fex2);
+  \path [linetrig] (l2fex2) --  (l2fex3);
+  \path [linetrig] (l2fex3) --  (l2hypo);
+  \path [linetrig] (l2hypo) --  (l2res);
+
+  \path [linetrig] (l2res) --  (effex1);
+  \path [linetrig] (effex1) --  (effex2);
+  \path [linetrig] (effex2) --  (effex3);
+  \path [linetrig] (effex3) --  (efhypo);
+  \path [linetrig] (efhypo) --  (efres);
+
+\end{tikzpicture}
+\caption{Simplified schematic that shows the structure of the trigger chains.}
+\label{fig:chains}
+\end{figure}
+
+\begin{figure}[tbpb]
+\centering
+\includegraphics[width=0.5\linewidth]{figures/egamma_tt.eps}
+\caption{Schematic representation of the Trigger Towers used to calculate the electron/photon-related Level 1 trigger threshold sums. The core of $2 \times 2$ trigger towers in the electromagnetic calorimeter is required to contain the sum of two Trigger Towers horizontally or vertically that satisfy the minimum threshold. Isolation veto using the ring of cells around the center ones and the hadronic calorimeter energy sums can also be implemented in some chains. Extracted from~\cite{detpaper}.}
+\label{fig:l1egammatt}
+\end{figure}
+
+\begin{figure}[tbpb]
+\centering
+\includegraphics[width=0.8\linewidth]{figures/jet_tt.eps}
+\caption{Schematic representation of the Trigger Tower sum configuration for the jet-related triggers at Level 1. Extracted from~\cite{detpaper}. The jet trigger algorithms are based on jet elements which have the size of $2 \times 2$ Trigger Towers. The Region of Interest is shaded. For scans using $6 \times 6$ windows, there are four possible windows containing a Region of Interest, but in the $8 \times 8$ case, the Region of Interest is required to be in the center position, to avoid the possibility of two jets in a single window.}
+\label{fig:l1jettt}
+\end{figure}
+
+\section{Multiple interactions in ATLAS}
+
+Each bunch crossing analysed by ATLAS includes a beam of protons in both $+z$ and $-z$ directions. More than one interaction is expected to happen and the
+measurement of the distribution of the mean number of interactions per bunch crossing is shown in Figure~\ref{fig:pileup} for 2011 and 2012 data. This effect is often referred to as
+``pile up'' and it has a significant impact in the physics analyses.
+One example of the effects of pile up is that extra particles are produced in the final state
+as a result of pile up interactions that could be confused as coming from the interaction under analysis.
+
+The Monte Carlo simulations do not perfectly simulate the shape of the $<\mu>$ distribution extracted in data, which leads to a discrepancy when comparing data and
+simulation. This can be fixed in the physics analyses by weighting the events by the ratio of the data to simulation $<\mu>$ distributions. More details about this reweighting
+procedure are given in Section~\ref{sec:ttjets_corrections}.
+The $<\mu>$ value is estimated as an average number of
+interactions over the
+time period of a ``luminosity block'' in ATLAS. The duration of a
+luminosity block is set by the Data Acquisition System of ATLAS, which
+is of approximately two minutes.
+
+\begin{figure}[ht]
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/mu_2011-2_1.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/mu_2012-dec.eps}}
+\caption{The mean number of proton-proton interactions per bunch crossing in ATLAS is shown for the data taking in 2011 (left) and 2012 (right). For 2011, the set up after the Technical Stop in September (with $\beta^{*} = 1.0$ m) is shown in red and the set up before it is shown in blue (with $\beta^{*} = 1.5$ m). ATLAS performance public plot not produced by the author. More information about the measurement can be found in~\cite{lumi}. Entries in $<\mu> \sim 0$ arise from pilot bunches that were present in many early LHC fills.}
+\label{fig:pileup}
+\end{figure}
+
+
+\section{Electron reconstruction and identification}
+\label{sec:atlas_electron}
+
+Electrons can be initially identified by the Trigger System~\cite{atlastrigger} through a selection chain in all three levels of triggering.
+After a trigger selection, the offline algorithms reconstruct the electron four-momentum using the electromagnetic calorimeter clusters as seeds~\footnote{Photons
+are also selected based on similar requirements on the electromagnetic calorimeter clusters. Photons would have no ID tracks, though.}, which are matched to ID tracks
+at a later stage to identify and reconstruct the electron's four-momentum~\cite{electron2010}.
+Identification algorithms based on the track's characteristics and the energy deposition
+in the calorimeter are used. A full account of the methods used for the trigger, reconstruction and identification of electrons in ATLAS can be found in~\cite{electron2010}.
+It is important to highlight the calibration and correction factors applied to correct for the difference in behaviour of these algorithms in real data and in Monte Carlo
+simulation. These corrections are calculated based on statistical analyses in simulation and real data and the methods used to extract them will be mentioned here, since
+these corrections are used at a later stage, in the analyses chapters.
+
+The energy scale and resolution of the electrons can be calculated in real data, using $Z$-boson and $J/\Psi$ decays into pairs of electrons, which are required
+to have a minimum transverse energy of $20\gev$ for the $Z$-boson decays and $5\gev$ for the $J/\Psi$ decays and to pass an electron trigger requirement.
+The invariant mass of the electron pairs is required to
+be in a window around the masses of the $Z$-boson ($80\gev$ - $100\gev$) or the $J/\Psi$ ($2.5\gev$ - $3.5\gev$) and the leptons are required to have opposite
+charges. The amount of background is estimated and subtracted. With these events, the relation between the true electron energy, $E^{\textrm{true}}$,
+and the measured energy, $E^{\textrm{measured}}$, in a region $i$ of the detector is given by:
+
+\begin{equation}
+\displaystyle
+E^{\textrm{measured}} = E^{\textrm{true}} (1 - \alpha_i).
+\label{eq:electron_scale}
+\end{equation}
+An unbinned likelihood function is maximised~\cite{electron2010} to obtain the values of $\alpha_i$ for every region of the detector. The results of this measurement
+for 2010 ATLAS data are shown in Figure~\ref{fig:electron_scale}. Cross-checks of these results were done using other methods, which rely on $W^{\pm} \rightarrow e^{\pm}\nu_e$
+decays.
+The $\alpha_i$ terms in the formula above are used to correct the simulated electron energy scale so that it behaves similarly to data
+in the analyses that follow and the systematic uncertainties associated
+with its measurement~\cite{electron2010} are also taken into account.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{external/electron_scale.eps}
+\caption{Results of the measurement of the electron energy scale in $Z \rightarrow e^+e^-$ decays and in $J/\Psi \rightarrow e^+e^-$ decays in ATLAS 2010 data, for $|\eta| < 0.6$ (left) and $1.53 < |\eta| < 1.8$ (right). Extracted from~\cite{electron2010}.}
+\label{fig:electron_scale}
+\end{figure}
+
+The electron fractional energy resolution is parametrised as:
+
+\begin{equation}
+\displaystyle
+\frac{\sigma_E}{E} = \frac{a}{\sqrt{E}} \oplus \frac{b}{E} \oplus c,
+\label{eq:electron_resolution}
+\end{equation}
+where $a$, $b$ and $c$ are empirical parameters, and the parameter $c$ is frequently referred to as the ``constant term'' in the fractional energy resolution parametrisation.
+Figure~\ref{fig:electron_resolution} shows a fit in data and the Monte Carlo simulation prediction used to derive the energy resolution parameters. Several sources of systematic
+uncertainties are investigated and more details can be found in~\cite{electron2010}. A smearing of the electron kinematics is applied in simulation for the physics analyses
+to correct for the difference in the energy resolution in data and simulation.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{external/electron_resolution.eps}
+\caption{Fit of data and simulation for the electron energy resolution estimate from $J/\Psi \rightarrow e^+e^-$ decays using ATLAS 2010 data. Extracted from~\cite{electron2010}.}
+\label{fig:electron_resolution}
+\end{figure}
+
+The electrons are reconstructed, furthermore, demanding that they satisfy the trigger requirement, a set of track- and calorimeter-related cuts,
+a set of reconstruction requirements and, in some analyses, an isolation requirement, which demands that there are no other tracks or energy deposits
+around the particle.
+A final set of corrections applied in simulation are related to a difference in electron selection and reconstruction efficiencies in simulation and data. They are applied in
+the physics analysis by weighting the events by the ratio of efficiencies in data and simulation. These corrections are frequently called ``scale factors'' in this document.
+To calculate these corrections, though, it is necessary to measure each of these efficiencies in simulation and data. That was done, for 2010 ATLAS data in~\cite{electron2010}.
+When applying the weights calculated with the derived scale factors in the physics analyses,
+the uncertainties are taken into account, by varying the weights accordingly.
+
+The efficiency measurements are done using the Tag And Probe method, which studies decays into pairs of particles from real data $Z$-boson, $J/\Psi$ or $W$-boson decays.
+This method aims at selecting a sample of ``probe'' electrons using selection cuts which are called ``tag'' requirements, on another physical object, which is
+called the ``tag'' object. A selection can then be applied in the ``probe'' electron to investigate its efficiency. In $Z \rightarrow e^+e^-$ and $J/\Psi \rightarrow e^+e^-$
+events, one
+of the electrons is used as a tag, while in the $W^{\pm} \rightarrow e^{\pm} \nu_e$ events,
+high missing transverse energy is used as a tag. The $Z$-boson, the $J/\Psi$ or the $W$-boson
+masses can be used as constraints to reduce the background contribution in these analyses, which are subtracted.
+
+In the Tag And Probe method, the tag selection is looser than the probe one. A set $N_T$ of events is chosen so that at least one electron passes the tag
+requirement. In this set, a subset $N_{T\&P}$ of events is required to satisfy the probe selection as well. The ratio $N_{T\&P}/N_T$ is used as a measure of the probe
+selection efficiency.
+More details about these efficiency measurements can be found
+in~\cite{electron2010}. Figure~\ref{fig:electron_eff} summarises a few efficiency measurement results for the electron identification and
+for the electron reconstruction.
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{external/electron_eff_tight.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{external/electron_eff_reco.eps}}
+\caption{Efficiency measurement results using the Tag And Probe method in $Z \rightarrow e^+e^-$ decays in 2010 ATLAS data for the electron identification (left) and the electron reconstruction efficiencies. Extracted from~\cite{electron2010}.}
+\label{fig:electron_eff}
+\end{figure}
+
+\section{Muon reconstruction}
+\label{sec:atlas_muon}
+
+The muons are identified initially by the Level 1 trigger~\cite{muonperf2010}
+using the Muon Spectrometer and they are further analysed by the next trigger levels using the Inner Detector tracks.
+The events selected by the muon trigger use the full resolution of the detector in the Muon Spectrometer and the Inner Detector to reconstruct the muon's momentum and charge.
+Muon events reconstructed only by the Muon Spectrometer, with no match to the Inner Detector track, are called ``Standalone Muons'', while muons which have an Inner Detector
+track that can be associated to straight track segments in the Muon Spectrometer are called ``Segment Tagged Muons (ST)''.
+The muons used in the analyses have a track reconstruction
+performed separately in the Inner Detector and the Muon Spectrometer, which can be used to form a combined track. The latter are called ``Combined Muons (CB)''.
+Due to differences in the muon momentum resolution in data and simulation, the physics analyses smear the simulated
+muon momenta so that the corrected simulation resolution matches
+data. However, to implement this, the resolution in simulation and in data must be measured.
+
+The reconstructed muon tracks have a resolution~\cite{muonres2010} in data and simulation which can be parametrised, in the Muon Spectrometer (MS),
+for a given pseudo-rapidity, by:
+
+\begin{equation}
+\displaystyle
+\frac{\sigma^{MS}(p)}{p} = \frac{p_0^{MS}}{p_T} \oplus p_1^{MS} \oplus p_2^{MS} p_T,
+\label{eq:muon_res_ms}
+\end{equation}
+where $p$ is the reconstructed momentum, $p_T$ is the reconstructed transverse momentum, $\sigma^{MS}$ is the resolution in the MS
+and $p_0^{MS}$, $p_1^{MS}$ and $p_2^{MS}$ are coefficients related to the energy loss in the calorimeter material, multiple scattering and intrinsic resolution terms
+respectively.
+In the Inner Detector, the parametrisation can be done similarly, but for the central part of the detector, in $|\eta| < 1.9$, the energy loss term can be dropped:
+
+\begin{equation}
+\displaystyle
+\frac{\sigma^{ID}(p)}{p} = p_1^{ID} \oplus p_2^{ID} p_T,
+\label{eq:muon_res_id_central}
+\end{equation}
+where the resolution is given by $\sigma^{ID}$. For $|\eta| \geq 1.9$, the worsening of the resolution due to the edge of the TRT fiducial volume can be parametrised as:
+
+\begin{equation}
+\displaystyle
+\frac{\sigma^{ID}(p)}{p} = p_1^{ID} \oplus p_2^{ID} p_T \frac{1}{\tan^2(\theta)},
+\label{eq:muon_res_id_eta19}
+\end{equation}
+where $\theta$ is the angle measured in the $y-z$ plane for the momentum direction.
+The muon resolution is measured by analysing $Z$-boson decays into muon pairs and $W$-boson decays into a muon and a neutrino. The width of the $Z$-boson invariant mass
+reconstructed in selected events after background subtraction~\cite{muonres2010} is related to the muon resolution.
+%, since the $Z$-boson invariant mass distribution
+%is a combination of the effects of the natural width of the $Z$-boson and the muon momentum resolution.
+The $W^{\pm} \rightarrow \mu^{\pm} \nu_\mu$ decays
+can also be used to calculate the
+relative difference in momentum predicted by the MS and the ID, which should have a mean at zero and its width probes the quadratic sum of the resolutions in the ID
+and the MS. The resolution for the ID and the MS have been measured~\cite{muonres2010}
+in different pseudo-rapidity ranges and they are shown in Figure~\ref{fig:muon_resolution}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{external/muon_resolution.eps}
+\caption{Sum in quadrature of the Muon Spectrometer and the Inner Detector muon resolutions as a function of the transverse momentum in four pseudo-rapidity regions using $W \rightarrow \mu \nu$ events in ATLAS 2010 data. This is the result of a preliminary analysis, on which there were shortcomings in the simulation of intrinsic resolution and module misalignent~\cite{muonres2010}. Extracted from~\cite{muonres2010}.}
+\label{fig:muon_resolution}
+\end{figure}
+
+From the measurements of the resolution in data and simulation, and a fit according to the resolution parametrisation, a correction strategy can be devised
+for the MS and ID tracks separately, which are then combined in a single combined muon correction, which is applied in simulation.
+The Muon Spectrometer tracks are corrected in simulation according to:
+
+\begin{equation}
+\displaystyle
+p_T^{\prime} (MS) = p_T(MS) (1 + \Delta (MS) ),
+\label{eq:muon_ptms_cor}
+\end{equation}
+where $p_T^{\prime} (MS)$ is the corrected transverse momentum of the Muon Spectrometer track, $p_T(MS)$ is the uncorrected transverse momentum of the MS tracks and $\Delta(MS)$
+is extracted from:
+
+\begin{equation}
+\displaystyle
+\Delta (MS) = f(0, 1) \Delta p_1^{MS} + f(0, 1) \Delta p_2^{MS} p_T (MS),
+\label{eq:muon_dms}
+\end{equation}
+where $f(0, 1)$ is a random number from a Gaussian sample with mean zero and variance one and $p_i^{MS}$ are the fit parameters.
+For the Inner Detector tracks, the correction is applied in a similar way, but considering another parametrisation for the $\Delta (ID)$ correction:
+
+\begin{eqnarray}
+\displaystyle
+\Delta (ID)&=&f(0, 1) \Delta p_2^{ID} p_T \textrm{ , for $|\eta| <1.9$,} \nonumber \\
+\Delta (ID)&=&f(0, 1) \Delta p_2^{ID} p_T / \tan^2(\theta) \textrm{ , for $|\eta| \geq 1.9$},
+\label{eq:muon_did}
+\end{eqnarray}
+where the $p_i^{ID}$ parameters are the fit parameters for the ID tracks.
+These resolution corrections can be combined for a combined muon correction using~\cite{muonres2010}:
+
+\begin{equation}
+\displaystyle
+p_T^{\prime}(CB) = p_T(CB) \left[ 1 + \frac{\frac{\Delta(MS)}{\sigma^2(MS)} + \frac{\Delta(ID)}{\sigma^2(ID)} }{\frac{1}{\sigma^2(MS)} + \frac{1}{\sigma^2(ID)}} \right],
+\label{eq:muon_res_combined}
+\end{equation}
+where $\sigma(MS)$ and $\sigma(ID)$ are the parametrised muon resolutions for the MS and the ID, respectively, and $p_T^{\prime}(CB)$ is the corrected
+combined muon transverse momentum, while $p_T(CB)$ is the combined muon transverse momentum before the correction. Detailed information on
+how the fit is performed can be found in~\cite{muonres2010}. For the purposes of the physics analyses presented in this document, the corrections above are
+the ones used to smear muons in simulation, to match the data resolution. The uncertainties of the resolution measurements are taken into account in the physics
+analysis, by shifting the MS and ID resolutions separately, recalculating the smeared combined momentum, and estimating its effect
+in the analysis.
+
+Besides the muon smearing correction, the efficiencies for muon identification and reconstruction also have a different behaviour in data and simulation, which is corrected
+in the physics analysis, by weighting the simulation events using the efficiency ratio between data and simulation. Both the Inner Detector reconstruction efficiency,
+the Muon Spectrometer reconstruction efficiency, the MS to ID track matching efficiency and the muon isolation efficiencies must be taken into account. The efficiency
+measurement is done using $Z$-boson or $J/\Psi$ decays into pairs of muons in the Tag And Probe method described in the previous section.
+Figure~\ref{fig:muon_eff} shows the efficiency measured in data and simulation using $Z$-boson decays for the 2010 data. More details on the method and other
+efficiency results are available in~\cite{muonperf2010}.
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{external/muon_eff_id.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{external/muon_eff_cb.eps}}
+\caption{Muon reconstruction efficiency not considering the isolation requirement, measured using $Z$-boson decays into pairs of muons. In the left figure, the Inner Detector reconstruction efficiency is shown. In the right figure, the efficiency of reconstructing Combined Muons, relative to the Inner Detector efficiency is shown. This was done with 2010 ATLAS data and it was extracted from~\cite{muonperf2010}.}
+\label{fig:muon_eff}
+\end{figure}
+
+\section{Jet algorithms}
+\label{sec:atlas_jet}
+
+Jets are an important ingredient in the physics analyses shown in this document. They are detected in the experiment
+as a collection of nearby clusters in the calorimeter and tracks for charged
+particles in the tracking chambers. Different algorithms can be used to reconstruct a four-momentum which would be related to the particle that initiated the shower and lead
+to the jet formation, such as the Anti-$k_t$ algorithm~\cite{antiktalgo}, or the $k_t$ algorithm~\cite{ktalgo}. Both algorithms iteratively combine the
+momenta of pairs of clusters, if they satisfy a set of criteria until a single jet four-momentum is calculated. They rely on an $R$ parameter, which provides
+a relative measure in $\eta \times \phi$ space for the distances between the jet constituent elements. In the analyses performed in this document, the $R$ parameter used
+was either $R=0.4$, or $R=1.0$. In all analyses, the FastJet software~\cite{fastjet} is used to implement the jet algorithm used.
+
+The main jet algorithm used in this document is the Anti-$k_t$ algorithm, which starts from a set of four-momenta information, which can be
+topo-clusters, MC meta-data from the simulation or tracks, and calculates, for each pair of four-momenta with transverse momenta $k_{tj}$ and $k_{ti}$:
+
+\begin{equation}
+\displaystyle
+d_{ij} = \textrm{min}(k_{tj}^{2p}, k_{ti}^{2p}) \frac{\Delta R_{ij}^2}{R^2},
+\label{eq:jet_dij}
+\end{equation}
+where $\Delta R_{ij} = \sqrt{\Delta \eta^2 + \Delta \phi^2}$
+is
+the distance in the $\eta \times \phi$ plane between the two four-momenta. $R$ is a parameter of the algorithm and $p = -1$ for the Anti-$k_t$ algorithm~\footnote{The $k_t$
+algorithm follows the same definition for what follows, but it has $p = 1$ instead.}. For each four-momentum with transverse momentum $k_{tk}$
+the algorithm calculates:
+
+\begin{equation}
+\displaystyle
+d_{kB} = k_{tk}^{2p}.
+\label{eq:jet_dkb}
+\end{equation}
+It groups each pair of elements $i$ and $j$, summing their four-momentum, into a new element if $d_{ij} < d_{iB}$ and $d_{ij} < d_{jB}$, otherwise it looks for a new
+pair of elements to try and merge. After all combinations are done to group elements in the jet, the algorithm starts over, trying to group new pairs after the
+merging of some elements.
+
+For jets with large-$R$, 
+an interesting observable
+can be calculated by studying its substructure.
+One may recluster the jet's
+constituents with the $k_t$ algorithm~\cite{ktalgo,antiktalgo}.
+The last merging step of the procedure previously described
+defines a $d_{ij}$ value called
+the \emph{first splitting scale} $\sqrt{d_{12}}$. This
+observable is used in the following analyses to select jets generated
+by heavy particle decays (see Section~\ref{sec:ttbarres7_sel}).
+
+Jets which are built using the calorimeter information as an input are called ``calorimeter jets''. More specifically, jets in this document
+use topological calorimeter clusters (``topo-clusters'')~\cite{ttjets_jer}, which are built from topologically connected calorimeter cells with significant energy
+above a noise threshold. The topo-clusters are initially reconstructed at the EM scale~\cite{atlas_larcal}, which measures the energy of particles produced in
+electromagnetic showers in the calorimeter. The clusters can be calibrated using a Local Cluster Weighting (LCW) method, which improves the resolution, correcting
+for fluctuations in the calorimeters~\cite{jes2011}. Furthermore, an \emph{in situ} calibration of jets is applied to correct the jet energy scale
+in simulation, so that it matches data~\cite{jes2011}.
+Jets can also be built from particles' four-momenta in the shower generated in simulation, without any detector simulation and these jets are called ``particle jets'' or
+``truth jets''.
+
+Different techniques can be used to measure the jet energy scale in data and simulation. One method selects only events with a photon or a $Z$-boson and one extra jet.
+In this method, called ``direct balance'' (DB),
+due to the momentum conservation in the event, the jet should recoil with a momentum opposite to the $Z$-boson or photon, which provides a measurement
+of the jet energy relative to the $Z$-boson or photon energies~\cite{jes2011}. Another method, called Missing transverse momentum Projection Fraction (MPF)
+relies on the transverse momentum balance between a photon and a hadronic recoil, which has its transverse momentum calculated using topo-clusters. A third
+method selects events with low transverse momentum jets recoiling against a high $p_T$ jet and it can be used to calibrate high $p_T$ jets, based on a
+calibration done on low $p_T$ jets using the direct balance method. The ratio of the jet energy scale measurements in data and simulation on Anti-$k_t$ jets
+with $R=0.4$, at EM scale or with the LCW method, is shown in Figure~\ref{fig:jes2011}, with all its uncertainty bands. The \emph{in situ} calibration
+is applied in the physics analyses that follow and the jet energy scale uncertainty is varied in the analyses to quantify its impact. Similar studies were done
+for jets with $R=1.0$ parameter and the results can be consulted in~\cite{fatjet_confnote}. More information with other
+calibration methods can be found in~\cite{ttjets_jer} as well.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{external/jes2011.eps}
+\caption{Ratio of the jet energy scale in data and simulation for Anti-$k_t$ $R=0.4$ jets built using the EM scale (left) or using the LCW method (right) for 2011 ATLAS data. Extracted from~\cite{jes2011}.}
+\label{fig:jes2011}
+\end{figure}
+
+Another important effect, which is taken into account in the physics analyses is the jet reconstruction efficiency, which measures the efficiency with which
+truth jets are reconstructed in calorimeter jets using simulation and a Tag And Probe-based method in data~\cite{ttjets_jer}.
+The uncertainty on the jet reconstruction efficiency is also taken into account in the physics analyses.
+The jet energy resolution was also measured~\cite{jetreso2010,ttjets_jer} and the jets were smeared when calculating the systematic uncertainty in the physics
+analyses.
+
+A quantity called ``jet vertex fraction'' (JVF) is calculated for each jet and a selection cut applied on it
+can be used to reduce the impact of multiple particle interactions
+in the analyses. The JVF is calculated as the fraction of the jets' tracks' $p_T$ scalar sum for tracks that can be matched to the primary vertex.
+The primary vertex (PV) is calculated as the vertex associated with the highest sum of tracks' squared transverse momenta ($\sum p_{t,\textrm{track}}^2$)
+for all tracks associated with that vertex.
+%The secondary vertex (SV) is defined similarly, being the one with the second highest sum of tracks' squared transverse
+%momentum.
+
+The efficiency of the jet vertex fraction selection requirement is measured in $Z$ + 1 jet events (in which the $Z$ boson decays into a pair of leptons), by selecting
+events with jets back-to-back to the reconstructed $Z$ boson, similarly to the jet energy scale measurement.
+The uncertainty on this efficiency measurement was calculated by varying the selection requirements for
+the $Z$ + 1 jet events. A scale factor was calculated as the ratio of efficiencies of the JVF selection in data and simulation with its appropriate uncertainty,
+so that the simulation can be corrected in the physics analyses.
+
+\section{$b$-tagging algorithms}
+\label{sec:atlas_btag}
+
+Although reconstructing the four-momentum of jets is important, there are many ways in which they could be produced, from the hadronisation of $u$, $d$ or $s$ quarks, to
+a decay of high momentum particles, such as the Higgs boson, or the top quark, which have their decay products overlapping when detected. Identifying the mechanism in
+which the jet was generated is very important in some analyses, for reducing the background contribution. The top quark, for example, decays almost exclusively to a
+$W$-boson and a $b$-quark, while the latter always
+generates a jet. Identifying a ``\bjet'' is, therefore, important to select events which contain top quarks and separate them
+from the backgrounds, which contain jets generated from $u$, $d$, $s$, or $c$ quarks~\footnote{As it will be seen in the physics analyses
+Sections~\ref{sec:ttjets_background} and\ref{sec:ttjets_selection}, the backgrounds
+include $W$-boson production with extra jets, $Z$-boson production with extra jets and QCD multi-jets, which contain a smaller fraction of \bjets than the top quark production.}.
+The $b$-quarks hadronise into a hadron containing a $b$-quark, which has a relatively long lifetime of $\sim 1.5$ ps~\cite{pdg2012}
+in the process of generating a \bjet. This long lifetime can be exploited
+to identify ``\bjets''.
+
+Many methods have been developed to identify whether a jet is a \bjet, or another type of jet. Jets coming from a $c$-quark hadronisation are called ``$c$-jets'', while jets which
+originated from $u$, $d$, $s$ quarks or gluons are jointly called ``light-jets''. In general the algorithms used to identify \bjets have a weight as an output, on which
+a cut can be made, depending on the desired efficiency and mistag rate (that is, the probability of selecting jets, although the jets are not generated by a $b$-quark).
+The algorithm used in the physics analyses in this document has been configured to have a 70\% efficiency over a broad transverse momentum range and it is called ``MV1''. It
+uses a neural network that combines the output weight of other algorithms, named ``IP3D'', ``SV1'' and ``JetFitterCombNN'', which are described in~\cite{btag2011,btagalgos}.
+
+In the $b$-tagging algorithms, the jets are associated with tracks, requiring that all tracks associated with a given jet have a maximum $\Delta R(\textrm{jet},\textrm{track})$.
+The maximum $\Delta R(\textrm{jet},\textrm{track})$ required varies with the transverse momentum of the jet, so that high momentum jets have a smaller cone size and are
+more collimated. The tracks are then selected according to some quality cuts criteria (see~\cite{btagalgos} for more details). Their four-momenta and the position of their
+perigee to the primary vertex are used to compute a weight in each algorithm. These weights are expected to peak in a specific number if the jet is a \bjet, so that a selection
+requirement can be designed based on it.
+
+The IP3D algorithm calculates a likelihood function for signal (\bjets) and backgrounds ($c$-jets and light-jets) in
+simulation for the significance of the longitudinal impact parameter, $S(z_0) = z_0/\sigma(z_0)$, and the significance of the transverse impact parameter,
+$S(d_0) = d_0/\sigma(d_0)$, of each track
+associated with the jet. A likelihood ratio is calculated for the jet, by multiplying each of the track likelihood functions. The significances for the impact parameters
+are signed, based on whether the track intercepts the jet cone axis or not~\footnote{The convention used for the sign association is not essential for the algorithm,
+as long as it is used consistently.}. For \bjets, the likelihood function for these signed significances is asymmetric, while it is expected to be approximately Gaussian
+for the light-jets.
+
+The SV1 algorithm, calculates the position of the secondary vertex (SV) and associates it to the jet tracks. It uses a likelihood ratio
+technique based on a few variables calculated based on the SV position: the invariant mass of the sum of the tracks associated
+to the SV, the ratio of the sum of energies of tracks associated with the SV and the sum of energies of all tracks associated with the jet, and the number of vertices
+in the event. The former two variables are combined in a two-dimensional likelihood, while the latter variable is used to build a one-dimensional distribution. Other information
+is also used, such as the distance between the jet axis and the line that goes through the primary and secondary vertices. More information about this tagger can be found
+in~\cite{btagalgos}. The JetCombFitterNN algorithm relies on the topology of the hadron decays inside the jet and more about it can be read in~\cite{btag2011,mv1note,btagalgos}.
+
+%Since the $b$-tagging algorithms also show a discrepancy in their performance in data and simulation, the data events are weighted by the efficiency ratio in data and simulation,
+%to correct for the sources of discrepancies.
+Different methods can be used to measure the efficiency of the $b$-tagging algorithms in data, which are given in details in~\cite{btag2011,mv1note}. Figure~\ref{fig:btag_ptrel} shows the efficiency of the MV1 algorithm, calculated in simulation and data using the $p_T^{\textrm{rel}}$ method. This method
+exploits the semileptonic decay of the $B$-hadron to a muon and it reconstructs the momentum of the muon transverse to the combined muon and jet axis. It builds a template
+for this distribution in \bjets, $c$-jets and light-jets and these are used in a fit in data to obtain the number of \bjets before and after the $b$-tagging requirement. More
+details about this method can be found in~\cite{btag2011,mv1note}.
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.48\linewidth]{external/mv1_eff.eps}}
+\hspace{0.05cm}
+\subfloat{\includegraphics[width=0.48\linewidth]{external/mv1_sf.eps}}
+\caption{The efficiency in data and simulation (left) and their ratio (right) for the MV1 b-tagging algorithm in its 70\% efficiency working point, calculated using ATLAS 2011 data and the $p_T^{\textrm{rel}}$ method~\cite{btag2011,mv1note}. Extracted from~\cite{mv1note}.}
+\label{fig:btag_ptrel}
+\end{figure}
+
+\section{Missing transverse energy reconstruction}
+\label{sec:atlas_met}
+
+An important component for physics analyses is the measurement of the missing transverse energy in the detector, which calculates the imbalance of the total transverse
+momentum after the collision. The source of the imbalance is related to particles which are not detected in ATLAS. In the Standard Model, the undetected particles are
+neutrinos, but other models include different new particles which also would not be detected easily and they could be a source of missing transverse energy.
+%The missing energy measurement cannot be done in the $z$-axis, due to the fact that the total energy in the $z$ direction is not measured by ATLAS.
+
+The measurement of the missing transverse energy, \met, is separated in two components: one uses the calorimeter information and the other one uses the
+Muon Spectrometer information. The calorimeter term uses the calibrated calorimeter cells according to the reconstructed high transverse momentum physics object
+they are associated with in a chosen order: electrons, photons, hadronically decaying $\tau$-leptons, jets and muons. Calorimeter cells not associated with any such objects
+are also taken into account in the \met calculation and they correspond to what is called the ``CellOut'' \met contribution. The full calorimeter \met contribution is:
+
+\begin{eqnarray}
+\displaystyle
+E^{\textrm{miss,calo}}_{x,y}&=&E^{\textrm{miss,electrons}}_{x,y} + E^{\textrm{miss,photons}}_{x,y} + E^{\textrm{miss,}\tau}_{x,y} \nonumber \\
+&& + E^{\textrm{miss,jets}}_{x,y} + E^{\textrm{miss,soft-jets}}_{x,y} + E^{\textrm{miss,calo }\mu}_{x,y} + E^{\textrm{miss,CellOut}}_{x,y},
+\label{eq:met_calo}
+\end{eqnarray}
+where each term is the negative of the sum of calibrated cell energies inside the objects:
+
+\begin{equation}
+\displaystyle
+E^{\textrm{miss,term}}_{x,y} = - \sum_{i=1}^{N_{\textrm{cell}}^{\textrm{term}}} E_i \sin \theta_i \cos \phi_i,
+\label{eq:met_term}
+\end{equation}
+and $E_i$, $\theta_i$ and $\phi_i$ are the energy, polar angle and azimuthal angle of the $i$-th cell for all object within $\eta < 4.5$.
+Noise-removal criteria are applied, to reduce the effect of noise in the calorimeter cells~\cite{atlas7met}. The soft-jets \met term is calculated in cells
+for clusters associated with jets that have a transverse momentum between $7\gev$ and $20\gev$ and the ``CellOut'' term includes the energy of cells not associated with
+any physical reconstructed object. The muon calorimeter term is calculated by matching the muon tracks to the calorimeter.
+The Muon Spectrometer contribution to the missing transverse energy calculation is estimated from the transverse momentum of muons with tracks within $|\eta| < 2.7$, by
+adding the negative of their transverse momentum components as in:
+
+\begin{equation}
+\displaystyle
+E^{\textrm{miss,}\mu}_{x,y} = - \sum_{\textrm{muons}} p_{x,y}^{\mu}.
+\label{eq:met_mu}
+\end{equation}
+More information about the \met calculation can be found in~\cite{atlas7met}.
+
+The performance of the missing transverse energy calculation was tested in $Z$-boson decays into two leptons, in which no missing energy should be detected, so it can be
+verified that there is no bias~\cite{atlas7met}. Decays of $W$-bosons into a neutrino (which results in missing transverse energy) and a lepton are also used to test the \met
+calculation in~\cite{atlas7met}. One important measurement of the \met performance is its resolution, which follows an approximate stochastic behaviour that can
+be parametrised as a function of the sum of the transverse
+energy in the detector:
+
+\begin{equation}
+\displaystyle
+\sigma(\met) = k \sqrt{\sum E_T},
+\label{eq:met_sigma}
+\end{equation}
+where $\sigma(\met)$ is the \met resolution, $k$ is a fitted parameter and $\sum E_T$ is the scalar sum of the transverse energy in the detector.
+A measurement of the \met resolution in $\sqrt{s} = 7\tev$ ATLAS data and an estimate of the uncertainty in the \met calculation from simulation of $W$-bosons to electron
+and neutrino decays are shown in Figure~\ref{fig:met}.
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{external/met_reso.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{external/met_unc.eps}}
+\caption{Left: resolution of the missing transverse energy measured in 2010 ATLAS $\sqrt{s} = 7\tev$ data with the respective fits in each channel. Right: uncertainty in the missing transverse energy scale from Monte Carlo simulation of $W$-boson decays into an electron and a neutrino. Extracted from~\cite{atlas7met}.}
+\label{fig:met}
+\end{figure}
+
+In the physics analyses that follow, the electrons', muons' and jets' four-momenta are corrected as described in the previous sections of this chapter, to account for
+discrepancies between data and the simulation. After these corrections, the missing transverse energy is recalculated to obtain a consistent estimate of the \met.
+Uncertainties in the missing transverse energy calculation are also taken into account, by varying the \met calculation by the fractional uncertainty in
+its terms and verifying the resulting impact in the final analyses goals.
+
+\section{Summary}
+
+This chapter has summarised a few important aspects of the ATLAS detector, which is used in the analyses that follow. The geometry of the detector and its performance for the
+identification of each of the relevant physics elements are fundamental to understand how the analysis works.

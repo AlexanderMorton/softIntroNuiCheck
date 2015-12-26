@@ -1,0 +1,38 @@
+
+FILE            = thesis
+
+TEXFILES        = introduction.tex summary.tex theory.tex thesis.tex ttbarjets.tex ttbarres7.tex ttbarres8.tex declaration.tex
+
+DIAGRAMS        = $(shell ls *.mf)
+DIAGRAMS_OUTPUT = $(subst .mf,.300gf,$(DIAGRAMS))
+
+all: $(FILE).pdf $(DIAGRAMS_OUTPUT)
+
+$(FILE).dvi: $(TEXFILES) $(FILE).bbl
+	latex $(FILE)
+	latex $(FILE)
+
+$(FILE).aux: $(TEXFILES)
+	latex thesis
+
+$(FILE).bbl: $(FILE).aux $(FILE).bib $(FILE).tex
+	bibtex $(FILE)
+
+$(FILE).ps: $(FILE).dvi
+	dvips $(FILE).dvi
+
+$(FILE).pdf: $(FILE).ps
+	ps2pdf -dOptimize=true -dUseFlateCompression=true -sPAPERSIZE=a4 $(FILE).ps
+
+# for Feynman diagrams
+%.300gf: %.mf
+	mf '\mode:=laserwriter; input $<'
+
+
+clean:
+	rm -f $(FILE).ps $(FILE).pdf $(FILE).dvi $(FILE).bbl $(FILE).aux *.log *.300gf *.600pk *.t1 *.tfm *.mf $(FILE).aux $(FILE).bbl $(FILE).blg $(FILE.dvi $(FILE).lof $(FILE).log $(FILE).lot $(FILE).pdf $(FILE).ps $(FILE).toc
+
+distclean: clean
+	rm -f *~
+
+

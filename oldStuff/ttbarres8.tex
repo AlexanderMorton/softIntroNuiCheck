@@ -1,0 +1,433 @@
+
+The results in the analysis detailed in the previous chapter have been extended to the $\sqrt{s} =8\tev$
+ATLAS data. The experience with the previous results led the group to a set of improvements which were implemented
+in the \ttbar mass spectra for the $\sqrt{s}= 8\tev$ data, collected in 2012.
+Since most of the analysis procedure remains unchanged, only the small differences and the new results are quoted in this chapter. The reader can find
+more information about the whole analysis in Chapter~\ref{chp:ttbarres7}.
+While in the previous analyses, the QCD multi-jets background estimate was done by other researchers, for the search described in this chapter,
+with 2012 data, this background was estimated by the author and a more detailed account of the method used is given.
+This analysis' result has been made public as an ATLAS conference note in~\cite{ttres8note}.
+
+\section{Differences with respect to the $\sqrt{s} = 7$ TeV analysis}
+
+A few improvements were made to the analysis, which is fully described in~\cite{ttres8note}.
+The search strategy is the same as the one described in Chapter~\ref{chp:ttbarres7}, separating and orthogonalising the resolved and boosted selections
+in the final state, resulting in four analysis channels (two for electrons and two for muons). For more details on the analysis strategy, consult Section~\ref{sec:ttbarres7_strategy}.
+Section~\ref{sec:ttbarres7_bkg} describes the backgrounds and Section~\ref{sec:ttbarres7_sel}, describes the selection algorithm. Consult Sections~\ref{sec:ttbarres7_cor} and~\ref{sec:ttjets_corrections} for the
+correction procedure, and Section~\ref{sec:ttbarres7_rec} for the event reconstruction procedure.
+
+The trigger used for the boosted selection in this analysis is the same as in the resolved selection, which uses single-lepton triggers. The previous analysis
+also used the large-$R$ jet triggers in the boosted selection, but this has been changed in this analysis for simplicity. In this analysis, an electron channel
+event is accepted
+by the trigger selection if either the isolated single-electron trigger with threshold at $p_T > 24\gev$ or the non-isolated single-electron trigger with threshold at
+$p_T > 60\gev$ are satisfied. In the muon channel, either the isolated single-muon trigger with threshold at $p_T > 24\gev$ or the non-isolated single-muon trigger
+with threshold at $p_T > 36\gev$ must be satisfied. The isolated lepton triggers show an efficiency loss at high transverse momentum, which is
+corrected for, by requiring that the higher $p_T$ threshold non-isolated triggers are fulfilled alternatively~\footnote{In the ATLAS jargon, it is required
+that either \texttt{EF\_e24vhi\_medium1} or \texttt{EF\_e60\_medium1} pass in the electron channel. In the muon channel, either \texttt{EF\_mu24i\_tight} or
+\texttt{EF\_mu36\_tight} must pass.}.
+The selected lepton is also required to match the trigger lepton, as previously, and scale factors are calculated based on the efficiency of these triggers in
+data and simulation to correct for discrepancies using the same procedure as described previously.
+
+In the analysis performed with 2011 data, the jet closest to the lepton was
+taken as the \bjet from the leptonic top decay, while in this analysis the highest $p_T$ jet which has a $\Delta R(\textrm{jet}, \textrm{lepton}) < 1.5$ is used for the \mtt
+reconstruction~\cite{ttres8note,ttres7paper}. It can be shown~\cite{ttres8note} that this choice improves the \mtt resolution comparing the reconstructed result with the
+particle-level simulation value.
+
+Another update is the usage of jet trimming~\cite{trimming} for the large-$R$ jets, which removes low energy clusters, reducing the effect of multiple interactions
+in the bunch crossing and initial state radiation. The jet trimming procedure reconstructs sub-jets inside the large-$R$ jet with a $R_{\textrm{sub}} = 0.3$ parameter for the
+jet algorithm. If a sub-jet has a transverse momentum $p_T < f_{\textrm{cut}} \Lambda_{\textrm{hard}}$, then the sub-jet contribution to the large-$R$ jet four-momentum
+is discarded. In this analysis, $f_{\textrm{cut}} = 0.05$ and $\Lambda_{\textrm{hard}}$ is set to the transverse momentum of the original large-$R$ jet~\cite{ttres8note}.
+
+\section{Multi-jet background modelling}
+
+The data-driven QCD multi-jets estimate is described in Section~\ref{sec:ttjets_qcd}, but it was performed by the author for the $\sqrt{s} = 8\tev$ search
+detailed in this chapter, therefore more information about the data-driven method and the calculation is detailed in this section.
+As was mentioned in Section~\ref{sec:ttjets_qcd}, the QCD multi-jets contribution is estimated by defining a ``loose'' and a ``tight'' lepton definition and selecting
+real data considering the leptons in these two definitions (with the ``loose'' definition including the ``tight'' as a subset). Events that pass the selection
+performed with leptons in both the ``tight'' and ``loose'' configurations would be weighted by:
+
+\begin{equation}
+\displaystyle
+w_{\mathrm{tight}} = \frac{\epsilon_{\mathrm{fake}}}{\epsilon_{\mathrm{eff}} - \epsilon_{\mathrm{fake}}} \times ( \epsilon_{\mathrm{eff}} - 1 ),
+\label{eq:mmqcd_wtight_ttres8}
+\end{equation}
+while, events that only pass the selection with leptons in the ``loose'' configuration are weighted by:
+
+\begin{equation}
+\displaystyle
+w_{\mathrm{loose}} = \frac{1}{\epsilon_{\mathrm{eff}} - \epsilon_{\mathrm{fake}}} \times ( \epsilon_{\mathrm{fake}} \epsilon_{\mathrm{eff}} ).
+\label{eq:mmqcd_wloose_ttres8}
+\end{equation}
+
+The important elements in the previous equations are the $\epsilon_{\mathrm{eff}}$ and $\epsilon_{\mathrm{fake}}$ terms, which should be estimated. The former
+gives the probability of a real lepton to pass the ``tight'' selection, given that it satisfies the ``loose'' selection. The latter, describes the probability
+of a jet to fake a ``tight'' lepton, by calculating the probability of an object to pass the ``tight'' lepton criteria, given that it satisfies the ``loose'' lepton criteria in
+a QCD multi-jets-enriched region.
+
+The $\epsilon_{\mathrm{eff}}$ term should be calculated in a region enriched with true leptons. A typical calculation of this term involves defining a selection
+in real data for $Z$-boson lepton decays, for example, which would be enriched in electron or muon pairs in the $Z$-boson window mass region.
+The $\epsilon_{\mathrm{eff}}$ term could then be calculated using the Tag And Probe method,
+by selecting a lepton that satisfies the ``loose'' criteria in the designed selection and verifying how often another lepton that satisfies the ``tight'' criteria
+can be found that is still in the $Z$-boson mass window used. In this analysis, the lepton scale factors (derived themselves using the Tag And Probe method, as
+was described in~\cite{electron2010} and~\cite{muonperf2010}) show that there is a good agreement between the
+efficiencies for the ``loose'' and ``tight'' selections in simulation after using the lepton reconstruction scale factors
+and the data selection efficiencies within uncertainties, therefore the simulation can be used to estimate
+the the $\epsilon_{\mathrm{eff}}$ factor.
+Events are selected in \ttbar simulation according to the standard selection used in the analysis with the extra requirement
+that there was in fact, at simulation level, a semileptonic \ttbar decay, which eliminates falsely identified events due to the detector effects. With these demands,
+the number of events satisfying the selection with the ``tight'' configuration divided by those satisfying the selection in the ``loose'' configuration is calculated.
+
+The $\epsilon_{\mathrm{eff}}$ factor depends on kinematical variables of the event and a better estimate
+for the shape of the QCD multi-jet background can be calculated if this rate's dependence on the relevant variables is taken into account. Ideally, a large set
+of the kinematical variables of the event could be used, but this would increase the statistical uncertainty of this variable in each bin, leading to a large uncertainty
+in the QCD multi-jet estimate. In this analysis, the $\epsilon_{\mathrm{eff}}$ variable shows a large dependence on the lepton transverse momentum and the smallest $\Delta R$ between the lepton and a small-$R$ jet. These quantities were used jointly to parametrise $\epsilon_{\mathrm{eff}}$.
+Figure~\ref{fig:ttres8_qcd_eff_resolved_lepPtdR} shows the
+parametrisation used for the resolved selection in the electron and muon channels. In the boosted channel, due to the smaller number of events, the two dimensional
+parametrisation is only used in the muon channel for the $\Delta R \leq 0.4$ situation and it is shown in Figure~\ref{fig:ttres8_qcd_eff_boosted_lepPtdR}. For the electron
+channel, in which the $\Delta R$ variable is always greater than $0.4$, and for the muon channel if $\Delta R > 0.4$, the parametrisation as a function of the lepton
+transverse momentum only is used and it is shown in Figure~\ref{fig:ttres8_qcd_eff_boosted_lepPt04dR}.
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/sf/effplot_b1_ttres_lepPtdREl.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/sf/effplot_b1_ttres_lepPtdRMu.eps}}
+\caption{$\epsilon_{\mathrm{eff}}$ parametrised as a function of the lepton $p_T$ and the min $(\Delta R(\textrm{lepton}, \textrm{jet}))$ in the electron (left) and muon (right) channels, for the resolved selection.}
+\label{fig:ttres8_qcd_eff_resolved_lepPtdR}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/sf/effplot_b1_boostedtop_lepPtdRMu.eps}}
+\caption{$\epsilon_{\mathrm{eff}}$ parametrised as a function of the lepton $p_T$ and the min $(\Delta R(\textrm{lepton}, \textrm{jet}))$ in the muon channel, for the boosted selection. In the muon channel, to reduce the statistical uncertainty, this parametrisation is only used for muons with min $(\Delta R(\textrm{lepton}, \textrm{jet})) \leq 0.4$ and a parametrisation solely described by the muon $p_T$ is used otherwise.}
+\label{fig:ttres8_qcd_eff_boosted_lepPtdR}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/sf/effplot_b1_boostedtop_lepPtEl.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/sf/effplot_b1_boostedtop_lepPtdR04Mu.eps}}
+\caption{$\epsilon_{\mathrm{eff}}$ parametrised as a function of the lepton $p_T$ for the electron (left) and muon (right) channels, in the boosted selection, which is used if the $\textrm{min}(\Delta R(\textrm{lepton}, \textrm{jet})) > 0.4$. In the muon channel, the previous criteria might not be satisfied and a parametrisation in function of both these variables is used in such a case.}
+\label{fig:ttres8_qcd_eff_boosted_lepPt04dR}
+\end{figure}
+
+The $\epsilon_{\textrm{fake}}$ variable should be calculated
+in a QCD multi-jets enriched region.
+A control region is designed to enhance the QCD multi-jet contribution in data and reduce the other background contributions. In this control
+region, the data can be subtracted from the backgrounds. This subtraction
+procedure can be done for events that satisfy the ``tight'' selection or the ``loose'' selection, so that their ratio can be calculated to
+determine $\epsilon_{\textrm{fake}}$.
+
+The control region is defined by changing the standard selection in this analysis in only a few requirements. For the resolved selection,
+the missing transverse energy requirement and the transverse mass of the lepton and missing transverse energy requirement are both inverted.
+While in the standard selection, it is required $\met > 30\gev$ and $m_{T} >30\gev$ for the electron channel, and, for the muon channel,
+$\met > 20\gev$ and $m_{T} > 60\gev - \met$;
+in the (background subtracted) control region, the requirement is $\met \leq 30\gev$ and $m_{T} \leq 30\gev$ for the electron channel, and, for the muon channel,
+$\met \leq 20\gev$ and $m_{T} \leq 60\gev - \met$.
+In the boosted selection, the transverse mass and transverse energy requirements are changed so that, in both electron and muon channels it is demanded that $\met \leq 60\gev$;
+for the electron channel it is demanded that $m_T \leq 60\gev$ and for the muon channel, $m_T \leq 60\gev - \met$. The requirements in the boosted selection are loosened to
+decrease the statistical uncertainty. The large-$R$ jet requirements are changed so that no large-$R$ jets are found with the same mass, $\Delta R$ and $\Delta \Phi$ selection
+requirements as in the signal region, but the
+large-$R$ jet transverse momentum requirement is relaxed so that it is $p_T > 150\gev$, and no requirement is made on the first $k_t$ splitting scale, $\sqrt{d_{12}}$.
+This requirement in the control region inverts and tightens the ones of the signal region, so that the selections are orthogonal to each other, while it is still permitted
+for lower mass or transverse momentum jets to be found. The selected large-$R$ jet to represent the hadronic top quark in the
+control region is redefined to be the highest transverse momentum large-$R$ jet available~\footnote{This choice is not important for the QCD parametrisation, since it is
+not used for that end. The hadronic top in the boosted regime control region is only used to calculate the \mtt variable for cross checks, as it is shown in what follows.}.
+
+The Control Region definition includes a further requirement: the modulus of the transverse impact parameter significance ($S(d_0)$)
+for the lepton track must be greater than $2.5$ in the electron
+channel and greater than $4$, in the muon channel. This requirement is not essential to the analysis, but it increases the fraction of heavy flavour in the
+Control Region sample. A dependency of the fake rate on the heavy flavour content of the QCD multi-jets sample would then be clearer.
+This effect has been seen previously in
+an analysis that does not require many selection cuts in Chapter~\ref{chp:bjet}, particularly in Figure~\ref{fig:fromCDS_efSd0}.
+%This figure is repeated here, as
+%Figure~\ref{fig:fromCDS_efSd0_2}. Note that the fraction of \bjet and $c$-jet entries increases, compared to the light-flavoured entries, for larger values of $|S(d_0)|$.
+
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=0.7\linewidth]{bjet_datamc_2011/fromCDS_efSd0.eps}
+%\caption{The signed $S(d_0)$ for the selected tracks at the Event Filter, using 2011 ATLAS data.}
+%\label{fig:fromCDS_efSd0_2}
+%\end{figure}
+
+The effect of the $|S(d_0)|$ requirement, can be seen to enhance the heavy flavour in this analysis, calculating the fraction of $b$-tagged events in the analysis for different
+requirements for $|S(d_0)|$ cuts, as shown in Figure~\ref{fig:sd0cut}. In this
+figure, the Control Region requirements are relaxed, by not applying the $S(d_0)$
+selection and not demanding the $b$-tagging selection, while all other requirements
+are kept. This includes all events that pass the loose criteria. It can be seen that
+for higher values of the $|S(d_0)| > \textrm{cut}$ requirement, the fraction of $b$-tagged
+events increases. Figure~\ref{fig:sd0cut2d} shows the fraction of events in each $|S(d_0)|$ bin
+that have a certain number of jets that passed the $b$-tagging criteria.
+It is normalised to have a sum of number of $b$-tagged jets entries equal to 
+one for a fixed $|S(d_0)|$.
+
+\begin{figure}[H]
+\centering
+\subfloat[Resolved, electron channel.]{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/Nb10fraclepSd0bEl_b0_ttres_loose_AUTO_AUTO.eps}}
+\subfloat[Resolved, muon channel.]{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/Nb10fraclepSd0bMu_b0_ttres_loose_AUTO_AUTO.eps}}
+
+\subfloat[Boosted, electron channel.]{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/Nb10fraclepSd0bEl_b0_boostedtop_loose_AUTO_AUTO.eps}}
+\subfloat[Boosted, muon channel.]{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/Nb10fraclepSd0bMu_b0_boostedtop_loose_AUTO_AUTO.eps}}
+
+\caption{The number of $b$-tagged events over all events in the Control Region. For these plots, no $S(d_0)$ and $b$-tagging cut were required for all events. The loose criteria is required.}
+\label{fig:sd0cut}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\subfloat[Resolved, electron channel.]{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/normlepSd0bEl_b0_ttres_loose_AUTO_AUTO.eps}}
+\subfloat[Resolved, muon channel.]{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/normlepSd0bMu_b0_ttres_loose_AUTO_AUTO.eps}}
+
+\subfloat[Boosted, electron channel.]{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/normlepSd0bEl_b0_boostedtop_loose_AUTO_AUTO.eps}}
+\subfloat[Boosted, muon channel.]{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/normlepSd0bMu_b0_boostedtop_loose_AUTO_AUTO.eps}}
+
+\caption{The fraction of $b$-tagged jets versus the $|S(d_0)|$ of the event in the Control Region. For these plots, no $S(d_0)$ and $b$-tagging cut were required for all events. The loose criteria is required.}
+\label{fig:sd0cut2d}
+\end{figure}
+
+The choice of variables used in the parametrisation of $\epsilon_{\textrm{fake}}$ is such that the fake rate has a large dependence on them.
+In both resolved and
+boosted selections, there are three relevant variables that are used: the smallest $\Delta R$ between the lepton and a jet, the lepton transverse momentum and the
+transverse momentum of the jet closest to the lepton. For the electron channel, only the latter two variables are used. The muon channel is parametrised similarly, but events are separated in two categories, depending on whether the $\Delta R$ variable is greater than or smaller than $0.4$. The $\epsilon_{\textrm{fake}}$ parametrisation
+is shown in Figures~\ref{fig:ttres8_qcd_fake_resolved},~\ref{fig:ttres8_qcd_fake_boosted} and~\ref{fig:ttres8_qcd_fake_mu}.
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/sf/fkrplot_b1_ttres_lepPtJetPtdRg04El.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/sf/fkrplot_b1_ttres_lepPtJetPtdRg04Mu.eps}}
+\caption{$\epsilon_{\mathrm{fake}}$ parametrised as a function of the lepton $p_T$ and the closest jet to lepton $p_T$, for the electron (left) and muon (right) channels, in the resolved selection, only for min $(\Delta R(\textrm{lepton}, \textrm{jet})) > 0.4$.}
+\label{fig:ttres8_qcd_fake_resolved}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/sf/fkrplot_b1_boostedtop_lepPtJetPtdRg04El.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/sf/fkrplot_b1_boostedtop_lepPtJetPtdRg04Mu.eps}}
+\caption{$\epsilon_{\mathrm{fake}}$ parametrised as a function of the lepton $p_T$ and the closest jet to lepton $p_T$, for the electron (left) and muon (right) channels, in the boosted selection, only for min $(\Delta R(\textrm{lepton}, \textrm{jet})) > 0.4$.}
+\label{fig:ttres8_qcd_fake_boosted}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/sf/fkrplot_b1_ttres_lepPtJetPtdRl04Mu.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/sf/fkrplot_b1_boostedtop_lepPtJetPtdRl04Mu.eps}}
+\caption{$\epsilon_{\mathrm{fake}}$ parametrised as a function of the lepton $p_T$ and the closest jet to lepton $p_T$, for the muon channel, in the resolved selection (left) and boosted selection (right), only for min $(\Delta R(\textrm{lepton}, \textrm{jet})) \leq 0.4$.}
+\label{fig:ttres8_qcd_fake_mu}
+\end{figure}
+
+The systematic uncertainties for this parametrisation were calculated, considering the electron and muon scale factor systematic uncertainty~\footnote{The
+electron and muon scale factors are the ratio between the efficiency of their selection in data over the efficiency of their selection in simulation. The efficiency
+in data was calculated using the Tag And Probe method (see Chapter~\ref{chp:atlas} and Section~\ref{sec:ttjets_corrections}). The scale factor was used for the nominal
+value of efficiencies and fake rates.}, the $b$-tagging systematic uncertainty and the jet vertex fraction systematic uncertainty.
+% and
+%the jets and leptons
+%energy scale and resolution uncertainties.
+The percentage variation in each bin is shown
+in Figures~\ref{fig:ttres8_qcd_eff_resolved_lepPtdR_syst},~\ref{fig:ttres8_qcd_eff_boosted_lepPtdR_syst},~\ref{fig:ttres8_qcd_eff_boosted_lepPt04dR_syst} for the
+efficiency in the signal region and in Figures~\ref{fig:ttres8_qcd_fake_resolved_syst},~\ref{fig:ttres8_qcd_fake_boosted_syst} and~\ref{fig:ttres8_qcd_fake_mu_syst} for the fake rate.
+It can be seen that there are a few bins in which the uncertainties are very big (note particularly, bin at $(90\gev, 150\gev)$ in
+Figure~\ref{fig:ttres8_qcd_fake_resolved_syst} and the bin $(150\gev,90\gev)$ in Figure~\ref{fig:ttres8_qcd_fake_boosted_syst}, in the electron channel),
+but for those bins the statistical uncertainty is already very large ($\sim 1500\%$ for the former, $\sim 300\%$ for the latter)
+and any small variation is enough to
+cause such a large relative shift. The uncertainties in the mentioned bins do not affect the QCD prediction significantly, since the amount of real data (in the
+loose and tight selections) in these bins, for the
+signal region is small ($0.98\%$ in the former and $3.91\%$ in the latter).
+%Note that the systematic uncertainties are big in the bins which we see a large statistical fluctuation.
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/effplot_b1_ttres_lepPtdREl_systerror.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/effplot_b1_ttres_lepPtdRMu_systerror.eps}}
+\caption{Systematic uncertainty in $\epsilon_{\mathrm{eff}}$ parametrised as a function of the lepton $p_T$ and the min $(\Delta R(\textrm{lepton}, \textrm{jet}))$ in the electron (left) and muon (right) channels, for the resolved selection.}
+\label{fig:ttres8_qcd_eff_resolved_lepPtdR_syst}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/effplot_b1_boostedtop_lepPtdRMu_systerror.eps}}
+\caption{Systematic uncertainty in $\epsilon_{\mathrm{eff}}$ parametrised as a function of the lepton $p_T$ and the min $(\Delta R(\textrm{lepton}, \textrm{jet}))$ in the muon channel, for the boosted selection. In the muon channel, to reduce the statistical uncertainty, this parametrisation is only used for muons with min $(\Delta R(\textrm{lepton}, \textrm{jet})) \leq 0.4$ and a parametrisation solely described by the muon $p_T$ is used otherwise.}
+\label{fig:ttres8_qcd_eff_boosted_lepPtdR_syst}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/effplot_b1_boostedtop_lepPtEl_systerror.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/effplot_b1_boostedtop_lepPtdR04Mu_systerror.eps}}
+\caption{Systematic uncertainty in $\epsilon_{\mathrm{eff}}$ parametrised as a function of the lepton $p_T$, for the electron (left) and muon (right) channels, in the boosted selection, which is used if the min $(\Delta R(\textrm{lepton}, \textrm{jet})) > 0.4$. In the muon channel, the previous criteria might not be satisfied and a parametrisation as a function of both these variables is used in such a case.}
+\label{fig:ttres8_qcd_eff_boosted_lepPt04dR_syst}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/fkrplot_b1_ttres_lepPtJetPtdRg04El_systerror.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/fkrplot_b1_ttres_lepPtJetPtdRg04Mu_systerror.eps}}
+\caption{Systematic uncertainty in $\epsilon_{\mathrm{fake}}$ parametrised as a function of the lepton $p_T$ and the closest jet to lepton $p_T$, for the electron (left) and muon (right) channels, in the resolved selection, only for min $(\Delta R(\textrm{lepton}, \textrm{jet})) > 0.4$.}
+\label{fig:ttres8_qcd_fake_resolved_syst}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/fkrplot_b1_boostedtop_lepPtJetPtdRg04El_systerror.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/fkrplot_b1_boostedtop_lepPtJetPtdRg04Mu_systerror.eps}}
+\caption{Systematic uncertainty in $\epsilon_{\mathrm{fake}}$ parametrised as a function of the lepton $p_T$ and the closest jet to lepton $p_T$, for the electron (left) and muon (right) channels, in the boosted selection, only for min $(\Delta R(\textrm{lepton}, \textrm{jet})) > 0.4$.}
+\label{fig:ttres8_qcd_fake_boosted_syst}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/fkrplot_b1_ttres_lepPtJetPtdRl04Mu_systerror.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/fkrplot_b1_boostedtop_lepPtJetPtdRl04Mu_systerror.eps}}
+\caption{Systematic uncertainty in $\epsilon_{\mathrm{fake}}$ parametrised as a function of the lepton $p_T$ and the closest jet to lepton $p_T$, for the muon channel, in the resolved selection (left) and boosted selection (right), only for min $(\Delta R(\textrm{lepton}, \textrm{jet})) \leq 0.4$.}
+\label{fig:ttres8_qcd_fake_mu_syst}
+\end{figure}
+
+With these parametrisations and the weighting mechanism from Equations~\ref{eq:mmqcd_wtight_ttres8} and~\ref{eq:mmqcd_wloose_ttres8}
+(with details in Section~\ref{sec:ttjets_qcd}) a consistency check can be done, by calculating the \mtt variable in the control region used to calculate the
+$\epsilon_{\mathrm{fake}}$ variable, which is enriched in the QCD multi-jets background.
+The \mtt variable calculated in data, in the backgrounds and the QCD multi-jets estimate result can be seen in Figures~\ref{fig:ttres8_qcd_mtt_resolved}
+and~\ref{fig:ttres8_qcd_mtt_boosted}. There is good agreement between the data and the estimated QCD multi-jets backgrounds, which shows that the method works reasonably well
+in estimating these variables. The systematic uncertainty included for the multi-jets sample in these plots comes from the propagation
+of the estimated systematic uncertainties of the $\epsilon_{\textrm{eff}}$ and $\epsilon_{\textrm{fake}}$ terms
+mentioned previously added in quadrature with their statistical uncertainty. The systematic uncertainties for other backgrounds were estimated in the same way as the rest of
+the analysis. The total uncertainty due to the systematic variation in the $\epsilon_{\textrm{eff}}$ term, in the resolved channel, is $0.04\%$ in both electron and muon
+channels, and it is $0.22\%$ in the boosted electron channel, and $0.46\%$ in the boosted muon channel. The variation in the $\epsilon_{\textrm{fake}}$ term, amounts to
+a systematic uncertainty of $15.97\%$ in the resolved electron channel, $7.26\%$ in the resolved muon channel, $15.53\%$ in the boosted electron channel and
+$15.34\%$ in the boosted muon channel.
+Nonetheless, the systematic uncertainty associated to this background in the analysis results mentioned in the next section relate to a
+comparison of this method and other methods used to estimate the QCD multi-jets background (with other parametrisation, control region and loose lepton definitions),
+which amounts to a conservative $50\%$ normalisation uncertainty.
+
+\begin{sidewaysfigure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/DataMC_QCDCR_b1_ttres_massTTbarChi2LPCEl.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/DataMC_QCDCR_b1_ttres_massTTbarChi2LPCMu.eps}}
+\caption{\mtt variable calculated in the resolved scenario, in the QCD multi-jets enriched control region, for the electron (left) and muon (right) channels.}
+\label{fig:ttres8_qcd_mtt_resolved}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/DataMC_QCDCR_b1_boostedtop_masstTEl.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/qcd/syst/DataMC_QCDCR_b1_boostedtop_masstTMu.eps}}
+\caption{\mtt variable calculated in the boosted scenario, in the QCD multi-jets enriched control region, for the electron (left) and muon (right) channels.}
+\label{fig:ttres8_qcd_mtt_boosted}
+\end{sidewaysfigure}
+
+\section{Event reconstruction and results}
+
+The event reconstruction follows a similar procedure to the one described in the previous chapter,
+with a small difference in the selection of the jet from the leptonically decaying top quark in the boosted selection, as mentioned previously.
+The total event count in each channel is shown in Tables~\ref{tab:ttbarres8_yields_resolved_el},~\ref{tab:ttbarres8_yields_resolved_mu},~\ref{tab:ttbarres8_yields_boosted_el} and~\ref{tab:ttbarres8_yields_boosted_mu}. The systematic variations in the data and expectations are shown in Tables~\ref{tab:ttbarres8_resolved_syst_el},~\ref{tab:ttbarres8_resolved_syst_mu},~\ref{tab:ttbarres8_boosted_syst_el} and~\ref{tab:ttbarres8_boosted_syst_mu}.
+
+\input{ttbarres8/resolved_yield.tex}
+
+\input{ttbarres8/boosted_yield.tex}
+
+The data to simulation comparison for the analysis is included in the plots in Figures~\ref{fig:ttres8_resolved_leadingpt},~\ref{fig:ttres8_boosted_pthad},~\ref{fig:ttres8_boosted_mtlep},~\ref{fig:ttres8_boosted_mthad} and~\ref{fig:ttres8_boosted_sqrtd12}.
+Figure~\ref{fig:ttres8_resolved_leadingpt} shows the transverse momentum of the leading jet in the resolved scenario.
+Figure~\ref{fig:ttres8_boosted_pthad} shows the transverse momentum of the hadronically decaying top quark candidate in the boosted selection,
+which is chosen as the highest $p_T$ large-$R$ jet that satisfies the selection cuts.
+Figure~\ref{fig:ttres8_boosted_mtlep} shows the mass of the leptonically decaying top in the boosted scenario, which is reconstructed adding the four-momenta of 
+the neutrino, the lepton and the jet selected as the \bjet from the top quark leptonic decay. The \bjet from the top quark leptonic decay, as described previously,
+is chosen as the highest transverse momentum small-$R$ jet which has a $\Delta R (\textrm{jet}, \textrm{lepton}) < 1.5$.
+Figure~\ref{fig:ttres8_boosted_mthad} shows the mass of the hadronically decaying top quark candidate.
+Figure~\ref{fig:ttres8_boosted_sqrtd12} shows the first $k_t$ splitting scale, $\sqrt{d_{12}}$, for the selected large-$R$ jet taken as the hadronically decaying top quark.
+The final spectra are given in Figures~\ref{fig:ttres8_resolved_mtt} for the resolved selection and~\ref{fig:ttres8_boosted_mtt}, for the boosted selection. These
+spectra with all systematics are used to set the limits for the analysis. Figure~\ref{fig:ttres8_mtt_signal} shows the sum of all four channels in a single histogram,
+with one of the invariant mass configurations for each of the benchmark models overlayed for illustration (with their production cross section multiplied by five).
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/fig_03a.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/fig_03b.eps}}
+\caption{Transverse momentum of the leading jet in the resolved scenario.}
+\label{fig:ttres8_resolved_leadingpt}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/fig_04a.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/fig_04b.eps}}
+\caption{Transverse momentum of the large-$R$ jet chosen as the hadronically decaying top quark candidate in the boosted selection.}
+\label{fig:ttres8_boosted_pthad}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/fig_05a.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/fig_05b.eps}}
+\caption{Invariant mass of the leptonically decaying top quark candidate in the boosted selection.}
+\label{fig:ttres8_boosted_mtlep}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/fig_06a.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/fig_06b.eps}}
+\caption{Mass of the large-$R$ jet chosen as the hadronically decaying top quark candidate in the boosted selection.}
+\label{fig:ttres8_boosted_mthad}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/fig_07a.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/fig_07b.eps}}
+\caption{First splitting scale, $\sqrt{d_{12}}$ for the large-$R$ jet chosen as the hadronically decaying top quark candidate in the boosted selection.}
+\label{fig:ttres8_boosted_sqrtd12}
+\end{figure}
+
+\begin{sidewaysfigure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/fig_08a.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/fig_08b.eps}}
+\caption{Reconstructed invariant mass of the \ttbar system in the resolved scenario.}
+\label{fig:ttres8_resolved_mtt}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/fig_08c.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres8/fig_08d.eps}}
+\caption{Reconstructed invariant mass of the \ttbar system in the boosted scenario.}
+\label{fig:ttres8_boosted_mtt}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+\centering
+\includegraphics[width=\linewidth]{figures/ttbarres8/fig_09.eps}
+\caption{Reconstructed invariant mass of the \ttbar system for the resolved, boosted, electron and muon channels summed in a single histogram. One mass point for each benchmark model in the analysis is overlayed with the background, having their production cross section multiplied by five.}
+\label{fig:ttres8_mtt_signal}
+\end{sidewaysfigure}
+
+
+\clearpage
+
+\input{ttbarres8/resolved_syst.tex}
+
+\input{ttbarres8/boosted_syst.tex}
+
+\section{Limit setting and summary}
+
+The signal and backgrounds were estimated in four channels, for the boosted and resolved, electron and muon channels, in
+the $\sqrt{s} = 8\tev$ \ttbar resonances search analysis in a very similar way as it was done in the $\sqrt{s} = 7\tev$
+search. All major  systematic uncertainties were considered and estimated.
+
+As in the $\sqrt{s} = 7\tev$ result, the spectra information calculated with all its systematic and statistical uncertainties were used to test the hypothesis that
+the benchmark models are valid. The BumpHunter tool~\cite{bumphunter} was used, but no significant deviation from the Standard Model prediction was found.
+The Bayesian limit setting procedure described in~\cite{limitsetting} was implemented to set limits on the parameters of the models and the results are summarised in
+Figures~\ref{fig:ttbarres8_limitzp} and~\ref{fig:ttbarres8_limitkkg}.
+The $Z^{\prime}$ mass between $0.5\tev$ and $1.8\tev$ and the Kaluza-Klein gluon mass between $0.5\tev$ and $2.0\tev$ are excluded with 95\% Confidence Level. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{figures/ttbarres8/fig_10a.eps}
+\caption{Observed and expected upper cross section times branching ratio limit for a narrow $Z^{\prime}$ resonance. The resolved and boosted scenarios were combined. The red dotted line shows the theoretical cross section times branching ratio for the resonance with a $k$-factor that corrects its normalisation from the leading-order estimate to the next-to-leading order one. Extracted from~\cite{ttres8note}.}
+\label{fig:ttbarres8_limitzp}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{figures/ttbarres8/fig_10b.eps}
+\caption{Observed and expected upper cross section times branching ratio limit for a Kaluza-Klein gluon. The resolved and boosted scenarios were combined. The red dotted line shows the theoretical cross section times branching ratio for the resonance with a $k$-factor that corrects its normalisation from the leading-order estimate to the next-to-leading order one. Extracted from~\cite{ttres8note}.}
+\label{fig:ttbarres8_limitkkg}
+\end{figure}

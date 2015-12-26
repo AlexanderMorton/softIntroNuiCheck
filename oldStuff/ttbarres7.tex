@@ -1,0 +1,685 @@
+
+The previous chapter has shown a measurement of the \ttbar cross section as a function
+of the jet multiplicity, which tests the Standard Model predictions related to the top quark
+production and the extra radiation generated in association with it.
+
+This chapter presents an analysis which proposes a direct test of alternative models which change the \ttbar production
+due to new particles produced in the proton-proton interactions. The procedure proposed and implemented is quite general and can be
+used to test any model that predicts top-antitop production through non-Standard Model channels, however two benchmark models were used
+to set limits on the existence of the new particles.
+Beyond the Standard Model \ttbar production that does not include resonances
+can also be detected through this method, if it affects
+ the observable
+under study.
+
+The method used to implement this analysis consists mainly of a selection that suppresses the
+Standard Model backgrounds, a background estimation procedure, a reconstruction procedure for the
+invariant mass of the top-antitop pair system and a limit setting procedure. The final result
+consists of an exclusion set for the mass of the top-antitop system, \mtt, in which the
+tested models' particles are excluded with a confidence level greater than 95\%, assuming a cross section for the non-Standard Model production, given by the model.
+This analysis was published in~\cite{ttres7paper} with a large collaboration from different researchers. The focus, in this document,
+will be in the author's contribution to the search.
+
+\section{Benchmark models and motivation}
+
+Although the Standard Model has many successes, there are currently open questions and it is still believed to be an effective
+Quantum Field Theory. For example, the effect of gravity is still not included in the Standard Model.
+Furthermore, no explanation for Dark Matter and Dark Energy are included in it and there are still alternate models for the electroweak symmetry
+breaking, besides the ones that include a scalar Higgs boson directly.
+There are many searches for Beyond the Standard Model physics, which test the compatibility of data and and new models and they also serve
+to test the agreement between data and the Standard Model predictions.
+
+Although the procedure used in this analysis is quite general, two benchmark models are tested.
+One benchmark model generates a top-antitop pair with high mass from the decay of a leptophobic \zprime-like particle. The model is
+topcolor assisted technicolor (TC2)~\cite{Hill:1994hp,Harris:1999ya,Harris:2011ez}. Another benchmark model is a Randall-Sundrum (RS)
+warped extra-dimensions, which includes a bulk Kaluza-Klein (KK) gluon~\cite{Lillie:2007yh,Lillie:2007ve} that decays to a high mass top-antitop pair.
+The resonances might have different widths, which are related to
+free parameters in the model, leading (theoretically) to the resonance
+peaks being narrow or broad.
+A broader peak would be detected
+less easily and must have its hypothesis tested in the limit setting procedure separately.
+
+\section{Search strategy}
+\label{sec:ttbarres7_strategy}
+
+% Comments about the ttbar decay
+The final state observed for the resonances in the models being probed is the same as the Standard Model \ttbar decays and, in this analysis as well as the
+one described in Chapter~\ref{chp:ttbarjets} the final state is the semileptonic decay of the \ttbar system. As mentioned in Section~\ref{sec:ttjets_background},
+in this channel, one of the top quarks decays into a $b$-quark and a $W$-boson, which decays into a lepton and a neutrino. The other top quark generates a
+final state with two quarks as a result of the $W$-boson decay and a $b$-quark.
+As in the case of the analysis in Chapter~\ref{chp:ttbarjets}, ``lepton''
+is used to refer to the electron or muon in the leptonic decay of one of the
+top quarks, including electrons or muons from the leptonic decays of the
+tauon. Events in which the \ttbar system decays semileptonically,
+generating a tauon which decays hadronically are regarded as
+background events.
+
+The observable that is used to detect the \ttbar resonances in this analysis is the invariant mass of the top-antitop system ($\mtt$),
+which should have an excess above the background estimate at the resonance mass. The invariant mass of the resonances in the benchmark models
+are not parameters fixed by the models, which means that a compatibility test for this excess for a range of resonance masses must be done.
+However, low resonance masses have already been tested in previous analyses, so this analysis will focus on the high \mtt region.
+
+If the top quarks have very high energy and hence large boost then the
+decay products are more collimated making it difficult to assign them 
+to the different elements of the top decay.
+This situation is particularly severe in the hadronic top decay, in which three jets (a \bjet and two
+other jets from the $W$-boson decay) are merged in a single region of the calorimeter with high energy deposition. If no special treatment is given to this
+final state configuration, these events might be rejected, as background candidates, or \mtt might be poorly estimated for them.
+
+For the current analysis,
+events with large values of $\mtt$ suffer a contribution from the highly boosted top quark configuration and
+they are relevant to detect large invariant mass resonances, so it is important not to disregard them.
+With that aim, the event selection is separated to include events in two different final state configurations: the \emph{resolved} scenario and the \emph{boosted} scenario.
+In the resolved scenario, the top quark does not decay in a way that its decay products are detected very close together, so reconstructing \mtt
+means choosing which jets are associated with the \ttbar system and which jets are due to extra radiation or multiple proton-proton interactions.
+It is
+not essential to identify each one of the top decay products, as long as all particles resulting from both top quark decays are selected and the \ttbar system four-momentum
+is reconstructed. The jets coming from top decay products in the resolved topology are Anti-$k_t$ $R=0.4$ jets in this analysis, which are referred to as
+``small-$R$ jets''.
+
+The boosted topology is characterised as having both top decays merged in the same region of the detector. The neutrino is
+not detected (except through missing transverse energy), but the lepton and the \bjet from the leptonic decay of the top might be very close together, which results in loosening the lepton isolation criteria.
+The \bjet from the leptonic decay of the top quark is reconstructed as a small-$R$ jet, as in the resolved scenario.
+The hadronic top decay in this topology should have all three quarks from the top decay in a single ``large-$R$ jet'', which in this analysis is an Anti-$k_t$ $R=1.0$ jet.
+
+% Selection strategy, reconstruction of mtt, limit setting
+The selection strategy focuses on enforcing an orthogonalisation between the boosted events and the resolved events, since there may be an overlap
+between the two topologies. The large-$R$ jet in the boosted topology may be reconstructed as one or more small-$R$ jets and the effect of the extra radiation could also
+increase the chances of selecting an event as if it had the resolved topology, even though it has a boosted topology.
+This orthogonalisation is enforced by checking if the event satisfies
+a boosted selection and tagging it as a boosted event if it does, regardless of whether it also satisfies the resolved selection as well. If the
+event does not pass the boosted selection and it does pass the resolved selection, it is tagged as a resolved event. This procedure splits
+the analysis in four channels, depending on whether the final state lepton is an electron or muon and on whether the event topology is boosted or resolved:
+\emph{electron-channel boosted}, \emph{muon-channel boosted}, \emph{electron-channel resolved} and \emph{muon-channel resolved}.
+
+After the event has been selected and tagged in one of these four categories, \mtt must be calculated from the objects available in the event.
+The calculation includes the neutrino and lepton four-momenta, but it also includes some of the many jets in the event, since some jets are created due to
+extra radiation. The missing transverse energy is used to estimate the neutrino's transverse momentum, but its $z$-component is not known and it can be found by applying
+a constraint on the $W$-boson invariant mass.
+Finally, once \mtt is estimated for all channels, the spectrum with all systematic variations and contributions from all backgrounds is tested for peaks corresponding
+to simulation of resonance in each of the mass parameter configurations. Using the theoretical \ttbar production cross section
+given by the Standard Model and the tested model for each configuration, it can be established that the model is excluded with 95\% Confidence Level for
+a certain resonance mass parameter range. 
+
+The data which is used to test the new models, was produced
+from proton-proton collisions with centre-of-mass energy of 7 TeV.
+The integrated luminosity for events that satisfy good detector
+operation quality criteria is $4.7 \ifb \pm 0.2 \ifb$ 
+and it was collected with the ATLAS detector in the year of 2011. It was only recorded for events with the whole detector system operational and under
+stable beam operations.
+%The search strategy was implemented on data and all the signals and backgrounds, to test the hypothesis that data agrees with signal plus background.
+
+\section{Background modelling}
+\label{sec:ttbarres7_bkg}
+
+As the analysis' final state particles are quite similar to the \ttbarjets cross section measurement discussed previously, the background sources are also quite similar.
+In contrast with the previous analysis, \ttbar is the largest background and not a signal.
+Furthermore, the description of the event kinematics is quite important and the MC@NLO v4.01 simulation~\cite{mcatnlo4_gen}
+is used to model the \ttbar background at next-to-leading-order.
+The choice of MC@NLO for the simulation of \ttbar events was guided by its good description of the highest transverse momentum jets' kinematics,
+which are important for a good estimate of the \mtt observable.
+The description of the jet multiplicity spectrum is not excellent in MC@NLO, as was seen in Chapter~\ref{chp:ttbarjets}.
+However, for the current analysis, only a maximum of four jets are used to calculate the \mtt observable and for events with $\njetsr \leq 4$, the MC@NLO
+description agrees (within uncertainties) with data. The number of events in this region is much larger than the ones for high jet multiplicity and the
+jets' kinematic variables are very important for a good \mtt estimation in the Monte Carlo simulation.
+
+Herwig v6.520~\cite{herwig1,herwig2}
+is used for the parton showering and hadronisation of the \ttbar sample and Jimmy~\cite{jimmy}, for the modeling of multiple parton interactions.
+The parton distributions used must provide a good description of the high-$x$
+environment, since the analysis focuses on high energy events.
+The CT10~\cite{cteq6}
+parton distribution
+functions are used and the top mass is set to $172.5\gev$. The systematic uncertainties associated with the parton showering and fragmentation are estimated by
+comparing the standard \ttbar background sample using MC@NLO with the simulation generated with Powheg~\cite{powheg} interfaced with Pythia~\cite{pythia}
+or Herwig~\cite{herwig1,herwig2}.
+
+% Explain W+jets and QCD estimation in tt+jets chapter
+The second largest background is \wjets production, which is estimated through Monte Carlo simulation using Alpgen+Pythia~\cite{alpgen,pythia},
+but using the charge asymmetry data-driven method
+to estimate its normalisation (see Section~\ref{sec:ttjets_wjets}).
+Simulation and data-driven methods are used to estimate the flavour fractions for \wbjets, \wbbjets, \wcjets, \wccjets and \wljets
+production. This is done using the same procedure as described for the jet multiplicity analysis mentioned previously, in Section~\ref{sec:ttjets_wjets}.
+The QCD multi-jet background is estimated using the data-driven matrix method, which has already been described previously, in Section~\ref{sec:ttjets_qcd}.
+The only difference
+in the procedure used is that the control region is defined differently, as described in Section~\ref{sec:ttbarres7_sel}.
+
+Other backgrounds include single top production, simulated with MC@NLO, Herwig and Jimmy~\cite{mcatnlo4_gen,herwig1,herwig2,jimmy} (as for the \ttbar sample) for
+the $s$- and $Wt$-channels; AcerMC v3.8~\cite{acermc} is used with Pythia v.6.421~\cite{pythia} for the parton showering and hadronisation to estimate the single top $t$-channel;
+\zjets, simulated using Alpgen v.2.13~\cite{alpgen};
+diboson production of $ZZ$, $WW$ and $WZ$, simulated using Herwig and Jimmy~\cite{herwig1,herwig2,jimmy}. No data-driven methods are used for these backgrounds.
+
+\section{Event selection}
+\label{sec:ttbarres7_sel}
+
+Events are required to satisfy a single lepton trigger (electron or muon trigger, depending on the analysis channel) for the resolved selection,
+or a large-$R$ jet trigger, in the boosted selection~\footnote{In ATLAS jargon, the large-$R$ jet trigger \texttt{EF\_j240\_a10tc\_EFFS} was used for the
+boosted selection. In the electron channel, the \texttt{EF\_e20\_medium} trigger was used from period B to J, the trigger \texttt{EF\_e22\_medium} was used for period K, and
+\texttt{EF\_e22vh\_medium1}, for periods L and M. In the muon channel, the \texttt{EF\_mu18} was used from period B to I, \texttt{EF\_mu18\_medium} from period J to L.}.
+The single-electron trigger had a transverse momentum threshold of $20\gev$ initially, but it was
+raised to $22\gev$ later in 2011, while the
+single-muon trigger has a transverse momentum threshold of $18\gev$. The large-$R$ jet trigger has a transverse momentum threshold of $240\gev$.
+It can be seen in Figures~\ref{fig:ttres7_resolved_leadingjetpt}
+and~\ref{fig:ttres7_boosted_leadingjetpt} (in Section~\ref{sec:ttbarres7_datamc}), that close to this
+transverse momentum value, the resolved channel has significantly
+less events and the boosted channel becomes relevant.
+%The actual
+%requirement in the leading jet transverse momentum in the
+%boosted channel is higher, to avoid the turn on curve of the
+%jet trigger.
+
+A good quality primary vertex in the event is also required, to reduce the effect of multiple proton-proton interactions. The primary vertex is identified 
+as the vertex with highest sum of track's transverse momentum squared ($\sum p_{T, track}^2$). The primary vertex is
+also required to have at least 5 tracks with $\pt > 400\mev$.
+Exactly one electron or muon that satisfies quality criteria must be available in the event for both resolved and boosted selections. Furthermore, the event is discarded if it contains another lepton (with the same minimum transverse momentum requirement) of
+the same type or a lepton of different type (that is, one electron and one muon), to reject events coming from backgrounds with two leptons and the two-lepton final
+state of the \ttbar decay from the signal.
+
+Requirements are also made on the missing transverse energy to suppress the QCD multi-jets background. The missing transverse energy
+would be characterised, in the signal, as being caused by the neutrino in the semileptonic \ttbar decay.
+The missing transverse energy, \met, is calculated from the vector sum of calorimeter cells associated with topological clusters (see Section~\ref{sec:atlas_met} for more
+information).
+As in the top-antitop jet multiplicity unfolding analysis, the transverse mass is defined as (see Section~\ref{sec:ttjets_selection} for more information):
+
+\begin{equation}
+\displaystyle
+m_T = \sqrt{2 \pt^\ell \met  (1 - \cos{\alpha})},
+\label{eq:mt}
+\end{equation}
+in which $\pt^\ell$ is the lepton transverse momentum, \met is the missing transverse energy, and $\alpha$ is the azimuthal angle between the missing
+transverse energy momentum and the lepton transverse momentum.
+In the electron channel, the missing transverse energy is required to be larger than $30\gev$ and the transverse mass, $m_T$, is required to be greater than $30\gev$.
+In the muon channel, the requirements are $\met > 20\gev$ and $\met + m_T > 60\gev$.
+The $m_T$ variable in this definition has an end-point at the true mother mass
+%(in
+%semileptonic \ttbar decays this means the $W$-boson mass)
+and this selection would emphasize the signal, which has $m_T$ values closer to the $W$ boson mass.
+Applying a cut on the sum $\met + m_T$ has a better performance~\cite{ttres7paper}
+discriminating against QCD multi-jets events, which would not have high
+values of $\met$ and they would also not contain the $W$-boson leptonic
+decay which justifies the cut in $m_T$. The effect of the cut on this sum
+has been seen to be particularly helpful in rejecting QCD multi-jets
+in the muon channel.
+
+A good quality electron is identified by the shape of its energy deposition in the Electromagnetic Calorimeter and the matching of an Inner Detector track to
+a Calorimeter cluster. The electron's
+calorimeter cluster must satisfy $|\eta| \in [0,1.37) \cup (1.52,2.47]$ to exclude the transition region in $|\eta| \in [1.37,1.52]$. The electron's transverse
+momentum must be $\pt > 25\gev$, to guarantee that it is above
+the turn-on region of the trigger efficiency.
+The electron's transverse energy is
+calculated using the cluster energy, but using the Inner Detector's track direction, to take advantage of the best resolution from each of ATLAS' subdetectors.
+The electron is also required to have a longitudinal distance to the primary vertex less than $2\mm$,
+measured as the distance in the ATLAS'
+$z$-axis between the primary vertex and the point of closest approach to the electron's track, to reduce the effect of electrons coming from pile up interactions.
+Anti-$k_t$ $R=0.4$ jets within $\Delta R(\textrm{electron}, \textrm{jet}) < 0.2$ are discarded to avoid double counting of energy and
+electrons with $0.2 \le \Delta R(\textrm{electron}, \textrm{jet}) < 0.4$ are discarded to reduce the effect of non-prompt electrons from the QCD multi-jet background.
+
+A good quality muon is identified by matching an Inner Detector track with a Muon Spectrometer track. They are required to satisfy $|\eta| < 2.5$ and $\pt > 25\gev$, and to have
+their longitudinal distance to the primary vertex less than $2\mm$, to reduce both the effect of pile up interactions and selecting muons from semi-leptonic $B$-hadron decays.
+In the resolved scenario, muons are required to have $\Delta R(\textrm{muon}, \textrm{jet}) > 0.1$ to any Anti-$k_t$
+$R=0.4$ jet with $\pt > 25\gev$ and $|\eta| < 2.5$. The muon four-momentum is calculated from the combined fit of the Inner Detector and Muon Spectrometer tracks.
+
+Both electrons and muons are required to satisfy an isolation requirement, to suppress non-prompt leptons. Non-prompt leptons are produced in the backgrounds, but they could
+be produced in the signal, in the case, for example, of a semileptonic decay of the $B$-hadron. Usually, the isolation requirement is enforced using the transverse energy
+or momentum in a fixed $\Delta R$-defined cone around the lepton, as it was done in the top-antitop jet multiplicity analysis (Chapter~\ref{chp:ttbarjets}).
+However, as the top quarks become more boosted, the \bjets from the top decay become more collinear with the $W$ boson decay
+products, which reduces the efficiency of the standard isolation requirement, that would reject prompt leptons close to \bjets. For this reason, a better
+measure of the leptons' isolation is defined using a variable cone size, called \emph{mini-isolation}. It is defined as:
+
+\begin{equation}
+\displaystyle
+\Imini = \sum_{\textrm{tracks}} p_{T}^{\textrm{track}} \textrm{, \hspace{1cm} } \Delta R(\ell, \textrm{track}) < \frac{K_T}{\pt^\ell}.
+\label{eq:miniisolation}
+\end{equation}
+In Equation~\ref{eq:miniisolation}, $K_T$ is an empirical parameter chosen to be $10\gev$~\cite{ttres7paper},
+$\pt^\ell$ is the lepton's transverse momentum, $\ell$ represents the lepton, $\pt^{\textrm{track}}$
+is the transverse momentum of tracks that fulfill the $\Delta R(\ell, \textrm{track})$ requirement between the lepton and the track.
+The mini-isolation requirement on leptons is $\Imini/\pt^\ell < 0.05$, which corresponds to a 95\% (98\%) selection efficiency on electrons (muons).
+
+Jets are reconstructed using the anti-$k_t$ algorithm on topological clusters of calorimeter cells. Two categories of jets are used: small-$R$ jets have $R=0.4$ and
+use the EM energy scale~\cite{jes2011}, while large-$R$ jets have $R=1.0$ and are locally calibrated~\cite{jes2011,fatjet_confnote} (or using the Local Cluster Weighting method. See Section~\ref{sec:atlas_jet} for more information.).
+The EM energy scale for small-$R$ jets corrects the four-momentum of the
+jet to the expected particle four-momentum, while the large substructure
+of the large-$R$ jets might include many particles, requiring a different
+approach. Both of the jet types are also corrected using in situ
+techniques summarised in Section~\ref{sec:atlas_jet}. Small-$R$
+jets, in this context, are not used to refer to subjets, but to anti-$k_t$
+jets reconstructed with the $R=0.4$ parameter.
+
+In the boosted scenario, substructure
+variables~\cite{fatjet_confnote} of the large-$R$ jet are used and the local calibration ensures a better measurement of energy distribution inside the jet.
+The small-$R$ jets are required to have $\pt > 25\gev$ and $|\eta| < 2.5$, while large-$R$ jets should satisfy $\pt > 350\gev$ and $|\eta| < 2.0$.
+Furthermore, the small-$R$ jets are also required to have 75\% of the scalar sum of the $p_T$ of the jets' tracks coming from the primary vertex,
+among all tracks in each jet.
+One of the small-$R$ jets is required to be $b$-tagged using the MV1 tagger~\footnote{The MV1 tagger uses information about the impact parameters, the secondary vertex, and decay topology
+algorithms to select \bjets~\cite{mv1note}.}.
+The $b$-tagging selection is done so that, in the resolved scenario, the
+algorithm has a 70\% \bjet tagging efficiency in simulated \ttbar events and
+a rejection factor of 140 for light-jets for a
+$\pt > 20\gev$ requirement~\cite{ttres7paper}.
+In the boosted scenario, $b$-tagging small-$R$ jets with $\pt > 25\gev$ results in a 75\% \bjet selection efficiency and a
+light-jet rejection factor of 85~\cite{ttres7paper}.
+
+% Jets requirements
+The event selection so far is identical for the resolved and boosted scenarios, but they diverge in the jet requirements that follow.
+In the resolved selection, each event is required to have four small-$R$ jets, or only three small-$R$ jets, if at least one of them has an invariant mass of at least
+$60\gev$. In the latter case, if one of the jets has a mass of at least $60\gev$, it is assumed that it contains two quarks from the hadronic $W$ decay.
+In the boosted selection, however, the $b$-quark and the two quarks from the hadronic $W$-boson decay in one of the tops are expected to have merged in a single
+large-$R$ jet, therefore, at least one large-$R$ jet with mass greater than $100\gev$ is required\footnote{The
+$p_T > 350\gev$ and $|\eta| < 2.0$ requirements as established previously are also required.}.
+
+The first splitting scale $\sqrt{d_{12}}$, defined in Section~\ref{sec:atlas_jet}, is also used in the large-$R$ jet selection.
+The value of $\sqrt{d_{12}}$ can be used to identify a heavy particle decay~\cite{ttres7paper},
+which tends to be symmetric, while QCD splittings generated in the parton
+shower generate almost-collinear subjets with very different transverse momenta.
+The large-$R$ jet is required to have a $\sqrt{d_{12}} > 40 \gev$, to reduce the contribution
+from QCD (see Figure~\ref{fig:ttres7_sqrtd12}). %This rejects 40\% of the non-top-quark background and only 10\% of the \ttbar sample.
+
+There are a few other requirements for the top quark that decays in a lepton, neutrino and a \bjet. The small-$R$ jet (which is expected to be the
+\bjet from the top decay, although no $b$-tagging criterion is applied) must satisfy the $p_T$, $\eta$ and
+jet vertex fraction criteria described previously and $\Delta R(\textrm{lepton}, \textrm{small-}R\textrm{ jet}) < 1.5$. If more than one jet satisfy these selection
+criteria, the jet closest to the lepton, measured through the $\Delta R$ definition, is chosen to be the \bjet from the top leptonic decay.
+
+%The reclustering involves selecting pair of clusters with large energy deposition characterised
+%by their four-momenta and merging them in a jet with the sum of four-momenta iteratively. For each cluster $k$, a number $d_{k B}$ is associated to it
+%according to the cluster's $p_T$:
+
+%\begin{equation}
+%\displaystyle
+%d_{k B} = p_{T,k}^2.
+%\label{eq:dkb}
+%\end{equation}
+%Similarly, for each pair of clusters $i$ and $j$, the measure $d_{ij}$ is associated to it:
+
+%\begin{equation}
+%\displaystyle
+%d_{ij} = \min(p_{T,i}^2, p_{T,j}^2) \frac{\Delta R_{ij}^2}{R^2},
+%\label{eq:dij}
+%\end{equation}
+%where $\Delta R_{ij} \triangleq \sqrt{(\Delta \eta_{ij})^2 + (\Delta \phi_{ij})^2}$.
+%The merging step is done only if the pair of clusters $i$ and $j$ have $d_{ij} < d_{i B}$ and $d_{ij} < d_{j B}$, which defines a new cluster with the sum of four-momenta
+%of the clusters $i$ and $j$.
+
+Another requirement in the boosted selection is that the decay products of the two tops should be well separated. A cut on the difference between the $\phi$ coordinates
+of the lepton and the large-$R$ jet guarantees that the lepton is far away from what is assumed to be the hadronic top, according to
+$\Delta \phi (\textrm{lepton}, \textrm{large-}R \textrm{ jet}) > 2.3$. It is also important to have the leptonic top \bjet well
+separated from the hadronic top and that is done by demanding that the events satisfy
+$\Delta R (\textrm{selected leptonic } \bjet, \textrm{large-}R \textrm{ jet}) > 1.5$, which also enforces that the two jets do not overlap.
+%More than one large-$R$ jet might pass the selection and, in such case, the highest $p_T$ large-$R$ jet is taken as the hadronic top.
+
+The QCD multi-jets data-driven estimate is performed with a different control region definition, compared to the \ttbar + jets analysis, described previously, although
+the procedure used for this estimate is similar\footnote{Note that at this analysis, the QCD multi-jets parametrisation and related studies were not performed by the author,
+therefore, the procedure is mentioned for completeness.}.
+Compared to the standard selection, the missing transverse energy and transverse mass of the $W$ boson requirements are
+inverted and, for muons, it is required that the significance of the muon tracks transverse impact parameter satisfy $|\frac{d_0}{\sigma(d_0)}| > 4$ to enhance the heavy
+flavour component in the control region.
+In the boosted selection, at least one large-$R$ jet with $p_T > 150\gev$, with inverted mass and $\sqrt{d_{12}}$ requirements is demanded, for the event to be accepted
+in the control region.
+
+\section{Corrections applied to simulation and data}
+\label{sec:ttbarres7_cor}
+
+Most of the corrections applied to simulation or data have been discussed previously in Section~\ref{sec:ttjets_corrections} and only a few differences exist between
+the description of the top-antitop jet multiplicity analysis and this analysis. Only the differences will be emphasized in the current section, while all other corrections
+mentioned in Section~\ref{sec:ttjets_corrections} are also applied in this search.
+
+The previous analysis did not use large-$R$ jets, while this analysis does. A few studies of anti-$k_t$ $R=1.0$ locally calibrated topological cluster jets used in this analysis
+with the details on their jet energy scale calibration 
+can be seen in~\cite{fatjet_confnote}. Consult Section~\ref{sec:atlas_jet} for a brief summary.
+The current analysis also differs from the description in Section~\ref{sec:ttjets_corrections} in the lepton isolation requirements, since a mini-isolation is used,
+instead of a fixed-cone variable. A scale factor was derived for this mini-isolation requirement, calculating the ratio of its
+efficiency in data and Monte Carlo simulation, which is used to weight each event~\cite{ttres7paper}.
+
+Other corrections are kept as in the previous analysis and to avoid repetition,
+they are not mentioned in this chapter.
+Please refer to Section~\ref{sec:ttjets_corrections} for more details.
+
+\section{Event reconstruction}
+\label{sec:ttbarres7_rec}
+
+The variable one tries to reconstruct to test the hypothesis that the observed data disagrees with the Standard Model is the invariant mass of
+the \ttbar system, \mtt. This variable must be calculated with the information available in each event, that is, the missing transverse energy \met,
+the lepton four-momentum and the small-$R$ and large-$R$ jets' four-momenta. The procedure is also different in the boosted and resolved scenarios, but in both cases these
+elements are combined to retrieve a per-event estimate of \mtt.
+
+The four-momentum for the \ttbar system can be calculated by adding the four-vector of the quarks in the hadronic $W$-boson decay, the two \bjets from the top decays, the lepton
+and the neutrino. The \mtt can be estimated through the invariant mass of the \ttbar system four-momentum. The main problems are finding out which jets are associated with
+the top decay products, and how to estimate the neutrino four-momentum, since the lepton four-momentum has been reconstructed from its track\footnote{Or
+``tracks'' for the muon, which has a track in the Inner Detector and in the Muon Spectrometer, that are used in a combined fit.} and the cluster energy in the calorimeters.
+While the quarks to four-momenta association is different in the boosted and resolved selection, the neutrino treatment is the same in both scenarios.
+
+The missing transverse energy can be used to obtain a first approximation of the neutrino $x$ and $y$ momentum components, since this is the only known particle in the
+Standard Model that would not be detected in ATLAS. In case there is more than one neutrino, the missing transverse energy would correspond to the sum of their four-momenta.
+The missing energy in the $z$ axis is not measured, so another method
+is used to estimate the $z$ component of the neutrino momentum.
+The neutrino momentum in the $z$ direction can still be estimated, by assuming that the $W$-boson that decayed leptonically is on-shell, that is, that the four-momentum
+of the $W$-boson $p_{W, \textrm{lep}}$ satisfies $p_{W, \textrm{lep}}^i \, p_{W, \textrm{lep} i} = m_W^2$, up to a good approximation (where $m_W$ is the $W$-boson mass~\cite{pdg2012}).
+This condition can be expanded as follows:
+
+\begin{eqnarray}
+\displaystyle
+m_W^2&=&p_{W, \textrm{lep}}^i p_{W, \textrm{lep} i} \nonumber \\
+&=&E_W^2 - |\vec{p}_W|^2 \nonumber \\
+&=&(E_\ell+E_\nu)^2 - |\vec{p}_{T,\ell} + \vec{p}_{T,\nu}|^2 - p_{z,W}^2 \nonumber \\
+&=&(E_\ell+\sqrt{|\vec{p}_{T,\nu}|^2 + p_{z,\nu}^2})^2 - |\vec{p}_{T,\ell} + \vec{p}_{T,\nu}|^2 - (p_{z,\ell} + p_{z,\nu})^2,
+\label{eq:neutrino}
+\end{eqnarray}
+where $E_W$ and $\vec{p}_W$ are the energy and momentum of the $W$-boson; $E_\ell$ and $E_\nu$ are the energies of the lepton and neutrino;
+$\vec{p}_{T,\ell}$ and $\vec{p}_{T,\nu}$ are the transverse momenta of the lepton and neutrino; $p_{z,W}$, $p_{z,\ell}$, $p_{z,\nu}$ are the $z$-component of the
+$W$-boson, lepton and neutrino momenta; and the neutrino is assumed to be massless.
+
+In Equation~\ref{eq:neutrino}, except for $p_{z,\nu}$, all other terms are known, since the four-momentum of the lepton is estimated with the Inner Detector,
+Calorimeter and Muon Spectrometer, and the missing transverse energy is used for $\vec{p}_{T,\nu}$. The equation is 
+quadratic
+in
+$p_{z,\nu}$, therefore it might have two real roots, one
+real root or two complex roots. If two real roots exist, the one with smaller $|p_{z,\nu}|$ is taken~\footnote{It has been show that this leads to a better resolution
+for the $\mtt$ reconstruction~\cite{ttres7paper}.}, but if there are two complex roots, there is no obvious choice for
+$p_{z,\nu}$. A possibility for the complex roots in Equation~\ref{eq:neutrino} would be the resolution of the detector, which smears the measurement of the missing
+transverse energy. The $x$- and $y$-components of the neutrino momentum can be rotated in the transverse plane by the smallest angle until a real $z$-component can be calculated.
+This method has been implemented to reconstruct the neutrino four-momentum, according to the approximation above. The assumption that the $W$-boson is on-shell
+should not have a significant effect. The width of the $W$-boson~\cite{pdg2012} is $2.085 \pm 0.042 \gev$ and the resolution of the missing transverse energy~\cite{atlas7met}
+is fitted in $W \rightarrow \ell \nu$ events to be $\sigma_{\met} = (0.47 \gev^{1/2}) \times \sqrt{\sum E_T}$ (where $\sum E_T$ is the sum of transverse energy in all calorimeter
+topological cluster cells and it would be of the order of $> 100 \gev$, for the minimum lepton and jet energies, which are $25\gev$).
+
+Once an estimate for the neutrino four-momentum is found, the correct combination of jets should be found to reconstruct the \mtt variable. In the boosted scenario,
+the hadronic top is defined as the highest $p_T$ large-$R$ jet, which satisfies the $\Delta R$, $\Delta \phi$, $\sqrt{d_{12}}$, mass and $p_T$ criteria described in
+Section~\ref{sec:ttbarres7_sel}. The \bjet coming from the leptonic top decay is defined as the small-$R$ jet with lowest value of
+$\Delta R(\textrm{small-R jet}, \textrm{lepton})$, since it is expected that the \bjet and the lepton will be very close together in the boosted
+top-antitop environment.
+From these definitions, the \ttbar system four-momentum can be calculated by summing the leptonic top \bjet, the neutrino, the lepton and the hadronic top large-$R$ jet.
+The \mtt variable in the boosted scenario is defined as the invariant mass of the \ttbar system calculated as described previously.
+
+The resolved scenario includes many well separated small-$R$ jets and it is not trivial to associate them to the \ttbar system. The procedure used is to minimise a
+cost function $\chi^2$, which depends on the assignment of jets to the top decay products.
+That is, a value for $\chi^2$ is calculated for all small-$R$ jet
+permutations and the permutation used to calculate \mtt is the one
+that has the least value for $\chi^2$.
+If there is no small-$R$ jet with mass greater than $60\gev$, the following definition is used for a $\chi^2$ cost function~\cite{ttres7paper,ttres7note}:
+
+\begin{eqnarray}
+\displaystyle
+\chi^2&=&\Big[\frac{m_{jj} - m_W}{\sigma_W}\Big]^2 + \Big[\frac{m_{jjb} - m_{jj} - m_{t_h-W}}{\sigma_{t_h-W}}\Big]^2 + \Big[\frac{m_{j\ell\nu} - m_{t_\ell}}{\sigma_{t_\ell}}\Big]^2 \nonumber \\
+&&+ \Big[\frac{(p_{T,jjb} - p_{T,j\ell\nu}) - (p_{T,t_h} - p_{T,t_\ell})}{\sigma_{\textrm{diff} p_T}}\Big]^2,
+\label{eq:mtt_resolved}
+\end{eqnarray}
+where the parameters $m_W$, $\sigma_W$, $m_{t_h-W}$, $\sigma_{t_h-W}$, $m_{t_\ell}$, $\sigma_{t_\ell}$, $(p_{T,t_h} - p_{T,t_\ell})$, $\sigma_{\textrm{diff} p_T}$ are fitted
+from \ttbar Monte Carlo simulation, comparing the quarks from the \ttbar decay in simulation with the reconstructed objects. The remaining terms in the equation are calculated
+from all permutations of jets associated to the hadronic and leptonic top quarks' \bjets and to the hadronic $W$-boson decay, that is, $m_{jj}$ represents the invariant mass
+of two jets (which would come from the hadronic $W$-boson decay); $m_{jjb}$ represents the invariant mass of three jets (which would come from the hadronic top decay);
+$m_{j\ell\nu}$ represents the invariant mass of a jet, the lepton and a neutrino (which come from the leptonic top decay); $p_{T,jjb}$ and $p_{T,j\ell\nu}$ represent the
+transverse momenta of the decay products of the hadronic and leptonic top respectively.
+
+The $\chi^2$ function constrains on the hadronic $W$-boson mass,
+through the $m_{jj}$ term and in the hadronic top invariant mass through the $m_{jjb} - m_{jj}$ term,
+in which the $m_{jj}$ term is subtracted to try to reduce the correlation between the hadronic $W$-boson mass and the hadronic top mass.
+The choice of the leptonic top \bjet is done by the $m_{j\ell\nu}$ term, while the last term applies a constraint on the transverse momentum difference between the two
+top quarks.
+
+If there is one or more small-$R$ jets with a mass greater than $60\gev$, an alternate definition of the cost function is used, taking into
+account that the minimum small-$R$ jet multiplicity required is three and to allow the heavy jet to contain the two jets from the $W$-boson decay
+or one jet from the $W$-boson decay and the \bjet. The cost function in this scenario is~\cite{ttres7paper}:
+
+\begin{eqnarray}
+\displaystyle
+\chi^2&=&\Big[\frac{m_{jj} - m_{tjj}}{\sigma_{tjj}}\Big]^2 + \Big[\frac{m_{j\ell\nu} - m_{t_\ell}}{\sigma_{t_\ell}}\Big]^2 \nonumber \\
+&&+ \Big[\frac{(p_{T,jjb} - p_{T,j\ell\nu}) - (p_{T,t_h} - p_{T,t_\ell})}{\sigma_{\textrm{diff} p_T}}\Big]^2,
+\label{eq:mtt_resolved_hm}
+\end{eqnarray}
+where $m_{jj}$ in the first term is the invariant mass of only two small-$R$ jets and the $m_{tjj}$ and $\sigma_{tjj}$ parameters are calculated in simulation~\cite{ttres7paper}.
+
+Once the \mtt variable is reconstructed, four independent spectra are prepared in the boosted electron channel, boosted muon channel, resolved electron channel and resolved
+muon channel.
+
+\section{Systematic uncertainties}
+\label{sec:ttbarres7_syst}
+
+There are many sources of uncertainties in the analysis, which change the signal and background estimates of the reconstructed \mtt.
+The hypothesis testing procedure relies on these uncertainties to exclude (or not) the benchmark models, so it is very important to have a reasonable estimate of
+all uncertainties. Different sources of uncertainties arise in this analysis and the independent sources are added in quadrature for a final systematic
+uncertainty in all \mtt bins and in all four analysis channels.
+
+The \ttbar production cross section from simulation has an uncertainty associated with it of 11\%, which is implemented as a normalisation variation in the Standard Model \ttbar
+simulation. This is a dominant normalisation uncertainty and it was calculated using approximate NNLO in QCD with Hathor 1.2~\cite{hathor},
+using MSTW2008 90\% confidence level~\cite{mstw}
+NNLO parton distribution functions sets and PDF$+\alpha_S$ uncertainties, according to the MSTW prescription. These uncertainties are then added in quadrature
+to the normalisation and factorisation scale uncertainties, which are consistent with the NLO+NNLL calculation implemented in Top++ 1.0~\cite{ttnorm1,hathor,pdflhc,alphaspdf,ttnnll,toppp}.
+
+The W+jets data-driven estimate (Section~\ref{sec:ttjets_wjets}) is dominated by the statistical uncertainty.
+Four variations of the flavour composition are considered, increasing the flavour
+fractions, based on their uncertainties (including statistical uncertainties) from the data-driven method. The background uncertainty in the control region defined
+for this estimate is also considered when extracting the variation for the flavour fractions. The W+jets normalisation is kept constant, using the nominal data-driven
+estimate, while the flavour fractions are varied. A normalisation uncertainty of 60\% is associated  to the QCD multi-jets estimate, based on other tests that show
+the difference of the nominal Matrix Method used in this analysis (Section~\ref{sec:ttjets_qcd}) and other methods~\cite{ttres7paper}.
+
+The single top normalisation uncertainty~\cite{stop1,stop2,stop3} is calculated to be 7.7\%. The Z+jets normalisation uncertainty~\cite{ttxsec} is calculated to be 48\%.
+The diboson normalisation uncertainty is 34\%, based on the parton distribution function uncertainty and additional uncertainties associated with each extra jet.
+The signal and background simulation samples are normalised to the estimated luminosity in data. The luminosity in data has an estimated
+uncertainty of 3.9\%~\cite{lumi}. The luminosity variation is applied to all signal samples and background samples, except multi-jets and W+jets, which
+are derived through data-driven methods, as described previously.
+
+A next-to-leading-order variation on the shape of the \ttbar mass spectrum is also applied, by changing the renormalisation and factorisation scales by a factor
+of two and renormalising to the nominal \ttbar cross section. This variation is applied through a reweighting procedure on the \ttbar sample, depending on the particle-level
+simulation of the \mtt. PDF uncertainties on all simulation samples are estimated by taking the maximum of the \mtt spectra variations after reweighting the nominal samples
+with the CT10~\cite{ct10}, MSTW2008NLO~\cite{mstw} and NNPDF2.3~\cite{nnpdf} uncertainty sets at 68\% confidence level, according to the PDF4LHC~\cite{pdflhc} recommendation, but keeping the nominal cross section
+unchanged. The total PDF uncertainty is mentioned in the next section and it can be noticed that its effect is larger in the boosted selection, partly due to the uncertainty
+on the parton distribution functions in the high $x$ regime.
+
+The jet energy scale uncertainty in small-$R$ and large-$R$ jets is also a dominant uncertainty in the analysis. This uncertainty, for large-$R$ jets, includes
+the variation of the jet mass scale.
+% and the $k_t$ splitting scale $\sqrt{d_{12}}$.
+For small-$R$ jets, besides the jet energy scale, the jet reconstruction efficiency and the jet
+energy resolution are also considered. The jet reconstruction efficiency is taken into account by dropping jets randomly: a pseudo-random number generator with
+uniform distribution is used to get pseudo-random samples between zero and one and a jet is artificially dropped in the analysis while calculating
+the jet reconstruction efficiency variation if this number is bigger than the estimated jet reconstruction efficiency\footnote{Note that this is applied as a
+systematic variation and not as part of the nominal spectra calculation. This duplicates the effect of the jet reconstruction efficiency, estimating its
+effect on the spectra. The systematic variation obtained is symmetrised in the analysis.}.
+A jet energy resolution variation is considered
+by smearing the Monte Carlo jets' transverse momentum with a pseudo-random sample of a Gaussian with mean one and variance
+$\sigma_{\textrm{JER, data}}^2 - \sigma_{\textrm{JER, MC}}^2$, where $\sigma_{\textrm{JER, data}}$ is the jet energy resolution uncertainty in data and $\sigma_{\textrm{JER, MC}}$
+is the jet energy resolution uncertainty in Monte Carlo. Consult Section~\ref{sec:atlas_jet} for more details.
+The jet mass scale uncertainty for small-$R$ jets is not evaluated, but
+it is expected to have a small effect.
+
+The $b$-tagging uncertainty is incorporated as a systematic variation, by varying the scale factors used to correct for the efficiency and rejection rates
+in simulation, as mentioned in Section~\ref{sec:atlas_btag}.
+An extra uncertainty is added in quadrature for high transverse momentum jets with $p_T > 200\gev$, in which the track reconstruction is not
+well modelled due to the high track multiplicity environment. The jet vertex fraction scale factor correction is also varied to account for the uncertainty
+in its efficiency (see Section~\ref{sec:atlas_jet}).
+The leptons' mini-isolation selection, the lepton trigger and reconstruction efficiency uncertainties are estimated using $Z$-boson decays
+to pairs of electrons or pairs of muons in data. The uncertainties in the estimation of the missing transverse energy are also considered, taking into account the effect
+of multiple interactions and the correction of the clusters well separated from the physics objects\footnote{The clusters separated from the physics objects (``CellOut'' term)
+have a special treatment in the missing transverse energy calculation with a specific calibration procedure, as mentioned in Section~\ref{sec:atlas_met}.}.
+The leptons' energy scale correction and the leptons'
+energy resolution are also varied, as described in Sections~\ref{sec:atlas_electron} and~\ref{sec:atlas_muon}.
+
+The effect of the initial state radiation and the final state radiation in the \ttbar sample is also considered, using the
+AcerMC+Pythia~\cite{acermc,pythia} sample and varying the Pythia parameters consistently with measurements of \ttbar radiation using a veto in the extra jet production, discussed
+in~\cite{gapfraction}. The parton shower and fragmentation uncertainties of the \ttbar background are computed by comparing the samples generated with
+Powheg+Pythia~\cite{powheg,pythia} and Powheg+Herwig~\cite{powheg,herwig1,herwig2}.
+
+The higher order electroweak corrections in the \ttbar background were calculated in~\cite{ttbar_electroweak} and they
+are used to estimate its effect in the \ttbar normalisation uncertainty. The \ttbar simulation is reweighted by a parametrisation of this correction as a function of the particle-level \mtt. The difference between the reweighted and nominal \ttbar sample is used as a systematic uncertainty associated with the higher order electroweak corrections.
+
+The \wjets sample includes, as well as the data-driven normalisation and the flavour fraction uncertainties, a shape uncertainty associated to renormalisation and
+factorisation scales. The effect is parametrised as a function of the leading jet transverse momentum and the jet multiplicity in the events, which are reweighted to
+estimate the effect of the changes in shape.
+
+
+\section{Data to expectation comparison}
+\label{sec:ttbarres7_datamc}
+
+Although the goal is to calculate the \mtt spectra and use it to set a limit on the benchmark models, a few checks must be made on the kinematics of the events
+in data, to check that the results are consistent with the Standard Model to a first approximation. It is expected that the benchmark models, or any other model,
+reduce to the Standard Model as an effective theory and any change in the results would be only inconsistent with the Standard Model to a small degree.
+Tables~\ref{tab:ttbarres7_yields_resolved_el},~\ref{tab:ttbarres7_yields_resolved_mu},~\ref{tab:ttbarres7_yields_boosted_el},~\ref{tab:ttbarres7_yields_boosted_mu}
+show the number of expected events from each Standard Model process and the number of events observed in data. The results in this study were not
+corrected to the particle level and they include the fiducial cuts
+and all selection requirements described in this chapter. The simulation
+is corrected by scale factors which correct differences between efficiencies
+and resolutions in data and simulation, as described in
+Section~\ref{sec:ttbarres7_cor}.
+It can be seen that there is good agreement between the
+total expectation values and data, within the uncertainty.
+
+A set of checks must be done to verify that the simulation description
+reproduces the observables in data within the uncertainties,
+so that the limit setting procedure can be used to provide
+reliable results.
+Figure~\ref{fig:ttres7_resolved_leadingjetpt} shows a good agreement between the leading jet transverse momentum in data and background simulation, in the resolved selection.
+Figure~\ref{fig:ttres7_boosted_leadingjetpt} also shows the leading jet transverse momentum, but in the boosted scenario.
+The mass of the leptonically decaying top quark is reconstructed from the lepton, neutrino and the \bjet (closest jet to lepton) in the boosted scenario and it is shown
+in Figure~\ref{fig:ttres7_mtlep}. The hadronic top is reconstructed from the mass of the large-$R$ jet and it is shown in Figure~\ref{fig:ttres7_mthad}, in which
+the mass cut has been removed only to make this plot.
+The top mass plots show that the corrections applied are working
+as expected, since the shape of the top mass peak agrees in data and
+simulation. The effect of the different $\met$ and $m_T$ requirements
+in the electron and muon channels can be seen when comparing
+the two plots in Figure~\ref{fig:ttres7_mtlep}.
+%These selection
+%requirements reject less \ttbar events 
+%reconstructed with a lower leptonic top mass ($\sim 100\gev$).
+
+Figure~\ref{fig:ttres7_sqrtd12} shows the $\sqrt{d_{12}}$ variable, used in the selection of the large-$R$ jets, in
+which the cut on this variable was removed only to make the plot.
+These figures show us that one can expect the simulation to describe data
+well, within the phase space region under analysis.
+
+The actual spectra are in Figure~\ref{fig:ttres7_resolved_mtt} for the resolved scenario, using the $\chi^2$ method for the \mtt reconstruction and
+in Figure~\ref{fig:ttres7_boosted_mtt} for the boosted scenario. These estimates of the Standard Model prediction and the signal estimates are the main ingredients used
+to test the hypothesis that the Beyond the Standard Model benchmark
+models are valid. Figure~\ref{fig:ttres7_mtt_signal} shows the \mtt spectra summed for the resolved, boosted, electron and muon channels,
+with one invariant mass of each benchmark model overlayed (with their production cross sections multiplied by ten).
+
+The spectra agree well between data and Standard Model simulation,
+although the large $\mtt$ region is dominated by systematic and
+statistical uncertainties. The b-tagging efficiency and jet
+energy scale (and resolution) systematic variations
+are important uncertainties in the
+spectra. In the boosted scenario, the large-$R$ jet uncertainty can reach
+a $\sim$ 20\% effect, being the dominant uncertainty, followed by the
+parton distribution function uncertainty.
+The large uncertainty in the high $\mtt$
+bins are due to the parton distribution function contribution,
+which includes
+variations in the CT10, MSTW and NNPDF distributions
+(see Section~\ref{sec:ttbarres7_syst}). In the boosted selection,
+the uncertainties in the Monte Carlo simulation samples are also affected
+by the large statistical uncertainties.
+
+\input{ttbarres7/resolved_yield.tex}
+\input{ttbarres7/boosted_yield.tex}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres7/fig_04a.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres7/fig_04b.eps}}
+\caption{Leading jet transverse momentum in the resolved selection.}
+\label{fig:ttres7_resolved_leadingjetpt}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres7/fig_05a.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres7/fig_05b.eps}}
+\caption{Leading jet transverse momentum in the boosted selection.}
+\label{fig:ttres7_boosted_leadingjetpt}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres7/fig_06a.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres7/fig_06b.eps}}
+\caption{Reconstructed mass of the leptonically decaying top quark in the boosted selection.}
+\label{fig:ttres7_mtlep}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres7/fig_07a.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres7/fig_07b.eps}}
+\caption{Mass of the hadronically decaying top quark in the boosted selection, reconstructed by the mass of the large-$R$ jet, with no requirement that the mass of the large-$R$ jet is greater than $100\gev$.}
+\label{fig:ttres7_mthad}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres7/fig_08a.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres7/fig_08b.eps}}
+\caption{Last splitting scale for the large-$R$ jet in the boosted selection, $\sqrt{d_{12}}$, without the cut in this variable, in this plot.}
+\label{fig:ttres7_sqrtd12}
+\end{figure}
+
+\begin{sidewaysfigure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres7/fig_09a.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres7/fig_09b.eps}}
+\caption{Reconstructed invariant mass of the \ttbar system for selected events in the resolved scenario.}
+\label{fig:ttres7_resolved_mtt}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres7/fig_09c.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarres7/fig_09d.eps}}
+\caption{Reconstructed invariant mass of the \ttbar system for selected events in the boosted scenario.}
+\label{fig:ttres7_boosted_mtt}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+\centering
+\includegraphics[width=\linewidth]{figures/ttbarres7/fig_10.eps}
+\caption{Reconstructed invariant mass of the \ttbar system for selected events in both resolved and boosted topologies and both electron and muon channels added in a single hisogram. The \zprime signal with invariant mass of $1.6\tev$ and the Kaluza-Klein gluon with an invariant mass of $2.0\tev$ are overlayed in this plot, with their cross section multiplied by ten to make the effect visible.}
+\label{fig:ttres7_mtt_signal}
+\end{sidewaysfigure}
+
+\clearpage
+
+\input{ttbarres7/resolved_syst.tex}
+\input{ttbarres7/boosted_syst.tex}
+
+
+\section{Limit setting and summary}
+
+With an estimate of the signals and background \mtt distributions and 
+their systematic uncertainties, and the data \mtt spectra as well,
+the hypothesis that the data agrees with the signal and background hypothesis can be tested using statistical methods.
+It is worth mentioning that, as discussed previously, the
+technique used so far is quite general and could be applied to test the validity of other models that include a decay to a top-antitop pair.
+
+Although the limit setting procedure was not performed by the author,
+the results obtained are quoted here for completeness.
+The \mtt spectra shown in the previous section, with all systematic
+uncertainties is used to test the hypothesis of the validity
+of the benchmark models, using the BumpHunter tool~\cite{bumphunter}. This tool tests the hypothesis that the data disagrees with signal plus background.
+The systematic uncertainties are taken into account through a set of pseudo-experiments which allow the Standard Model prediction to float as
+within the error bands. No significant deviation from the Standard Model prediction is observed.
+
+A Bayesian limit setting procedure developed in~\cite{limitsetting} is implemented
+to set the probability that the benchmark models are excluded for a certain parameter configuration in these models.
+The free parameters of the benchmark models are the boson's mass, which means that this procedure, which sets a Confidence Level for the signal plus background hypothesis,
+is repeated for different \ttbar resonance masses. Upper limits for the signal's cross section are set for different masses, using a uniform prior. The upper
+cross section limits for the benchmark models are shown in Figures~\ref{fig:ttbarres7_limitzp} and~\ref{fig:ttbarres7_limitkkg}. With these results, a $Z^{\prime}$
+boson with mass between $0.5\tev$ and $1.74\tev$ is excluded with 95\% Confidence Level.
+A Kaluza-Klein gluon with mass between $0.7\tev$ and $2.07\tev$ is excluded as well with 95\%
+Confidence Level~\cite{ttres7paper}.
+
+The results shown in this chapter include a \ttbar system reconstruction for events enriched in \ttbar decays, with a full estimate of the systematic uncertainties
+in the Standard Model and the signal samples. A comparison of the background with data shows no significant deviation from the Standard Model with
+an integrated luminosity of $4.7 \textrm{ fb}^{-1}$ ATLAS data, which was
+collected at a center-of-mass energy of $\sqrt{s} = 7\tev$. This analysis was initially made public as an ATLAS conference note in~\cite{ttres7note} and,
+after a few more studies, it was published as a paper in~\cite{ttres7paper}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{figures/ttbarres7/fig_11a.eps}
+\caption{Observed and expected upper cross section times branching ratio limit for a narrow $Z^{\prime}$ resonance. The resolved and boosted scenarios were combined. The red dotted line shows the theoretical cross section times branching ratio for the resonance with a $k$-factor that corrects its normalisation from the leading-order estimate to the next-to-leading order one. Extracted from~\cite{ttres7paper}.}
+\label{fig:ttbarres7_limitzp}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{figures/ttbarres7/fig_11b.eps}
+\caption{Observed and expected upper cross section times branching ratio limit for a Kaluza-Klein gluon. The resolved and boosted scenarios were combined. The red dotted line shows the theoretical cross section times branching ratio for the resonance with a $k$-factor that corrects its normalisation from the leading-order estimate to the next-to-leading order one. Extracted from~\cite{ttres7paper}.}
+\label{fig:ttbarres7_limitkkg}
+\end{figure}
+

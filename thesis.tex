@@ -1,0 +1,233 @@
+\documentclass[idxtotoc,hyperref,openany]{labbook} % 'openany' here removes the gap page between days, erase it to restore this gap; 'oneside' can also be added to remove the shift that odd pages have to the right for easier reading
+
+\usepackage[ 
+  backref=page,
+  pdfpagelabels=true,
+  plainpages=false,
+  colorlinks=true,
+  bookmarks=true,
+  pdfview=FitB]{hyperref} % Required for the hyperlinks within the PDF
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{booktabs} % Required for the top and bottom rules in the table
+\usepackage{float} % Required for specifying the exact location of a figure or table
+\usepackage{graphicx} % Required for including images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{listings}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Command to make the lines in the title page
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{blue},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{green},       % keyword style
+  language=C++,                 % the language of the code
+  otherkeywords={*,...},           % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{white}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{red},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+
+\begin{document}
+
+
+\labday{Nuisance Check Update}
+
+\experiment{Introduction}
+The nuisance check package has been updated to allow iterative fixing of NPs during fitting. This is done to check the effect NP removal has on each fit. This has been implemented as a new algorithm called npRemovedCompare.
+\newline
+The algorithm works by specifying three different types of NP. 
+\begin{itemize}
+\item Free $\rightarrow$  NP is always free 
+\item Fix  $\rightarrow$ NP is always fixed 
+\item Variable $\rightarrow$ An additional fit is done with this variable fixed. All other iterations will have it free.
+\end{itemize}
+
+The first fit frees all variable/free NP and holds constant the fixed NP. After this each variable NP is fixed for a single iteration of the fit and then freed up again. This process is repeated for all variable NP. 
+\newline
+
+\experiment{Installation and Running}
+The installation is the same as the NuisanceCheck code given \href{https://twiki.cern.ch/twiki/bin/viewauth/AtlasProtected/NuisanceCheck}{here}. However the code at the moment is stored in my public: \newline
+/afs/phas.gla.ac.uk/user/a/amorton/public/NuiCheck/FitCrossCheckForLimits.C
+\newline
+Code can be ran as a dynamic library executable, executable function or by python scripts. This new function has been added to the first two but not the python scripts.
+ 
+
+\newpage
+\experiment{Inputs}
+The inputs for this algorithm is the same as any other function in nuisance check
+\begin{figure}[H]
+ \begin{lstlisting}[language=C++]
+void PlotFitCrossChecks(const char* infile          = "WorkspaceForTest1.root",
+              const char* outputdir       = "./results/",
+              const char* workspaceName   = "combined",
+              const char* modelConfigName = "ModelConfig",
+              const char* ObsDataName     = "obsData"){
+////...
+}
+ \end{lstlisting}
+ \caption{The inputs for any algorithm of nuisance check. Note these all depend on the WS.}
+\end{figure}
+
+In addition to this other parameters must be set to use the NPRemover function. The main issue is specifying which type of variable (free/fix/variable) each NP should be set. At the moment this is done by specifying three variables 
+\begin{itemize}
+\item  nuiFree $\rightarrow$ vector of NP names
+\item  nuiFix $\rightarrow$ vector of NP names
+\item  freeAll $\rightarrow$ boolean 
+\end{itemize}
+
+A NP can fall into the following categories
+\begin{itemize}
+\item  In both lists $\rightarrow$ The NP is variable
+\item  In one of the lists $\rightarrow$ The NP is either fixed/floated depending on list which it is included
+\item  Is not listed and freeAll=true $\rightarrow$ The NP is made free
+\item  Is not listed and freeAll=false $\rightarrow$ The NP is made variable
+\end{itemize}
+
+\begin{figure}[H]
+ \begin{lstlisting}[language=C++]
+    // 
+    // 0 - plot chi2/mu/pulls after a set or single NP has been removed.  
+    // 
+ 
+    static const string fixArr[] = { "alpha_MUONS_SCALE", "alpha_MODEL_PAR_TTbar_aMcAtNlo", "alpha_Luminosity"  };
+    vector<string> nuiFix (fixArr, fixArr + sizeof(fixArr) / sizeof(fixArr[0]) );
+    static const string freeArr[] = { "alpha_MUONS_SCALE", "alpha_MODEL_PAR_TTbar_aMcAtNlo", "alpha_Luminosity" };
+    vector<string> nuiFree (freeArr, freeArr + sizeof(freeArr) / sizeof(freeArr[0]) );
+    string name = "0lep_3TeV_AllNP_bin100";
+    bool freeAll=true; ///If the NP is not listed then it is assumed to be free if freeAll=true OR if freeAll=false then all not included are assumed to fix during a fit.
+    npRemovedCompare(nuiFix,nuiFree,freeAll, IsConditional , 0.0); 
+    
+     \end{lstlisting}
+ \caption{Input for function. Two list (nuiFree,nuiFix) and bool (freeAll) are shown.}
+\end{figure}
+
+This is a slightly silly way to specify variables but this is currently what is implemented.
+
+\newpage
+\experiment{outputs}
+The results of the fit are then added to the TFile shared by all nuisance check algorithms. The algorithm stores histograms and graphs, with canvases created if needed. To store the canvases the global variable createCanvas must be true.
+\begin{figure}[H] 
+\begin{itemize}
+\item Chi2
+\item Mu
+\item Mu (constraint order)
+\item Pull for each NP
+\item Pull (Constraint order) for each NP
+\end{itemize}
+\caption{List of output histograms/graphs}
+\end{figure}
+
+
+Furthermore a comparison of NP after fixing is made and printed at the end of the running. This includes as output
+\begin{itemize}
+\item Max/Min minNll
+\item Max/Min Mu
+\item All NP after NP removed over a certain limit
+\item All constraints after NP removed over a certain limit
+\end{itemize}
+
+\section{Introduction}
+This is designed to be an introduction to any analysis and will cover some of the basic ideas needed. However a focus on the the VH analysis give \href{https://cds.cern.ch/record/2054042/files/ATL-COM-PHYS-2015-1180.pdf}{here}
+
+\section{Theory and past searches}
+Need to be filled in after going through theory course again.
+
+\section{Data and MC samples}
+
+Pileup must be taken into account. This is done via reweighting. The quality of the data is validated using the GRL and DQ flags. The simulation of signal and background can be viewed in \ref{section:Simulation}. 
+
+The k-factor is a factor which relates the leading order to the error compared to the full calculation. The filter term is to relate the number of events expected to the number produced. 
+
+To begin to discuss physics objects you need to begin at the xAOD root files created by simulation and data. You can see all the collections and type in an xAOD using:
+
+checkxAOD.py 
+
+
+The ATLAS Muon Combined Performance Group define muons using a series of cut points, this is done for inner detector and muon spectrometer. Both the ID and MS are used in combination to determine the pt and mass of the muon. Note the pt and resolution depend on many factors (magnetic field, scattering, intrinsic resolution), therefore momentum scale and resolution corrections are also applied. This makes the MC and data follow the same distribution. These were determined using the J/$\psi$ (c$\bar{c}$)/Z resonance.  Reconstruction efficiency is allowed to vary with a scale factor which is the ratio of MC/data. This if course depends of pt and $\eta$. 
+
+Isolation criteria for leptons is needed since semi leptonic/hadronic decays are the main source of non-prompt/misidentified leptons. A tight cut is performed on each lepton by constructing the energy for the track/Calo object inside a R=0.2 cone and then doing a cut which depends on $p_t$ and $\eta$. The energy must be over this cut value. A variable R cut is also performed on tracks only for the loosetrackonly requirement. This reduces the size of the cone since the Z $\rightarrow$  ll cone will reduce in size for higher pt.   
+
+
+Calorimeter jets are corrected by adding muon inside jet to jet. $H \rightarrow b \bar{b}$ reconstructed with 1.0 large R jet, which focuses on pt > 250 GeV since less than this will be in a larger jet. Smaller R jets are used for Etmiss which must use a set eta and pt > 20 GeV for JES calibration to be valid. Note the JES must be compared to MC since the real detector will have some energy loses. This is also an additional uncertainty for the final fit.  To reduce jets not from the primary vertices other than hard scattering vertex JVT recommendations for pt < 50 GeV smaller R jets is used.  JVT is used to reduce pile up by determining the primary vertex and then determining the amount of energy which comes from this. 
+
+Overlapping jets with electrons are removed if within R < 0.2 
+
+\section{Triggers}
+The trigger efficiency depends on a particular sample. A sample here is a selection of cuts after requiring these triggers.  The efficiency is determined by taking a selection of events from the sample and running this through the trigger. The efficiency is just the ratio before and after the trigger. Note the efficiency will depend of some observable, e.g VH mass. A scale factor must also be used to determine the different between MC and data. 
+
+\section{Selection}
+
+The number of VHLoose lepton number is varied to keep the 0/1/2 lepton channel orthogonal. 
+
+In the two lepton channel the muon momentum resolution deteriorates at high pt so the pt is scaled by $\frac{m_{ZZ}}{m_{\mu \mu}}$.
+
+W mass constraint used in the 1 lepton channel to determine neutrino pt. 
+
+Geometric cuts are used in the 0 lepton channel. 
+
+After these kinematic cuts then the H $\rightarrow b\bar{b}$ is exploited to increase sensitivity. This is also used to define control regions. This is done looking at the mass and number of b tags.  
+
+\section{Multijet}
+
+
+\section{Nuisance Check update (NP Pruning)}
+
+
+\section{CMake Introduction)}
+%INCLUDE >>> Will run cmake code from another file
+%LIST >>> Will do a variety of task with lists. APPEND will create a list.
+%To see a list of FIND_PACKAGE entries do: cmake --help-module-list  
+%FIND_PACKAGE had two modes: 1) module => searches CMAKE_MODULE_PATH  2)Config
+%
+%Will set the following variable:
+%  <name>_FOUND  // true iff the package was found
+%  <name>_INCLUDE_DIR   // a list of directories containing the package's include files
+%  <name>_LIBRARIES     // a list of directories containing the package's libraries
+%  <name>_LINK_DIRECTORIES  // the list of the package's libraries
+%  
+%  .a static or .lib (windows) => so code compiled within
+%  
+%  .so dynamic .dll (windows) references to the code given outside
+%  
+%  Need to link lib with EUTelescope with 
+%  -DBoost_NO_BOOST_CMAKE=ON
+
+\section{CxAODMaker} 
+
+
+
+\section{Abbreviations}
+\begin{itemize} 
+\item EDM $\rightarrow$ Event Data Model 
+\item GRL $\rightarrow$ Good Run List 
+\item JES $\rightarrow$ Jet Energy Scale
+\item JVT $rightarrow$  Jet Vertex Tagger
+\end{itemize}
+ 
+
+  
+
+\end{document}

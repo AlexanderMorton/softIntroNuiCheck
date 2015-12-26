@@ -1,0 +1,79 @@
+\begin{thebibliography}{10}
+
+\bibitem{Jmorris}
+HEP Analysis.
+\newblock Hep analysis.
+\newblock Available online at
+  \url{http://www.hep.ucl.ac.uk/~campanel/Post_Grads/2013-2014/JMorris_HEPAnalysis.pdf},
+  2012.
+
+\bibitem{atlas}
+atlas collaboration.
+\newblock technical design report.
+\newblock Technical report, atlas collaboration, 1999.
+
+\bibitem{higgsBB}
+The~ATLAS Collaboration.
+\newblock Search for the $b\bar{b}$ decay of the standard model higgs boson in
+  associated (w/z)h production with the atlas detector, 2010.
+
+\bibitem{d12}
+The~ATLAS Collaboration.
+\newblock Measurement of kt splitting scales in $w\rightarrow l\nu$ events at
+  $\sqrt{s}=7$ tev with the atlas detector, 2013.
+
+\bibitem{resonance}
+The~ATLAS Collaboration.
+\newblock Search for a new resonance decaying to a higgs boson and a w or z
+  boson in the ll/l$\nu$/$\nu\nu$ + b$\bar{b}$ final state with the atlas
+  detector.
+\newblock Available online at \url{https://cds.cern.ch/record/1669860}, 2013.
+
+\bibitem{statphysics}
+Günter~Zech Gerhard~Bohm.
+\newblock Introduction to statistics and data analysis for physicists, 2010.
+
+\bibitem{natural}
+Witold~Skiba Gustavo Marques~Tavares, Martin~Schmaltz.
+\newblock Higgs mass naturalness and scale invariance in the uv.
+\newblock {\em arXiv:1308.0025}, 0:1--10, 2013.
+
+\bibitem{GBL}
+Claus Kleinwort.
+\newblock General broken lines as advanced track model, 2013.
+
+\bibitem{multijetsusy}
+Simon Owen.
+\newblock Multijet background estimation for supersymmetry searches using the
+  atlas detector at the large hadron collider, 2012.
+
+\bibitem{muoncham}
+Sandro Palestini.
+\newblock The muon spectrometer of the atlas experiment.
+\newblock Available online at
+  \url{http://palesti2.web.cern.ch/palesti2/Documents/SPsienaNote.pdf}, 2003.
+
+\bibitem{EUD}
+I.~Rubinskiy.
+\newblock Eutelescope. offline track reconstruction and dut analysis software.
+\newblock {\em EUDET-Memo-2010-12}, 2010.
+
+\bibitem{AIDAnote}
+Igor~Rubinskiy Tobias~Bisanz, Alexander~Morton.
+\newblock Eutelescope 1.0: Reconstruction software for the aida testbeam
+  telescope, 2015.
+
+\bibitem{tmva}
+A~Hoecker P Speckmayer J Stelzer J Therhaag~E von Toerne H~Voss.
+\newblock Toolkit for multivariate data analysis with root, 2013.
+
+\bibitem{trigger}
+On~behalf of the ATLAS~Collaboration Will~Buttinger.
+\newblock The atlas level-1 trigger system.
+\newblock Journal of Physics: Conference Series 396, 2012.
+
+\bibitem{varR}
+Katharina Behra Cigdem Issevera Lucy Kogana~Jiahang Zhonga.
+\newblock Performance and calibration 1 of jets with variable r, 2014.
+
+\end{thebibliography}

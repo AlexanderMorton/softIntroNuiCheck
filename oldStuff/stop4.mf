@@ -1,0 +1,25 @@
+% stop4.mf -- do not edit, generated automatically by thesis.tex
+input feynmf
+require_RCS_revision "1.30";
+beginchar(1, 40*2.84526pt#, 25*2.84526pt#, 0);
+"feynmf: 1";
+LaTeX_unitlength:=2.84526pt;
+subgraph (0, 0, w, h);
+vinit;
+pickup pencircle scaled thin;
+vleft (__iq2, __iq1);
+vright (__ob, __ot);
+vlabel ("$\bar {b}$", __ob);
+vlabel ("$t$", __ot);
+vlabel ("$q$", __iq1);
+vlabel ("$\bar {q\prime }$", __iq2);
+vconnect ("fermion", __iq1, __v1, __iq2);
+vconnect ("photon,label=$W$", __v1, __v2);
+vconnect ("fermion", __ob, __v2, __ot);
+vfreeze;
+vdraw;
+endsubgraph;
+endchar;
+% the end.
+end.
+endinput;

@@ -1,0 +1,70 @@
+The work described below in displayed in an Gantt chart in the appendix \ref{gantt}. 
+
+\section{Alignment Studies}
+The alignment project work related to updating the track fitting model is almost complete. The fitter from pattern recognition to alignment has been tested with a range of beam energies and magnetic fields. Introduction of a simple 250x50 $\mu$m FEI4 pixel sensor to the setup shows results similar to what is expected. The main work still to be carried out is to extend the fitter to allow strip and more complex pixel geometries to be used with arbitrary orientations. The code base exists, however disparities between the track fitting model and the minimisation code which calculates the final plane positions must be further investigated.
+
+The devices which will be investigated are a series of strip and pixel detectors designed as prototypes for the ATLAS upgrade. The efforts from the point of view of track fitting takes little to do with the complications of data readout to geometric hit creation. It is most concerned with maximising the precision of a track variables of interest for a realistic track model. Initial results should take a few of months. However for a perfected resolution the DUTs radiation length should be estimated. Furthermore  a better estimation of the radiation length of a DUT in a setup would improve the track resolution of all future analyses. The ability to do this is already in development and only needs to be completed and tested for each DUT. This should take no more than a couple of months to complete. 
+
+Updates to the GBL fitter will allow better track estimates. However, the limited environmental situations this fitter can be applied is almost completely determined by the pattern recognition. Limits have already been observed with geometries with low angular resolution and high occupancy. These must be tackled to created a truly generic testbeam fitter and already algorithms exist which could be easily integrated to EUTelescope to this end. 
+
+\begin{enumerate}
+
+  \item Complete the full body alignment for complex pixel shapes and generic initial orientations of sensors.
+  \item Estimate the radiation length of a series of DUTs using the kink angles after scattering. 
+
+\end{enumerate}
+
+\section{Resonance Searches}
+The VH resonance search expects a result in the fall. The developed analysis code for the TMVA must be improved to include a bin by bin log likelihood estimation. This is needed for a more appropriate estimation of the significance. Further work includes addition discriminating parameters being investigated and how the TMVA performs with different preselection. Already preselection has been seen to produce significant differences in the cuts based classification. How this work progresses depends on how other areas advance. The $\sqrt{d_{12}}$ variable for example was untrimmed, so this must be improved upon before further investigation. B-tagging is another example were improvements are expected with the use of variable R jets.          
+
+The investigation of variable R jets has begun with the Rivet analysis as shown in section \ref{VarR} for standard model VH production. These results and other studies indicate that the variable R jets will improve b-tagging efficiencies. To contribute to this study further some time will be needed to learn and eventually contribute ot the DBL/exotics framework.
+
+The aim after November will to be focus on the standard model $H\rightarrow bb$ search. This analysis will be similar in many respects to the VH resonance analysis and much of what is done there will be appied here.   
+
+\begin{enumerate}
+
+  \item Include CP tools to the handlers of the physics objects in the CxAODFramework. With a focus on the track jet objects. 
+  \item Include the use of log likelihood functions to determine the significance of the expected signal. 
+   \item Update the TMVA code to work with all new physics objects in the final xAOD derivation. 
+
+\end{enumerate}
+
+\newpage
+\appendix
+\subsection{Gantt Chart}
+Separate areas of work are split by colour. The Gantt chart assumes a split of 20/80 split towards resonace searches in terms of workload.    
+
+\label{gantt}
+\begin{ganttchart}[
+	hgrid,
+	vgrid,
+	time slot format=isodate-yearmonth,
+	compress calendar
+]{2015-05}{2016-05}
+\gantttitlecalendar{year, month}\\
+\ganttbar[bar/.append style={fill=blue}]{TMVA Analysis}{2015-05}{2015-11} \ganttnewline
+\ganttbar[bar/.append style={fill=red}]{Strip Sensors}{2015-05}{2015-05} \ganttnewline
+\ganttbar[bar/.append style={fill=blue}]{VR Optimisation.}{2015-06}{2015-11} \ganttnewline
+\ganttbar[bar/.append style={fill=red}]{Complex Geometries and Conditions}{2015-06}{2015-08} \ganttnewline
+\ganttbar[bar/.append style={fill=blue}]{SM Investigation}{2015-12}{2016-05} \ganttnewline
+\ganttbar[bar/.append style={fill=red}]{Radiation Length Estimation}{2015-09}{2015-10} \ganttnewline
+\ganttbar[bar/.append style={fill=red}]{Update of Pattern Recognition}{2015-11}{2016-05} \ganttnewline
+\end{ganttchart}
+
+
+
+
+
+
+%\begin{ganttchart}[
+%	hgrid,
+%	vgrid,
+%	time slot format=isodate-yearmonth,
+%	compress calendar
+%]{2015-05}{2016-05}
+%\gantttitlecalendar{year, month}\\
+%\ganttbar[bar/.append style={fill=red}]{Strip sensors}{2015-05}{2015-05} \ganttnewline
+%\ganttbar[bar/.append style={fill=red}]{Complex geometries and conditions}{2015-06}{2015-08} \ganttnewline
+%\ganttbar[bar/.append style={fill=red}]{Radiation length estimation}{2015-09}{2015-10} \ganttnewline
+%\ganttbar[bar/.append style={fill=red}]{Update of pattern recognition}{2015-11}{2016-05} \ganttnewline
+%

@@ -1,0 +1,381 @@
+
+The \bjet trigger selects events
+containing $b$-quarks that hadronise into jets.
+
+% MOTIVATION
+Selecting \bjet enriched samples is essential for many interesting physics analyses. Searches and measurements
+involving
+top quarks rely on a good identification of \bjets, since, as has been discussed in Chapter~\ref{chp:theory}, the top quark decays mainly into a
+$W$-boson and a $b$-quark, due to the large value of the $|V_{tb}|$ matrix element~\cite{pdg2012}.
+Besides top quark-related analyses, SM Higgs boson decays into bottom-antibottom quark pairs is an important signature, since this decay has a large branching
+ratio~\cite{higgs_br} ($\sim 65\%$ for a Higgs mass of $120 \gev$, according to~\cite{higgs_br}).
+
+However, due to the limited trigger bandwidth and storage facilities, one must be very selective on the choice of events to analyse. Trigger chains that select
+\bjets are, therefore, an important element of the ATLAS Trigger system.
+
+\section{\bjet trigger chains configuration}
+
+The \bjet trigger signature is seeded by calorimeter-level seeds, in which a significant transverse energy deposition was measured. In the ATLAS Trigger, this
+is implemented by the Level 1 jet trigger setup.
+The Level 2 and Event Filter \bjet selection use the Inner Detector tracks that match the equivalent calorimeter region to apply a $b$-tagging
+algorithm. It is important, therefore, to notice that, although the algorithm is seeded by an energy deposition in the calorimeters,
+the $b$-tagging algorithm uses mainly tracks.
+
+% EXPLAIN STRUCTURE
+The part of the \bjet High-Level Trigger algorithm exclusively dedicated to $b$-tagging
+is identical in the Level 2 and in the Event Filter, with the only difference being the usage of the Level 2 tracking algorithm or the Event Filter tracking algorithm,
+with the calibration of the $b$-tagging algorithm adapted to the Level 2 or Event Filter tracking performance.
+The basic structure involves a Feature Extraction algorithm that selects the trigger tracks and calculates a $b$-tagging weight (as described in the next section)
+using the selected tracks; and
+a Hypothesis testing algorithm that demands that the $b$-tagging weight is above a certain threshold. The Hypothesis algorithm is configured in three different ways for
+three different types of trigger chains, which differ in their requirements for the $b$-tagging weight. The ``loose'' chains apply a requirement on
+the $b$-tagging weight, so that the efficiency of \bjet selection is $\sim 40\%$; the ``medium'' chains have an efficiency of \bjet selection of $\sim 50\%$; while the
+``tight'' chains, have a $\sim 60\%$ efficiency selection. There are many chains for each of these types, requiring different jet transverse momentum selections, and other
+chains also make a requirement on lepton triggers.
+
+A set of calibration chains are also available and they are frequently referred to as $\mu$-jet trigger chains. These chains use a simpler mechanism to select \bjet-enriched
+samples: they rely on the semileptonic decays of the $B$-hadron into muons. They work by demanding that both a muon and a jet trigger chain passes, and that the muon and
+jet directions are the same region of the detector. The latter requirement is implemented by demanding that $\Delta R(\mu, \textrm{jet}) < 0.4$. Some of the $\mu$-jet
+trigger chains also restrict the difference in the $z$-coordinate of the jet and muon impact parameters.
+To differentiate the $\mu$-jet calibration trigger chains from the ones used in physics analysis, the former are called ``calibration triggers'' in this chapter, while
+the latter are called ``physics triggers''.
+
+The \bjet physics trigger, chains use selected tracks which are required to have a minimum transverse momentum of $1\gev$,
+a maximum $d_0$ of $1$ mm, and a $z_0$ relative to the primary vertex not exceeding $2$ mm.
+The track fit quality must also be good and match the calorimeter-level seed.
+The $z$ position of the primary vertex is calculated by histogramming all selected tracks and using a sliding window
+algorithm to select the local maximum.
+
+% b quark decay
+The methods used to detect a \bjet rely on the fact that the $B$-hadron resulting from the \bjet hadronisation has a relatively long lifetime and it would
+travel in the detector until it decays in a secondary vertex. Figure~\ref{fig:bjet_schem} shows a simplified
+drawing representing the $B$-hadron decay, in which the $B$-hadron decays in a displaced secondary vertex. This, together with the large mass of the $B$-hadron,
+generates tracks with high impact parameter (relative to the primary vertex), compared to light-jets.
+The invariant mass
+of the secondary vertex can also be used as part of the $b$-tagging procedure. The multiplicity of tracks coming from the $B$-hadron is also
+used as part of the $b$-tagging procedure.
+The next section describes the algorithm used to calculate the $b$-tagging weights in the \bjet physics trigger chains in more details.
+
+\begin{figure}[tpbp]
+\centering
+\includegraphics[width=0.5\linewidth]{figures/bjet_schem.eps}
+\caption{Simplified representation of the $B$-hadron decay in a secondary vertex. Extracted from~\cite{bjet_proc_pelle}.}
+\label{fig:bjet_schem}
+\end{figure}
+
+
+\section{$b$-taggging algorithms}
+
+Many $b$-tagging procedures can be used and there has been a change in the method implemented in the ATLAS \bjet trigger. The JetProb algorithm was implemented in
+both Level 2 and Event Filter
+for the 2011 data collection. The 2012 data collection used a combined tagger, which was calibrated based on the studies that are described in the next sections.
+The JetProb procedure relies on selecting good quality tracks that match the calorimeter region and only uses the significance of their transverse impact parameter $d_0$,
+defined by $S(d_0) = \pm \frac{d_0}{\sigma(d_0)}$. The sign of the impact parameter significances (both $S(z_0)$ and $S(d_0)$)
+is distributed according to whether the tracks cross the jet cone axis in front of the primary vertex (positive) or behind it (negative).
+The algorithm calculates the probability that each track comes from the primary vertex using a fitted resolution function
+$\mathcal{R}(x)$, which is estimated as~\cite{bjet_proc_pelle}:
+
+\begin{equation}
+\displaystyle
+\mathcal{P}_{\mathrm{track}} = \int_{-\infty}^{-|S(d_0)|} \mathcal{R}(x) dx.
+\label{eq:jetprob}
+\end{equation}
+This probability is combined into a single probability that all tracks come from the primary vertex, which is expected to be very close to zero for
+\bjets and uniformly distributed between zero and one for light-jets.
+%The combined probability for the jet is defined as:
+%
+%\begin{equation}
+%\displaystyle
+%\mathcal{P}_{\mathrm{jet}} = \mathcal{P}_0 \sum_{i = 0}^{\textrm{N. of tracks} - 1} \frac{(- \ln \mathcal{P}_0)^i}{i !},
+%\end{equation}
+%where $\mathcal{P}_0 = \prod_{i=0}^{\textrm{N. of tracks} - 1} \mathcal{P}_{\mathrm{track } i}$.
+%Consult~\cite{bjet_proc_pelle} for details.
+This method is quite robust, since the $\mathcal{R}(x)$ distribution is
+fitted from data using only light-jets (assuming the \bjet contribution is much smaller than the light-jets one), that is, it does not rely on Monte Carlo simulation.
+
+An attempt has been made to switch to more efficient algorithms in 2012, but other algorithms rely on a good agreement between data and simulation
+on many variables, including the transverse impact parameter significance, $S(d_0)$, the longitudinal impact parameter significance,
+$S(z_0) = \frac{z_0 - z_{pv}}{\sigma(z_0)}$, and estimates of the kinematics of the tracks at the secondary vertex.
+
+The impact parameter-related algorithms take advantage of the $b$-quark decay topology.
+It is expected that the $b$-quark should hadronise into a $B$-hadron in a secondary vertex.
+The jet origin would be displaced, due to the \bjet lifetime before decaying into the $B$-hadron and the tracks' perigee to the primary vertex, measured by their
+impact parameters $z_0$ and $d_0$ and their uncertainties $\sigma(z_0)$ and $\sigma(d_0)$, would show this displacement relative to the jet cone axis
+as an asymmetry in the signed impact parameter
+significances. The IP3D algorithm builds a simulation-level likelihood of the $S(d_0)$ and $S(z_0)$ of tracks in \bjets and light-jets. A likelihood-ratio
+is calculated in real data for all tracks combined and a cut is applied on it, to test the hypothesis that the jet indeed contains a \bjet.
+Given the likelihoods $P_{b,d_0}(S(d_0))$ and $P_{b, z_0}(S(z_0))$ that represent the probability of a reconstructed \bjet's
+track to have a transverse significance $S(d_0)$ and
+a longitudinal significance $S(z_0)$, with similar definitions for the light-jet's tracks, $P_{l, d_0}(S(d_0))$ and $P_{l, z_0}(S(z_0))$, the IP3D weight $w_{\textrm{IP3D}}$
+is defined as:
+
+\begin{eqnarray}
+\displaystyle
+w^\prime_{\textrm{IP3D}} &\triangleq& \prod_{i=1}^{\textrm{N. of tracks}} \frac{P_{b,d_0}(S(d_0)_i)}{P_{l, d_0}(S(d_0)_i)} \frac{P_{b,z_0}(S(z_0)_i)}{P_{l, z_0}(S(z_0)_i)} \\
+w_{\textrm{IP3D}} &\triangleq &\log_{10} \Big( w^\prime_{\textrm{IP3D}} \Big)
+\label{eq:ip3d}
+\end{eqnarray}
+
+The secondary vertex algorithms reconstruct the invariant mass of the four-momentum sum of all tracks from the secondary vertex, the energy fraction of tracks coming from
+the secondary vertex relative to all tracks in the jet, and the track multiplicity for tracks matched to the secondary vertex. These variables are also used in simulation
+to calculate a likelihood function in signal and background, so that a likelihood-ratio can be estimated and a cut is applied in real data.
+The algorithm used in the 2012 data taking in ATLAS used a combination of the IP3D and the secondary vertex algorithms described,
+%by assuming that the likelihoods
+%are uncorrelated and 
+multiplying them into a single combined weight, on which a selection cut can be applied to verify whether the jet is a \bjet or not.
+The combined weight is defined as:
+
+\begin{eqnarray}
+\displaystyle
+w^\prime_{\textrm{COMB}} &\triangleq& w^\prime_{\textrm{E}} w^\prime_{\textrm{N}} w^\prime_{\textrm{M}} w^\prime_{\textrm{IP3D}} \nonumber \\
+w_{\textrm{COMB}} &\triangleq& - \log_{10} \Big( 1 - \frac{w^\prime_{\textrm{COMB}}}{1+ w^\prime_{\textrm{COMB}}} \Big),
+\label{eq:comb}
+\end{eqnarray}
+where $w^\prime_{\textrm{E}}$ is the likelihood ratio for the calculated secondary vertex energy, $w^\prime_{\textrm{N}}$ is the likelihood ratio for the
+calculated number of tracks matched to the secondary vertex and $w^\prime_{\textrm{M}}$ is the likelihood ratio for the calculated invariant mass of
+the secondary vertex.
+
+
+The next section shows the
+data to simulation agreement for some important variables, which are used to establish that there is indeed
+a good agreement between data and simulation when switching to the new algorithm in the 2012 data taking.
+The data to simulation comparison of the combined tagger used in the 2012 data taking is shown in the final section.
+
+\section{Data to Monte Carlo simulation comparison of with $\sqrt{s} = 7$ TeV data}
+
+A data to simulation comparison was prepared to check the reconstruction quality of the
+Event Filter tracks.
+The Event Filter significance of $d_0$, the tracks' multiplicity and the tracks' transverse momentum
+is shown in Figures~\ref{fig:fromCDS_efSd0},~\ref{fig:fromCDS_eftrack_n_cut},~\ref{fig:fromCDS_eftrack_pt_cut}.
+These plots show also the individual contribution of b-jets, c-jets and light-jets in simulation.
+To determine the jet flavour in the simulated events, the Event Filter jets' $\eta$ and $\phi$ coordinates were used to match the trigger jets to the Anti-$k_t$ $R=0.4$
+jets calculated by the Offline ATLAS software, which has access to the full detector information, with all jet energy corrections
+applied. The standard Anti-$k_t$ ATLAS jets were matched to $B$-hadrons or $C$-hadrons, requiring a $\Delta R < 0.3$ between them,
+to verify whether the jet is a \bjet, a $c$-jet, or a light-jet. In these figures, the simulation has been normalised to the total data yield.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{bjet_datamc_2011/fromCDS_efSd0.eps}
+\caption{The signed $S(d_0)$ for the selected tracks at the Event Filter, using 2011 ATLAS data.}
+\label{fig:fromCDS_efSd0}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{bjet_datamc_2011/fromCDS_eftrack_n_cut.eps}
+\caption{The track multiplicity for selected tracks at the Event Filter, using 2011 ATLAS data.}
+\label{fig:fromCDS_eftrack_n_cut}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{bjet_datamc_2011/fromCDS_eftrack_pt_cut.eps}
+\caption{The tracks' transverse momenta for selected tracks at the Event Filter, using 2011 ATLAS data.}
+\label{fig:fromCDS_eftrack_pt_cut}
+\end{figure}
+
+
+%\input{bjet_nopublic.tex}
+
+\section{Data to simulation comparison of the \bjet combined ``physics'' trigger using $\sqrt{s} = 8$ TeV, 2012 data}
+\label{sec:datamc_physics}
+
+A similar data to simulation comparison has been done with 2012 ATLAS data, but analysing the final $b$-tagging weight.
+In this comparison, to avoid biasing the comparison in the tagger weight distribution, the trigger selection used applies no $b$-tagging cut
+on the \bjet candidate in the ``physics trigger''~\footnote{In the ATLAS jargon, the trigger \texttt{EF\_b55\_NoCut\_j55\_a4tchad} was used.},
+but only a cut on the transverse momentum of the jet candidate.
+%The simulation dataset used were the di-jet QCD samples are mentioned in Appendix~\ref{sec:datasets}.
+
+The transverse momentum cut is applied
+on all \bjet physics selection chains, therefore this restriction presents no bias in the result, compared to other \bjet physics trigger chains.
+Due to the high rate of events when the $b$-tagging cut is removed, this trigger is prescaled on data, which means that there will be a loss
+of events. 
+%Further cuts applied include \texttt{larError == 0 \&\& tileError != 2 \&\& ((coreFlags \& 0x40000) == 0)}, no jet with $p_T > 20$ GeV with \texttt{isBadLoose} flag.
+
+%In the simulation datasets, the separation of events in different jet $p_T$ ranges works well at simulation-level, but after the reconstruction,
+%migration between $p_T$ ranges cause large statistical fluctuations in the region when the transition between samples happen. To mitigate this effect,
+%it was required that $\frac{p_T^{avg}}{p_T^{\textrm{truth,lead}}} < 2.0$, where $p_T^{avg}$ is the average transverse momentum
+%between the two reconstructed leading jets and $p_T^{\textrm{truth,lead}}$ is the truth-level leading jet transverse momentum.
+
+The combined tagger weight, on which the $b$-tagging cut is applied was plot, as well as the likelihood-ratio IP3D tagger, the number of tracks
+at the Secondary Vertex, the energy fraction at the Secondary Vertex and the invariant mass of the Secondary Vertex, which are the relevant components for the combined tagger.
+The 2012 ATLAS $\sqrt{s} = 8$ TeV data runs 213359 up to 213640 were used in this analysis, representing an integrated luminosity of $5.1 \inb$.
+To understand the flavour fractions in these plots, the true flavour of the simulation-level jets can be investigated.
+The HLT jets were geometrically matched to the Offline jets reconstructed with Anti-kt $R=0.4$ using a $\Delta R < 0.4$ criterion,
+considering only $|\eta| < 2.5$ and $p_T > 40$ GeV offline jets.
+The results are shown in Figures~\ref{fig:datamc_physics_flavour_comb},~\ref{fig:datamc_physics_flavour_ip3d},~\ref{fig:datamc_physics_flavour_sv_l2},~\ref{fig:datamc_physics_flavour_sv_ef},~\ref{fig:datamc_physics_flavour_msv}.
+The Offline jets are matched to $b$- or $c$-hadrons in simulation to classify them as \bjets, $c$-jets or light-jets.
+This allows one to see the simulation-level flavour fraction in the figures.
+It can be seen that, for high values of the combined tagger weight, the \bjet component fraction is increased, as it is expected.
+The modelling of the variables used in the combined tagger also seems to be consistently done in simulation, when compared to data.
+
+\begin{figure}[H]
+\subfloat[Level 2.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/bjet/dataMCStack_l2comb_o_d3pd_C.eps}
+}
+\subfloat[Event Filter.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/bjet/dataMCStack_efcomb_o_d3pd_C.eps}
+}
+\caption{Combined tagger weight for physics trigger using the impact parameter significance and the secondary vertex likelihood-based taggers, calculated from Level 2 and Event Filter tracks in low $p_T$ jets identified by the Level 1.}
+\label{fig:datamc_physics_flavour_comb}
+\end{figure}
+
+\begin{figure}[H]
+\subfloat[Level 2.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/bjet/dataMCStack_l2ip3d_o_d3pd_C.eps}
+}
+\subfloat[Event Filter.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/bjet/dataMCStack_efip3d_o_d3pd_C.eps}
+}
+\caption{IP3D tagger for physics trigger using the transverse and longitudinal impact parameter significances, calculated using Level 2 and Event Filter tracks in low $p_T$ jets identified by the Level 1.}
+\label{fig:datamc_physics_flavour_ip3d}
+\end{figure}
+
+\begin{figure}[H]
+\subfloat[Number of tracks from SV.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/bjet/dataMCStack_l2nvtx_o_d3pd_C.eps}
+}
+\subfloat[Energy fraction in SV.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/bjet/dataMCStack_l2evtx_o_d3pd_C.eps}
+}
+\caption{Data to simulation comparison for the physics trigger with flavour association for the Level 2 SV variables.}
+\label{fig:datamc_physics_flavour_sv_l2}
+\end{figure}
+
+\begin{figure}[H]
+\subfloat[Number of tracks from SV.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/bjet/dataMCStack_efnvtx_o_d3pd_C.eps}
+}
+\subfloat[Energy fraction in SV.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/bjet/dataMCStack_efevtx_o_d3pd_C.eps}
+}
+\caption{Data to simulation comparison for the physics trigger with flavour association for the Event Filter SV variables.}
+\label{fig:datamc_physics_flavour_sv_ef}
+\end{figure}
+
+\begin{figure}[H]
+\subfloat[Level 2.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/bjet/dataMCStack_l2mvtx_o_d3pd_C.eps}
+}
+\subfloat[Event Filter.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/bjet/dataMCStack_efmvtx_o_d3pd_C.eps}
+}
+\caption{Data to simulation comparison for the physics trigger with flavour association for the mass of the SV.}
+\label{fig:datamc_physics_flavour_msv}
+\end{figure}
+
+
+\section{Data to simulation comparison in heavy flavour enriched sample with ATLAS 2012 $\sqrt{s} = 8$ TeV data}
+\label{sec:datamc_calib}
+
+A set of calibration triggers were also developed to get a sample of events enriched with heavy flavour content,
+using an orthogonal selection to the main \bjet triggers. The idea relies on the semileptonic decay of the $b$-hadrons.
+This allows the selection of a heavy flavour enriched sample,
+by selecting jets which have muons nearby with $\Delta R < 0.4$.
+
+For the analysis performed, a similar set of cuts was used, compared to the ``physics'' triggers analysis in the previous section,
+but it was required that a muon and a jet trigger passed and that they are in the same $\eta \times \phi$ region of the detector~\footnote{In
+the ATLAS jargon, the trigger
+\texttt{EF\_mu4T\_j55\_a4tchad\_matched} was required to pass.}.
+All other selection requirements, were done in accordance to the 
+cuts described in Section~\ref{sec:datamc_physics}. The data runs used in this analysis range from 213359 up to 213640, representing
+an integrated luminosity~\footnote{Note that the calibration trigger used here and the physics trigger without a $b$-tagging selection used in the
+previous section are both prescaled by different amounts.} of $1.4 \ipb$.
+
+Figures~\ref{fig:datamc_calib_flavour_comb} and~\ref{fig:datamc_calib_flavour_ip3d} show the Level 2 and Event Filter data to simulation
+comparison using the calibration triggers for the combined and IP3D taggers respectively.
+It can be noticed that the combined tagger weight has generally a larger fraction of events
+at higher values, compared to the result in Section~\ref{sec:datamc_physics}, which means that this analysis is more sensitive to the
+heavy flavour content on the data sample.
+The track multiplicity and energy fraction data to simulation comparison are also shown in
+Figures~\ref{fig:datamc_calib_flavour_sv_l2} and~\ref{fig:datamc_calib_flavour_sv_ef} for the Level 2 and Event Filter.
+The estimated mass of the secondary vertex is shown in Figure~\ref{fig:datamc_calib_flavour_msv}.
+These studies show that the modelling of the \bjet component in simulation is consistent with data and that the \bjet trigger
+selection enhances the \bjet component for a cut on the combined tagger weight.
+
+\begin{figure}[H]
+\subfloat[Level 2.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/mujet/dataMCStack_l2comb_o_d3pd_C.eps}
+}
+\subfloat[Event Filter.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/mujet/dataMCStack_efcomb_o_d3pd_C.eps}
+}
+\caption{Combined tagger weight using the impact parameter significance and the secondary vertex likelihood-based taggers, calculated from Level 2 and Event Filter tracks in low $p_T$ jets identified by the Level 1.}
+\label{fig:datamc_calib_flavour_comb}
+\end{figure}
+
+\begin{figure}[H]
+\subfloat[Level 2.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/mujet/dataMCStack_l2ip3d_o_d3pd_C.eps}
+}
+\subfloat[Event Filter.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/mujet/dataMCStack_efip3d_o_d3pd_C.eps}
+}
+\caption{Data to simulation comparison for the calibration trigger with flavour association for the IP3D tagger.}
+\label{fig:datamc_calib_flavour_ip3d}
+\end{figure}
+
+
+\begin{figure}[H]
+\subfloat[Number of tracks from the SV.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/mujet/dataMCStack_l2nvtx_o_d3pd_C.eps}
+}
+\subfloat[Energy fraction at the SV.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/mujet/dataMCStack_l2evtx_o_d3pd_C.eps}
+}
+\caption{Data to simulation comparison for the calibration trigger with flavour association for the Level 2 SV variables.}
+\label{fig:datamc_calib_flavour_sv_l2}
+\end{figure}
+
+\begin{figure}[H]
+\subfloat[Number of tracks from the SV.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/mujet/dataMCStack_efnvtx_o_d3pd_C.eps}
+}
+\subfloat[Energy fraction at the SV.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/mujet/dataMCStack_efevtx_o_d3pd_C.eps}
+}
+\caption{Data to simulation comparison for the calibration trigger with flavour association for the Event Filter SV variables.}
+\label{fig:datamc_calib_flavour_sv_ef}
+\end{figure}
+
+\begin{figure}[H]
+\subfloat[Level 2.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/mujet/dataMCStack_l2mvtx_o_d3pd_C.eps}
+}
+\subfloat[Event Filter.]{
+\includegraphics[width=0.48\linewidth]{bjet_datamc_2013/mujet/dataMCStack_efmvtx_o_d3pd_C.eps}
+}
+\caption{Data to simulation comparison for the calibration trigger with flavour association for the mass of the SV.}
+\label{fig:datamc_calib_flavour_msv}
+\end{figure}
+
+%\section{ROOT files generation and analysis framework}
+
+%An analysis framework was developed by the student, to reproduce the trigger analysis
+%without the full machinery needed for online data taking, allowing anlyses to be made on
+%simple ROOT files, instead of complex ATLAS-specific files and software.
+%The student is also the official contact person for any issue related to the ROOT file
+%analysis framework, which has recently been updated to work on a more error proof procedure.
+%In particular, the analysis framework used to be a copy of the online data taking software code,
+%but now it uses the exact same C++ software code, with a few preprocessor definitions.
+
+%The student also develops and mantains the software code necessary to actually dump the easy-to-use
+%ROOT files mentioned in the previous paragraph using an ATLAS-specific paradigm.
+%Another activity in which the student has been involved includes the coordination of the ROOT files
+%automatic generation on the Grid, for all data taking done with the b-jet trigger.
+
+
+\section{Summary}
+
+The \bjet trigger allows one to enrich physics analysis samples with heavy flavour, which is very important for many analyses,
+including top quark and Higgs boson related studies.
+To perform reliable studies on the ATLAS \bjet trigger, it is important to test whether the simulation can describe real data well.
+Furthermore, it is important to test whether the trigger selects heavy flavour events. This is essential for performance studies on the \bjet trigger.
+In these studies, it is possible to verify that there is good agreement between data and simulation in the ATLAS data collected in 2011, which allowed the \bjet
+trigger to be calibrated to use more complex likelihood-ratio-based taggers.
+
+The data collected in ATLAS in 2012 uses a combined tagger, based on the
+tracks' impact parameter and the secondary vertex observables. It has been shown that the combined tagger in the physics trigger enhances the \bjet component
+for higher combined weight values. The agreement between data and simulation for the heavy flavour enhanced calibration triggers is also very good, showing that the \bjet
+component is also correctly modelled.
+

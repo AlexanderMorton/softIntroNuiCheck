@@ -1,0 +1,1498 @@
+
+
+%The Standard Model top quark is a fermion that interacts as described
+%in the Chapter~\ref{chp:theory}. It
+%was discovered at Fermilab
+%in 1995~\cite{PhysRevLett.74.2626}~\cite{PhysRevLett.74.2632}.
+
+
+This study focuses on the semileptonic decays of the top-antitop ($t\bar{t}$) system
+and aims at measuring its cross section as a function of the number of jets produced in the final state.
+%What is actually measured in this study is the number of events generated for each jet multiplicity configuration, that is the cross section multiplied by the
+%integrated luminosity.
+%The conversion to a cross section means simply dividing the result by the integrated luminosity used for this measurement, $L = 4.7 \ifb \pm 0.2 \ifb$.
+
+The motivation behind this study is discussed in the next section, followed by details about the samples used for the analysis signal and background estimate.
+The unfolding method used, which corrects for detector effects is presented with a discussion of the systematic effect that it produces.
+The analysis has been made public as a conference note by ATLAS~\cite{ttjets_confnote}.
+
+\section{Motivation}
+
+As mentioned in Chapter~\ref{chp:theory},
+the top quark has a very large mass compared to the other quarks
+and, therefore, it is expected that it has a very large coupling to the Standard Model Higgs boson, which is central to the Electroweak Symmetry Breaking mechanism.
+Furthermore, the top quark has a very short lifetime and decays before hadronising.
+In its decay, the top quark is expected to radiate gluons, generating extra jets in the final state. This extra radiation
+would appear as higher order diagrams, in addition to the lowest order decay and can be predicted using Quantum Chromodynamics.
+A measurement of the production of this extra radiation is important to test how well the Standard Model describes the production of both the top quark and the associated QCD radiation.
+
+Furthermore, the top-antitop production is a main background in many physics analyses,
+such as the $t\bar{t}H$ search and in searches of supersymmetric models.
+A good understanding of \ttbar production is essential to have a good modelling of other analyses' backgrounds.
+
+In the current analysis, it is proposed to measure the production cross section of the \ttbar system as one of the top quarks decays leptonically and the other top quark
+decays hadronically. The measurement of the production cross section is done as a function of the number of jets in the final state, which are
+related to the amount of radiation produced in the \ttbar decay. The analysis is, therefore, an important test of the Standard Model description of the top quark.
+The main elements of the analysis include the signal selection, which improves the signal-to-background ratio, the background estimation
+and the unfolding procedure (described in Section~\ref{sec:ttjets_unfolding}), which corrects for the detector effects.
+
+In the next section an account of the signal modelling through different simulation
+methods used in the analysis is given.
+The signal modelling is important to estimate the detector effects which need to be corrected in the unfolding procedure (Section~\ref{sec:ttjets_unfolding}).
+The background is simulated or estimated through data-driven methods and it is also discussed in the next sections.
+The event selection is discussed next, which attempts to mitigate the effect of the background.
+The unfolding procedure is detailed then, followed by the method used for uncertainty propagation.
+Finally the resulting data to simulation comparison before and after the unfolding is shown.
+
+\section{Top-antitop signal simulation and background estimates}
+\label{sec:ttjets_background}
+
+%Although the measurement of the cross section will be done in data, the detector affects the results, changing the measured observable.
+%The detector contribution to the results should be inverted to correct for its influence and this is achieved through the
+%unfolding procedure.
+The signal is simulated as it
+is understood in the Standard Model to measure the effect of the detector. It is also simulated using different generators
+and configurations to test the agreement with data after the effect of the detector is corrected for.
+All sources of background are estimated as well, so that this contribution can be subtracted from data.
+
+As a first step, the signal must be
+defined in terms of its final state objects, so that the selection can be properly justified.
+The signal contains an electron, muon or tauon and a neutrino as a result of the $W$-boson decay, two $b$-quarks
+from the top decays and two other quarks from the other $W$-boson decay.
+The $\tau$ lepton decays either leptonically into an electron or muon and neutrinos,
+or it decays hadronically, generating jets. If the $\tau$
+lepton decays hadronically, it will generate jets, which we do not intend to select and it will be considered as part of the background.
+
+Therefore, the detector measures an electron or muon, missing transverse energy due to the undetected neutrino
+and at least four jets, since more jets
+could be produced as a result of QCD radiation.
+As there is either an electron or a muon in the final state, this splits the signal into two distinct channels to be taken into consideration,
+which are referred to henceforth
+as the ``electron channel'' and the ``muon channel''.
+In this chapter, for what follows, the word ``lepton'' will be used to refer only to the final state electron or muon, with the possible $\tau$
+leptonic decays being indirectly included as electron or muon decays.
+
+
+The $t\bar{t}$ signal is simulated with different fixed order calculations and matching schemes for the parton shower.
+The Alpgen v2.13 generator~\cite{alpgen} 
+with the CTEQ6L1~\cite{cteq6} PDF set is used as the main reference sample to derive correction factors in the unfolding procedure.
+This sample was chosen since it predicts the jet multiplicity distribution well at reconstruction-level. A systematic
+uncertainty associated with the choice of this sample is calculated at a later stage.
+
+The Alpgen reference sample is generated with zero up to four exclusive and five inclusive additional partons
+produced as extra radiation. Herwig v6.520~\cite{herwig1,herwig2}
+is used for the parton showering and the fragmentation and the MLM~\cite{mlm_matching} parton-jet matching scheme is applied\footnote{
+With parameters \texttt{ETCLUS 20 GeV, RCLUS 0.7, ETACLUS 6.0}.} to avoid double counting between the matrix element calculation and the parton shower.
+MC@NLO~\cite{mcatnlo_gen}\footnote{Using the CT10~\cite{ct10} PDF set and interfaced with Herwig for the parton shower.} and
+Powheg~\cite{powheg}\footnote{Using the CTEQ 6.6~\cite{cteq6} PDF set and interfaced with Pythia~\cite{pythia} for the parton shower,
+using the AUET2B-CTEQ 6L1 tune.} generators are used when comparing the final unfolded result in Section~\ref{sec:ttjets_unfolded}.
+MC@NLO is also used to estimate the systematic effect caused by
+the unfolding procedure. Jimmy~\cite{jimmy} is used with each sample produced with Herwig, for the underlying event simulation with the AUET1 tune.
+An Alpgen v2.14 sample is also produced using Pythia~\cite{pythia} for the parton shower and the CTEQ5L PDF set to test
+the systematic effect of the parton shower.
+Furthermore, to test the effect of the ISR/FSR models, Alpgen samples are generated with different renormalisation scales associated
+with doubling and halving the scale $Q$ at which $\alpha_S(Q)$ is calculated in the matrix element, while keeping the $\alpha_S$ configuration for the parton shower and
+the PDF set fixed. The nominal $\alpha_S$ value
+is set to be $0.118$ at the $Z$
+boson mass scale.
+The Alpgen+Pythia nominal and $\alpha_S$ variation samples are produced using the Pythia Perugia 2011 tune~\cite{perugia}. The top mass was set to be
+$m_{t\bar{t}} = 172.5$ GeV and its production cross section was normalised to $\sigma_{t\bar{t}} = 167^{+17}_{-18}$ pb in all samples used\footnote{Obtained from approximate NNLO QCD~\cite{hathor}
+calculations
+at the $m_{t\bar{t}}$ point used.}.
+
+Many background events can be selected as they have a similar final state configuration as the signal, either because the final state particles are the same,
+or because there are experimental effects which lead the selection mechanism to tag the background as the signal,
+such as misidentification of jets as leptons.
+The selection procedure in this
+analysis emphasizes the \ttbar signal over the background, rejecting significantly more background than signal, but it is not enough
+to completely remove the background.
+It is necessary to estimate the remaining background in the data after the selection has been made,
+and subtract them.
+
+% Explain W+jets data-driven method and Z+jets
+The main background to the $t\bar{t}$ production estimate in the semileptonic channel is W+jets production, which could
+be falsely identified as being part of the signal if the $W$ boson decays leptonically and there are extra jets produced by radiation.
+The shape of the W+jets kinematic distributions is estimated from Alpgen v2.13, using the CTEQ6L1 PDF set and interfaced with Herwig for the parton shower,
+but the normalisation of the distribution and the
+heavy flavour content is not well
+predicted from the simulation and a partially data-driven method is used. The W+jets estimate also includes an estimate of the heavy and light flavour content
+partially calculated from data, which is important to understand the effect of the $b$-tagging cut on the W+jets distribution. This method is explained in more details
+in Section~\ref{sec:ttjets_wjets}. It is worth noting that, since the samples of $W + b\bar{b} +$ jets, $W + c\bar{c} +$ jets, $W + c +$ jets and $W +$ light-jets are produced
+separately, a heavy flavour overlap removal procedure is used to remove the overlap between the heavy flavour content of the samples, using a $\Delta R$ match between
+the simulation-level Anti-$k_t$ jets and the reconstruction-level Anti-$k_t$ jets and removing the event if they represent an overlap between the samples.
+
+% Explain QCD data-driven method
+Due to the high number of jets involved in the analysis, the QCD multi-jet production
+is very low. Therefore,
+the QCD multi-jet production simulation cannot be used to generate enough events and other methods are used to estimate it.
+The main source of misidentification of QCD multi-jet events as \ttbar decay products happens if one of the
+jets is misindentified as a lepton.
+This motivated a data-driven estimate of this background's contribution, which is done by estimating how often one of
+the jets in a QCD enriched data sample is mistaken for a lepton. This method was used in this analysis and details on how it was done are mentioned in
+Section~\ref{sec:ttjets_qcd}.
+
+% Explain single top, Z+jets and diboson backgrounds simulation
+The Z+jets sample is simulated using Alpgen v2.13 with the CTEQ 6L1 PDF set, using Herwig for the parton shower. An angular matching is used, as in the $W+$ jets case to
+remove the overlap between the $Z+$jets and the $Z+b\bar{b}+$jets samples.
+The $t$-channel single top quark sample was generated using the AcerMC~\cite{acermc} generator, while the $Wt$- and $s$-channel predictions were simulated
+using MC@NLO. Each single top sample was normalised to the approximate NNLO calculation of each respective
+channel~\cite{stop1,stop2,stop3}\footnote{$\sigma_{t, \textrm{t-channel}} = 64.5^{+2.6}_{-1.7}$ pb, $\sigma_{t, \textrm{s-channel}} = 4.6^{+0.2}_{-0.2}$ pb,
+$\sigma_{t, \textrm{Wt-channel}} = 15.7^{1.2}_{-1.2}$ pb.}. The $WW$, $ZZ$ and $WZ$ production are generated using Herwig.
+
+\section{Top-antitop event selection}
+\label{sec:ttjets_selection}
+
+%The objective of the selection procedure is to select the signal with minimal background, maximising the signal-to-background ratio.
+%The remaining background is subtracted from the data.
+%The signal is also affected, but it is expected that the selection is such that the background
+%is much more reduced than the signal.
+
+In what follows, the requirements used to select events are described.
+The cuts used to select reconstruction-level events are organised in a set of main items:
+a trigger-related selection, lepton selection, jet selection and missing energy requirements.
+%The last subsection is dedicated to the fiducial region definition at particle-level, which restricts the measurement
+%performed to a phase space volume.
+
+\subsection{Trigger and pile up-related selection}
+
+A first step in the selection procedure is to use the trigger to select events tagged as containing at least one electron with $p_T > 20\gev$ or $p_T > 22\gev$
+depending on the relevant data taking period,
+or at least one muon with $p_T > 18\gev$,
+according to the selection channel\footnote{\texttt{EF\_e20\_medium} for periods B-J, \texttt{EF\_e22\_loose} for period K and
+\texttt{EF\_e22vh\_medium1} or \texttt{EF\_e45\_medium1} for periods L to M, in the electron channel; \texttt{EF\_mu18} for periods B to I and \texttt{EF\_mu18\_medium} for periods J to M, in the muon channel.}.
+A second step demands that at least four tracks were used to reconstruct the position of the primary vertex, which
+works as a quality cut on the event reconstruction and it reduces the effect of multiple proton-proton interactions.
+
+%Another quality cut is applied to remove
+%the event if it contains anti-$k_t$ jets with $R=0.4$~\cite{antiktalgo}, $p_T > 20$ GeV, $E > 0$ GeV and if it has been tagged as a badly reconstructed jet.
+
+\subsection{Lepton selection}
+
+As a next step, it is important to demand that one and only one well identified and isolated
+electron or muon was detected in the electron or muon channel, respectively.
+A few quality cuts must be required for the lepton, to remove misreconstructed leptons or non-prompt leptons, which come from the
+decay products of other
+particles and not from the top quark's $W$ boson decay. The electrons are required to have a transverse momentum of at least $25$ GeV and it must have a well
+reconstructed track that matched a calorimeter energy deposition region. Electrons are also required to be in the pseudorapidity range
+$|\eta| \in [0, 1.37) \cup (1.52, 2.47]$ to exclude the ``crack'' region of the calorimeters, in which the energy of the electron is not well
+reconstructed. For muons, the Inner Detector track is 
+required to match the Muon Spectrometer track and it must be in the
+pseudorapidity range of $|\eta| < 2.5$.
+Furthermore, the sum of energy in the calorimeters in a region of $\Delta R < 0.2$ around the muon, excluding its own energy is required to be less than $4$ GeV
+and the sum of the track momenta in a region of $\Delta R < 0.3$ (excluding the muon's track momentum) is also required to be less than $4$ GeV.
+For the electron the same energy sum and track momenta sum is calculated, but the cut is adjusted for each particle, so that the cut has a flat 90\% efficiency
+in the electron's transverse momentum~\footnote{In the ATLAS jargon, the variables calculated are called \texttt{Etcone20} and \texttt{Ptcone30}. In
+the muon channel, it is demanded that $\mathtt{Etcone20} < 4\gev$ and $\mathtt{Ptcone30} < 4\gev$, while for the electron channel the cuts are adjusted so that
+an efficiency of 90\% is kept as a function of transverse momentum.}.
+
+An important quality cut to be taken into account is to reject electrons that overlap with jets if $0.2 < \Delta R (e, \textrm{jet}) < 0.4$ and remove jets that satisfy
+$\Delta R (e, \textrm{jet}) < 0.2$. The latter removal step attempts to reduce the effect of leptons which were misidentified as jets,
+while the former electron removal step is necessary because the electron identification and reconstruction corrections to be applied
+at a later stage assume well separated electrons and jets. A similar overlap removal quality cut is applied to muons, which are required to be far away from jets, according
+to the criteria $\Delta R(\mu, \textrm{jet}) > 0.4$, removing non-prompt muons that might be produced from the semileptonic $b$-quark decay and that would be close to the
+$b$-jet.
+
+It is also important to reject the event if a lepton of a different type is found in the event, that is, in the electron channel, no good quality muons
+should exist and in the muon channel, no good quality electrons should exist,
+which removes the effect of the dilepton top-antitop decays and $Z$ boson decays into two leptons. To increase the purity of the
+selected sample, if there is at least one lepton of the other type with a transverse momentum greater than $15\gev$, the event is rejected~\footnote{Note that
+this is smaller than the $25\gev$ requirement for the selected lepton.}.
+The selected lepton is also required
+to match the lepton selected
+by the trigger system in the corresponding electron or muon trigger selection~\footnote{It is required to match one of the selected trigger electrons (for the electron channel)
+or muons (for the muon channel),
+since another object might also have been accepted by the trigger system as an electron or muon.
+This would happen because the trigger system might misidentify one or more of the objects. No demand is made on the multiplicity of the selected trigger electrons or muons.}. 
+
+\subsection{Jet selection}
+
+Although the total number of jets from the $t\bar{t}$ decay channel of interest includes at least four jets, some of the jets
+might not be detected within the fiducial volume of the detector. The unfolding procedure could benefit from an estimate
+of these jets being lost, by including the events with three jets as well, so that migrations of events from the four-jets category to the three-jets
+category could be corrected.
+Therefore, the event is required to contain at least 3 jets within $|\eta| < 2.5$ and a jet vertex fraction (see Section~\ref{sec:atlas_jet} for the definition
+of the jet vertex fraction) greater than $0.75$ to reduce the
+pile up contribution. The transverse momentum cut on each jet is chosen to be $25\gev$, $40\gev$, $60\gev$ and $80\gev$ in four versions
+of this analysis, that is, the analysis is repeated four times, each one demanding that all selected jets have a specific minimum energy.
+This
+procedure shows the effect of jets at different transverse momenta ranges in the jet multiplicity distribution.
+The particular choice
+of these values is arbitrary, though.
+
+\subsection{Missing energy requirements}
+
+To reject backgrounds without neutrinos in the final state, such as the fully hadronic decay of the top-antitop
+pair and the QCD multi-jets background, the total missing transverse energy in the event is required to be greater than $30\gev$.
+
+The transverse mass between the lepton and the missing transverse energy, $\met$, is defined as:
+
+\begin{equation}
+\displaystyle
+m_T = \sqrt{2 p_T^\ell \met (1-\cos \alpha)},
+\label{eq:ttjets_mtw}
+\end{equation}
+where $p_T^\ell$ is the lepton's transverse momentum, $\met$ is the missing transverse energy, and $\alpha$ is the
+azimuthal angle between $p_T^\ell$ and $\met$. This variable has an end-point at the mother particle's mass, which, for a top-antitop decay,
+should be the $W$-boson mass.
+Taking advantage of this, a cut is applied on $m_T$, which is required to be greater than $35\gev$.
+Finally, at least one of the jets, with $p_T > 25$ GeV is required to be $b$-tagged. The $b$-tagging criteria in the analysis was chosen based on
+the 70\% efficiency operating point of the Neural Network based tagger MV1 (see Section~\ref{sec:atlas_btag} for more information on $b$-tagging).
+One further $b$-jet could have been required,
+since in principle $t\bar{t}$ events should contain at least two $b$-jets, but due to the low
+efficiency of the $b$-tagging algorithm\footnote{Notice that increasing the efficiency point would also increase the false-identification rate, reducing
+the purity of the selected sample.}, making extra demands on the $b$-tagging criteria would increase the statistical uncertainty significantly.
+
+%\subsection{Fiducial region definition}
+%
+%Besides optimising the signal-to-background ratio, the event selection restricts the measurement to a fiducial region, on which the detector
+%would operate optimally. These selection requirements are applied identically in the reconstruction-level and particle-level simulated
+%leptons, jets and missing transverse energy and are not corrected by the unfolding procedure, restricting the resulting measurement
+%to a phase space volume. The unfolding method, therefore, corrects the effects of the detector up until the following restrictions.
+%
+%The fiducial region is defined by the minimum transverse momentum requirement on the leptons of $25\gev$,
+%including the requirement
+%that no other lepton is detected with a transverse momentum of at least $15\gev$.
+%The pseudo-rapidity requirements on the leptons of $|\eta| \in [0, 1.37) \cup (1.52, 2.47]$ for electrons and $|\eta| < 2.5$ for muons
+%are also required. The jets' pseudo rapidity is restricted to $|\eta| < 2.5$ and their minimum momentum is set to be $25\gev$,
+%$40\gev$, $60\gev$ and $80\gev$ in four different versions
+%of the analysis. The missing transverse energy and transverse mass requirements are set to be the same as the reconstruction-level
+%ones, namely, $\met > 30\gev$ and $m_T > 35 \gev$.
+%The overlap removal requirements are applied in the same way as at reconstruction-level.
+%An isolation requirement is also applied at the particle-level selection, which will be detailed in the unfolding section.
+%At least three jets, and one lepton are required, as in the reconstruction-level selection.
+%
+%These fiducial
+%requirements are applied at the signal simulation (using Alpgen+Herwig) to estimate the correction factors for the unfolding procedure,
+%which restricts the resulting measurement to the corresponding phase space volume.
+
+\section{Data-driven W+jets background estimate}
+\label{sec:ttjets_wjets}
+
+As mentioned previously, the W+jets production rate and flavour fractions are not well described in simulation and a partially data-driven method is used in this work.
+This method was applied in this and other top quark related analyses and the estimate of the factors mentioned in this section were performed by other ATLAS working
+groups and not the author of this
+document himself. The method is briefly introduced for clarity and completeness only.
+
+The data-driven W+jets estimate is performed in three stages. In the first step, the flavour fraction of the W+jets background is constrained before the $b$-tagging
+requirement.
+A control region is defined 
+with the same selection cuts, but constraining the jet multiplicity in the final state to be one or two jets, instead of at least 
+three jets. The control region described is enriched in the W+jets background and the small contribution from other backgrounds
+and \ttbar is subtracted. The backgrounds and \ttbar contributions' are estimated using Monte Carlo simulation in
+the Control Region. This results in
+a final event count for the 1- and 2-jet channels, before and after the $b$-tagging selection, which will be referred to as $W^{\textrm{data}}_{i, \textrm{pre-tag}}$ and
+$W^{\textrm{data}}_{i, \textrm{tagged}}$, for $i = 1,2$.
+
+Equations can be written for $W^{\textrm{data}}_{1, \textrm{pre-tag}}$, $W^{\textrm{data}}_{1, \textrm{tagged}}$, $W^{\textrm{data}}_{2, \textrm{pre-tag}}$ and $W^{\textrm{data}}_{2, \textrm{tagged}}$ as a function
+of eight independent flavour fractions as unknowns, which represent the fractions of $W+b\bar{b}+$ jets, $W+c\bar{c}+$ jets, $W+c+$ jets and
+$W+$ light-jets in the 1- and 2-jet bins
+before $b$-tagging. The $b$-tagging probabilities estimated in simulation are used to express the tagged quantities as a function of the untagged flavour fractions in the
+relevant equations. The ratio between the 1- and 2-jet bin event counts are calculated from simulation to relate the values in the set of the equations. Furthermore,
+the ratio of number of events coming from $W+c\bar{c}+$ jets and $W+b\bar{b}+$ jets is estimated in simulation to reduce even more the number of degrees of freedom in the
+equations. With these constraints, the three equations remain with only three degrees of freedom, which can be extracted, by solving the linear system.
+This procedure results in an estimate for the flavour fractions before $b$-tagging
+for the $W+b\bar{b}+$ jets (which are related to the $W+c\bar{c}+$ jets by the ratio estimated in simulation), the $W+c+$ jets,
+and the $W+$ light-jets. These fractions are applied to the relevant simulation data samples to improve the flavour fraction components from this data-driven measurement,
+but no normalisation change is made at this stage.
+
+The second step in this estimate is to use a data-driven method to calculate the normalisation of the W+jets background after the selection but without the $b$-tagging
+requirement.
+It can be done by noting that the production rate of $W^{+}+$jets is bigger than that of $W^{-}+$jets, since there are more up valence quarks in the protons than down valence
+quarks and that the ratio between the production rates of $W^{+}+$jets and $W^{-}+$jets, $r_{MC}$, is more precisely calculated from simulation than the rates themselves.
+The estimate is done by counting the number of data events in the signal region which produce positively charged leptons and negatively charged leptons, that is, the
+events that come
+respectively, from the $W^{+}$ and $W^{-}$ decays.
+In addition,
+other processes involved in this measurement produce, to good approximation, equal number of positively and negatively charged leptons and, since we are only interested
+in the asymmetry between these rates, they would not interfere in this estimate. The remaining background is subtracted.
+The number of W+jets events before the $b$-tagging requirement can, then, be calculated using Equation~\ref{eq:wjets}, in which $r_{MC}$ is the ratio between $W^{+}$ and
+$W^{-}$ events produced in simulation, $D_{W^{+}}$ and $D_{W^{-}}$ are the amount of detected $W^{+}$ and $W^{-}$ in data and $W_{\textrm{pre-tag}}$ represents the total
+number of W+jets events produced (before the $b$-tagging requirement).
+
+\begin{equation}
+\displaystyle
+W_{\textrm{pre-tag}} = N_{W^{+}} + N_{W^{-}} = \left(\frac{r_{MC} + 1}{r_{MC} - 1}\right)  ( D_{W^{+}} - D_{W^{-}} )
+\label{eq:wjets}
+\end{equation}
+
+%After the previous steps, the flavour fractions and the normalisation of the W+jets background are fixed before the $b$-tagging requirement.
+Each W+jets flavour component sample is simulated after the selection including the $b$-tagging requirement, with each data sample weighted by the estimated flavour fraction.
+The final step estimates the
+effect of the $b$-tagging requirement in simulation and applies it to the previously calculated normalisation\cite{toppairxsec7tev,ttjets_confnote}.
+%The total normalisation of W+jets events after the
+%$b$-tagging requirement is then calculated through the Equation~\ref{eq:wjets_btag}, in which $f_{2,\textrm{tagged}}$ represents the fraction of events in the 2-jet
+%bin which passed the $b$-tagging criteria and $k_{2 \rightarrow 4}$ represents the fraction of $b$-tagged events found in the 4-jet bin over the $b$-tagged events found in the
+%2-jet bin\cite{toppairxsec7tev}.
+
+%\begin{equation}
+%\displaystyle
+%W_{\textrm{tagged}} = W_{\textrm{pre-tag}} \times f_{2,\textrm{tagged}} \times k_{2 \rightarrow 4}.
+%\label{eq:wjets_btag}
+%\end{equation}
+
+\section{Data-driven QCD multi-jets background estimate}
+\label{sec:ttjets_qcd}
+
+The calculation of the data-driven QCD multi-jets estimate was not done by the author in this analysis\footnote{Although it is done by the author
+in a latter analysis,
+the $t\bar{t}$ resonances search at $\sqrt{s} = 8$ TeV. See Chapter~\ref{chp:ttbarres8}.}, but the procedure is mentioned here for completeness, as it was for the case for the W+jets estimate
+in the previous section.
+The QCD multi-jets background is estimated by a method called Matrix Method, which associates weights to data events with looser lepton
+identification requirements to generate distributions for this background.
+
+Events for this QCD estimate are categorised as containing a ``loose'' lepton, which only satisfy a
+looser lepton identification criteria, with no isolation requirement, or they are categorised as containing a ``tight'' lepton,
+which also satisfies the
+standard selection lepton identification criteria.
+The real data estimate and the Monte Carlo simulation estimates in the analysis contains only events that pass the
+event selection using the ``tight'' lepton criteria. The QCD estimate described below contains real data events that pass the selection using the ``tight'' and ``loose'' lepton definitions. Each event in the QCD estimate
+is weighted depending on two variables introduced below. These variables,
+called $\epsilon_\textrm{eff}$ and $\epsilon_\textrm{fake}$,
+are estimated in a real lepton-enriched region and a QCD-enriched region.
+
+A QCD-enriched control region is defined orthogonal to the selection region given by
+the requirements for the analysis (Section~\ref{sec:ttjets_selection}).
+The control region must be enriched in the QCD multi-jets
+background, so that the effect of the $t\bar{t}$ signal and the other backgrounds is reduced.
+For this analysis, the control region was defined by inverting the missing transverse energy cut and tightening it to $E_T^{\textrm{miss}} < 20$ GeV (in both
+electron and muon channels) and by inverting the
+transverse mass cut (in the electron channel and in one of the muon channel estimates).
+An alternate estimate in the muon channel defines
+the control region by requiring events which have a muon with large impact parameter with respect to the primary vertex. In spite of the difference of control region definitions,
+both results in the muon channel follow a similar procedure, which is described below.
+
+The main point of the method is to estimate the fraction of events that satisfy the ``tight'' lepton criteria amongst all events
+that satisfy the ``loose'' lepton criteria in the QCD events using the control region, and in true lepton (that is, non-QCD multi-jets) events,
+using a region enriched in events containing one real lepton.
+Monte Carlo simulations
+might be used for the non-QCD region, matching the simulation meta-data to the reconstruction-level leptons to increase the purity.
+A Tag and Probe method in $Z \rightarrow \ell \ell$ data events can also define a lepton-enriched region, using the $Z$ mass window as a selection criteria
+and using the two leptons to measure the probability of detecting a ``tight'' lepton as a probe, given that the tag lepton satisfies the ``loose'' criteria. The latter
+method is used in this analysis. The two procedures are equivalent, since (see Section~\ref{sec:ttjets_corrections}) a Tag And Probe method is used to calculate
+the lepton selection efficiency in data and use it to correct simulation. In this way, the corrected lepton in simulation has the same selection efficiency as real data.
+
+The fractions determined in the QCD-enriched control region and in the lepton-enriched region can be carried on to the \ttbar
+selection region and used to define weights for each event, depending on whether
+it passes the ``loose''-only or ``tight'' criteria.
+
+The number of ``loose'' events, $N_{\mathrm{loose}}$, includes a component, $N^{\mathrm{fake}}_{\mathrm{loose}}$, coming from QCD multi-jets
+events and a component, $N^{\mathrm{real}}_{\mathrm{loose}}$, coming from mis-identified signal events. And similarly for the number of events satisfying the ``tight''
+criteria, as in Equation~\ref{eq:ttjets_qcd_def}.
+
+\begin{eqnarray}
+\displaystyle
+N_{\mathrm{loose}}&=&N^{\mathrm{fake}}_{\mathrm{loose}} + N^{\mathrm{real}}_{\mathrm{loose}}\\
+N_{\mathrm{tight}}&=&N^{\mathrm{fake}}_{\mathrm{tight}} + N^{\mathrm{real}}_{\mathrm{tight}}
+\label{eq:ttjets_qcd_def}
+\end{eqnarray}
+
+In this method, one wishes to estimate $N^{\mathrm{fake}}_{\mathrm{tight}}$ in real data, using the selection procedure for the current
+analysis.
+We define
+
+\begin{equation}
+\displaystyle
+\epsilon_{\mathrm{eff}} = \frac{N^{\mathrm{real}}_{\mathrm{tight}}}{N^{\mathrm{real}}_{\mathrm{loose}}}
+\label{eq:ttjets_qcd_eff}
+\end{equation}
+ and
+
+\begin{equation}
+\displaystyle
+\epsilon_{\mathrm{fake}} = \frac{N^{\mathrm{fake}}_{\mathrm{tight}}}{N^{\mathrm{fake}}_{\mathrm{loose}}},
+\label{eq:ttjets_qcd_fake}
+\end{equation}
+which can be used in Equation~\ref{eq:ttjets_qcd_def} to obtain
+
+\begin{equation}
+\displaystyle
+\begin{pmatrix}
+N_{\mathrm{loose}} \\
+N_{\mathrm{tight}}
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 1 \\
+\epsilon_{\mathrm{fake}} & \epsilon_{\mathrm{eff}}
+\end{pmatrix}
+\times
+\begin{pmatrix}
+N^{\mathrm{fake}}_{\mathrm{loose}} \\
+N^{\mathrm{real}}_{\mathrm{loose}}
+\end{pmatrix}.
+\label{eq:ttjets_qcd_form}
+\end{equation}
+
+Note that the number of events that satisfy the tight and loose selections $N_{\mathrm{loose}}$ and $N_{\mathrm{tight}}$
+in the left-hand side can be found out
+in data by applying the event selection in data using the ``tight''~\footnote{The one previously mentioned in the
+event selection for this analysis.} or the slightly-altered ``loose'' definition for leptons. If the $\epsilon_{\mathrm{fake}}$ and
+$\epsilon_{\mathrm{eff}}$ parameters are known, the unknown values of $N^{\mathrm{fake}}_{\mathrm{loose}}$ and $N^{\mathrm{real}}_{\mathrm{loose}}$
+could be discovered. Furthermore, these quantities are easily related to the ``tight'' ones ($N^{\mathrm{fake}}_{\mathrm{tight}}$ and
+$N^{\mathrm{real}}_{\mathrm{tight}}$) by Equations~\ref{eq:ttjets_qcd_eff} and~\ref{eq:ttjets_qcd_fake}. If we want to calculate
+$N^{\mathrm{fake}}_{\mathrm{tight}}$, which represents the number of QCD events that pass the analysis lepton-definition,
+in the analysis' selection region, one can simply calculate the number of events in data
+that pass the ``tight'' and ``loose'' selections and invert the last equation, which results in:
+
+\begin{equation}
+\displaystyle
+\begin{pmatrix}
+N^{\mathrm{fake}}_{\mathrm{tight}} \\
+N^{\mathrm{real}}_{\mathrm{tight}}
+\end{pmatrix}
+=
+\frac{1}{\epsilon_{\mathrm{eff}} - \epsilon_{\mathrm{fake}}}
+\begin{pmatrix}
+\epsilon_{\mathrm{fake}} \epsilon_{\mathrm{eff}} & - \epsilon_{\mathrm{fake}} \\
+- \epsilon_{\mathrm{fake}} \epsilon_{\mathrm{eff}} & \epsilon_{\mathrm{eff}}
+\end{pmatrix}
+\times
+\begin{pmatrix}
+N_{\mathrm{loose}} \\
+N_{\mathrm{tight}}
+\end{pmatrix}.
+\label{eq:ttjets_qcd_invform}
+\end{equation}
+
+An interesting element from the last equations is that they are linear on the number of events selected.
+This implies, that one can divide the data samples
+in separate sets and $N^{\mathrm{fake}}_{\mathrm{tight}}$ can be calculated in each one, with its total value for the combined
+region being the sum of the results in each subset.
+This feature can be used to apply this equation in an event-by-event basis, creating one separate set for each event.
+With this setting, each event either passes only the ``loose'' selection or the event passes both the ``loose'' and ``tight'' selections,
+which would correspond to the $\begin{pmatrix} N_{\mathrm{loose}}\\ N_{\mathrm{tight}}\end{pmatrix} = \begin{pmatrix} 1 \\ 0\end{pmatrix}$
+or the $\begin{pmatrix} N_{\mathrm{loose}}\\ N_{\mathrm{tight}}\end{pmatrix} = \begin{pmatrix} 1 \\ 1\end{pmatrix}$ configurations,
+respectively. The resulting $N^{\mathrm{fake}}_{\mathrm{tight}}$ value can then be interpreted as a per-event weight to be applied in
+real data, depending on whether it passes the ``tight'' selection or only the ``loose'' selection.
+
+If the data event passes the ``tight'' and ``loose'' selections, it is weighted by:
+
+%From this result, it is possible to apply weights on events that satisfy the ``loose''-only or ``loose''+``tight'' criteria to obtain the total number
+%of events that pass the ``tight'' criteria in the \ttbar selection region and which represent only the QCD multi-jets background contribution,
+%$N^{\mathrm{fake}}_{\mathrm{tight}}$. Indeed, from the coefficient matrix in Equation~\ref{eq:ttjets_qcd_invform}, the events that pass the ``tight'' %and ``loose'' criteria
+%should be weighted by the sum of the coefficients of $N_{\mathrm{loose}}$ and $N_{\mathrm{tight}}$ in the
+%first row:
+
+\begin{equation}
+\displaystyle
+w_{\mathrm{tight}} = \frac{\epsilon_{\mathrm{fake}}}{\epsilon_{\mathrm{eff}} - \epsilon_{\mathrm{fake}}} \times ( \epsilon_{\mathrm{eff}} - 1 ),
+\label{eq:mmqcd_wtight}
+\end{equation}
+and, events that satisfy only the ``loose'' criteria, should be weighted by:
+
+\begin{equation}
+\displaystyle
+w_{\mathrm{loose}} = \frac{1}{\epsilon_{\mathrm{eff}} - \epsilon_{\mathrm{fake}}} \times ( \epsilon_{\mathrm{fake}} \epsilon_{\mathrm{eff}} ).
+\label{eq:mmqcd_wloose}
+\end{equation}
+
+The only information necessary for the weights are $\epsilon_{\mathrm{eff}}$ and $\epsilon_{\mathrm{fake}}$, which are estimated
+in the QCD-enriched and lepton-enriched regions defined previously. The weighting itself is applied on events that pass the
+selection used in the analysis.
+
+Since the weights are only calculated for each event, the kinematic information of the event can be exploited to parametrise
+$\epsilon_{\mathrm{eff}}$ and $\epsilon_{\mathrm{fake}}$ as a function of a few variables on which they show a large dependency.
+These variables might vary in different conditions and this parametrisation can improve the shape of the resulting QCD estimate.
+
+These weights are calculated for each event
+in data, using the standard analysis selection (defined
+in the Section~\ref{sec:ttjets_selection}). The leptons in the selection
+are also allowed to pass only a looser criteria (as defined in the current
+section) if they fail the standard selection with the tighter (default)
+criteria. Depending on whether the event satisfies the standard selection
+with the loose or tight lepton criteria, the event is categorised as
+``loose'' or ``tight'' and the appropriate weight (Equation~\ref{eq:mmqcd_wloose} or~\ref{eq:mmqcd_wtight}, respectively) is associated to it.
+The histogram for the desired observable (in the current analysis,
+it would be the jet multiplicity) is filled with the
+associated event weight and the result is the QCD estimate for such
+observable for events passing only the tight selection.
+
+Note that
+in this process, events that are not accepted, if the standard lepton
+definition is used but are accepted for a looser lepton definition in data,
+are also included in the QCD estimate, weighted appropriately.
+According to the equations above, it is expected that the weighted sum
+of the events satisfying the tight lepton definition and the looser
+lepton definition is an estimate of the number of QCD multi-jet events
+that would pass only the tight lepton definition.
+
+
+\section{Corrections applied in simulation}
+\label{sec:ttjets_corrections}
+
+A set of corrections are applied in simulation to obtain a better agreement between the simulation and data.
+Some of the corrections are implemented as reweighting procedures, in which the final histograms calculated are weighted based on some characteristics of the event
+so that some of the selection efficiencies which are different in data and simulation can be taken into account, or that other differences between data and simulation
+are reduced, if the simulation setup could not be made exactly as the data configuration.
+Other correction procedures use statistical pseudo-experiments, which change the kinematics in Monte Carlo.
+
+In some Monte Carlo simulation samples, the events should receive a positive or negative weight according to the MC@NLO procedure described in~\cite{mcatnlo}. Although this
+involves reweighting, this is not a correction on itself, but a necessary procedure related to how the event generator works.
+Each sample is also reweighted so that it corresponds to the correct cross section. This is done by normalising a simulation result dividing it by
+the total number of events generated and multiplying it by the process' production cross section and the data luminosity.
+
+Amongst the reweighting corrections, one of them refers to matching the average number of multiple interactions per bunch crossing $<\mu>$ to data.
+This is implemented by measuring the average number of interactions per bunch crossing in data, $<\mu>_{\textrm{data}}$, and building a normalised histogram
+with this distribution: $P_{\mu,\textrm{data}}$. A similar distribution is calculated with the average number of simulated interactions for Monte Carlo samples,
+$P_{\mu,\textrm{MC}}$. With these distributions, a simulated event with an avarage number of interactions $<\mu>_{\textrm{MC}}$ receives a weight of
+$P_{\mu,\textrm{data}}(<\mu>_{\textrm{MC}})/P_{\mu,\textrm{MC}}(<\mu>_{\textrm{MC}})$, so that the simulated and reweighted $<\mu>$ distributions would match the estimated
+distribution in data. The $<\mu>$ distribution in data, however, can have different shapes in different running periods and this histogram was calculated separately for different data-taking periods.
+%B until D, E until H, I, J, K and L until M.
+To account for these different $\mu$ distributions in data, the Monte Carlo simulation events
+are separated into subsets with a number of events proportional to the fraction of luminosity in each data period mentioned.
+Each subset of the Monte Carlo with a fraction of events proportional to a data period range $X$ is
+weighted by $P_{\mu,\textrm{data period X}}(<\mu>_{\textrm{MC}})/P_{\mu,\textrm{MC}}(<\mu>_{\textrm{MC}})$, where $P_{\mu,\textrm{data period X}}$
+represents the probability distribution of $<\mu>$ in the period range $X$.
+This allows for a reweighting that takes into account features 
+from each data collection period in the $<\mu>$ distribution shape. This procedure is used to
+get a similar effect from multiple interactions coming from the simulation.
+
+Due to the demand that at least one jet satisfies the $b$-tagging criteria,
+the $b$-tagging efficiency and mistag rates could also be a source of discrepancy between data and the simulation, which is why the simulation is reweighted to
+match the $b$-tagging performance in data. The simulation $b$-tagging efficiency and mistag rates are measured for different simulation flavours and different $\eta$ and $p_T$
+ranges, while in data, different data-driven methods are used to estimate them as a function of $p_T$ and $\eta$ (see Section~\ref{sec:atlas_btag}).
+The efficiencies are available for each jet and the
+$b$-tagging requirement is applied for any jet in the event (that is, not to a specific jet), so an event-wide
+weight is built by assuming that there is no correlation on the $b$-tagging performance effect between the different jet kinematics. This is implemented by multiplying
+the scale factor for each jet in a single event weight. The scale factor for each $b$-tagged jet is calculated by the ratio of the efficiency of tagging the jet in
+data and in Monte Carlo simulation. For jets that failed the $b$-tagging criteria, the scale factor is calculated as the ratio of the tagging inefficiencies
+(one minus the efficiency for $b$-tagging a jet) in data and Monte Carlo simulation. Details on the scale factors calculated for 2011 ATLAS data are described in~\cite{btag2011}.
+
+The ratio of efficiencies in data and Monte Carlo is also used to correct for the identification
+requirements applied in the lepton selection. The document in~\cite{muonperf2010} describes the methods used for muon efficiency estimation in 2010 data, which
+were used similarly for 2011 data. The electron performance is detailed in~\cite{electron2010} for 2010 data as well, but a similar procedure was used for 2011 data.
+The jet vertex fraction requirement also has a selection efficiency slightly different in simulation and data and
+the efficiency ratio is used as a scale factor for this correction.
+
+Besides the weighting procedure to correct for efficiency differences in data and simulation, the difference in the resolution and energy scales must also be considered,
+since the performance in simulation might be slightly different from that in real data collisions. A correction is applied in data for the electron energy scale, using a correction
+factor measured from data in $Z$-boson and $J/\psi$ decays in electron pairs, and performance studies using $W$-boson decays into electrons and neutrinos.
+
+The
+electron energy resolution is corrected in Monte Carlo simulation by multiplying the electron cluster energy by a pseudo-random
+sample of a Gaussian distribution with mean one and standard deviation given by $\sqrt{r_{\textrm{data}}^2 - r_{\textrm{MC}}^2}$, where $r_{\textrm{data}}$ is
+the resolution in data and $r_{\textrm{MC}}$ is the resolution in Monte Carlo. The electron performance studies in ATLAS are described in~\cite{electron2010} for 2010
+data, although the procedure is similar for the 2011 data.
+The muon transverse momentum is also smeared to take into account the difference in the muon resolution
+in data and Monte Carlo, using events in real data
+with two muons in the final state to measure the resolution. Momentum scale corrections are also applied in muons, based on the shift of the $Z$-boson peak in measured
+data. The procedure used to estimate the correction factors is explained in~\cite{muonres2010} using 2010 data, although the procedure is similar for the 2011 study.
+
+The jet energy scale is also corrected for discrepancies in data and simulation, as described in~\cite{jes2011}. The jet energy scale is calculated from energy balance
+in decays of $Z$-boson (which decays into electron or muon pairs) and one extra jet, so that the jet energy calibration can be expressed as a function of the lepton energies.
+Decays with photons and jets are also used. See Chapter~\ref{chp:atlas} for more details on how these corrections are calculated.
+
+\section{Data to signal and background comparison}
+
+After the selection procedure described previously, the number of reconstructed jets can then be analysed,
+as in Figure~\ref{fig:Alpgen_Njets}
+and compared with
+data, using the same event selection for all backgrounds.
+Data-driven techniques are used to estimate the W+jets background
+contribution and the QCD jets contribution.
+Alpgen was used to simulate the \ttbar signal in these plots.
+%The equivalent result with MC@NLO simulation for the signal is shown in
+%Figures~\ref{fig:MCAtNLO_NjetsEl} and~\ref{fig:MCAtNLO_NjetsMu}.
+
+It can be seen that the data and the estimated background agree within systematic uncertainties. This result
+is going to be used as a first step for the unfolding procedure, detailed in the next sections, in which
+it is important to subtract the background contribution from data, before moving to the unfolding of the
+\ttbar  signal. The systematic variations on the signal and background were summed in these plots, but for the
+background subtraction procedure, which is applied in data, only the background systematic uncertainties are taken into
+account and propagated to the ``data - background'' estimate, which is detailed in Section~\ref{sec:ttjets_unfold_unc}.
+
+\begin{sidewaysfigure}[tpbp]
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarjets/plotInGroupOnlyHists_groupSigBkgAlpgen_NjetsEl.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarjets/plotInGroupOnlyHists_groupSigBkgAlpgen_NjetsMu.eps}}
+\caption{Jet multiplicity in the electron (left) and muon (right) channels using Alpgen simulation for the $t\bar{t}$ signal ($p_T > 25$ GeV).}
+\label{fig:Alpgen_Njets}
+\end{sidewaysfigure}
+
+More plots showing the kinematic properties of the selected events are available in Appendix~\ref{app:ttjets_control}.
+The numeric yields for each of the signal and backgrounds is given in Table~\ref{tab:yield} for the events that pass the $25\gev$ transverse momentum threshold.
+The systematic uncertainties shown include all variations in the reconstruction process, such as
+the jet energy scale uncertainty, the $b$-tagging mistag rate and efficiency uncertainties, the
+missing transverse energy uncertainties.
+More details about the systematic uncertainties will be given in the next section.
+
+\input{tables/YieldElAlpgen}
+\input{tables/YieldMuAlpgen}
+
+As the jet multiplicity shown depends strongly on the transverse momentum cut applied on the jets before counting them, further
+comparisons were done with different cuts applied to the jets. Figure~\ref{fig:Alpgen_Njets40} shows
+the results using a 40 GeV cut on the jets transverse momentum. Figure~\ref{fig:Alpgen_Njets60} uses a
+60 GeV threshold and Figure~\ref{fig:Alpgen_Njets80} uses a 80 GeV threshold.
+A comparison of the Alpgen+Herwig \ttbar simulation with different transverse momentum
+requirements on the Anti-$k_t$ $R=0.4$ jets is shown in Figure~\ref{fig:Alpgen_JetCuts}.
+
+% plots showing ttbar signal with different jet p_T cuts
+
+\begin{sidewaysfigure}[tpbp]
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarjets/plotInGroupOnlyHists_groupSigBkgAlpgen_Njets40El.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarjets/plotInGroupOnlyHists_groupSigBkgAlpgen_Njets40Mu.eps}}
+\caption{Jet multiplicity in the electron (left) and muon (right) channels using Alpgen simulation for the $t\bar{t}$ signal ($p_T > 40$ GeV).}
+\label{fig:Alpgen_Njets40}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[tpbp]
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarjets/plotInGroupOnlyHists_groupSigBkgAlpgen_Njets60El.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarjets/plotInGroupOnlyHists_groupSigBkgAlpgen_Njets60Mu.eps}}
+\caption{Jet multiplicity in the electron (left) and muon (right) channels using Alpgen simulation for the $t\bar{t}$ signal ($p_T > 60$ GeV).}
+\label{fig:Alpgen_Njets60}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[tpbp]
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarjets/plotInGroupOnlyHists_groupSigBkgAlpgen_Njets80El.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{figures/ttbarjets/plotInGroupOnlyHists_groupSigBkgAlpgen_Njets80Mu.eps}}
+\caption{Jet multiplicity in the electron (left) and muon (right) channel using Alpgen simulation for the $t\bar{t}$ signal ($p_T > 80$ GeV).}
+\label{fig:Alpgen_Njets80}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[tpbp]
+\centering
+\subfloat{\includegraphics[width=0.49\linewidth]{unfoldingB/alpgen/JetCuts_cut80_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\linewidth]{unfoldingB/alpgen/JetCuts_cut80_AllMu.eps}}
+\caption{Jet multiplicity in the electron (left) and muon (right) channels using Alpgen+Herwig simulation for the \ttbar signal with different Anti-$k_t$ jet transverse momentum cuts applied. In this figure, for the $60\gev$ plot, the 7 jet bin represents events with $\geq 7$ jets, and in the $80\gev$ plot, the 6 jet bin represents events with $\geq 6$ jets.}
+\label{fig:Alpgen_JetCuts}
+\end{sidewaysfigure}
+
+
+%The Alpgen samples use leading-order simulation, but they simulate the final
+%states of the $t\bar{t}$ decay with up to 5 partons due to the extra radiation, while
+%the MC@NLO simulation, despite including next-to-leading-order terms, simulates only the
+%first few extra partons due to radiation. The consequence is that the MC@NLO simulation has a
+%large disagreement at higher jet multiplicity bins.
+
+%\begin{figure}[tpbp]
+%\begin{center}
+%\begin{minipage}[t]{0.48\linewidth}
+%\includegraphics[width=\linewidth]{out_rel17_v2000/ttbarjets/plotInGroupOnlyHists_groupSigBkgMCAtNLO_NjetsEl.eps}
+%\caption{Jet multiplicity in the electron channel using MC@NLO simulation for the $t\bar{t}$ signal.}
+%\label{fig:MCAtNLO_NjetsEl}
+%\end{minipage}
+%\begin{minipage}[t]{0.48\linewidth}
+%\includegraphics[width=\linewidth]{out_rel17_v2000/ttbarjets/plotInGroupOnlyHists_groupSigBkgMCAtNLO_NjetsMu.eps}
+%\caption{Jet multiplicity in the electron channel using MC@NLO simulation for the $t\bar{t}$ signal.}
+%\label{fig:MCAtNLO_NjetsMu}
+%\end{minipage}
+%\end{center}
+%\end{figure}
+
+\section{Systematic uncertainties estimate at reconstruction level}
+\label{sec:ttjets_syst}
+
+Before correcting for the detector effects, all systematic effects related to the
+objects reconstruction which affect the selection or the determination of the jet multiplicity are evaluated,
+by varying each of the parameters used in the calculations.
+The full list of uncertainties is given in
+Tables~\ref{tab:elyieldsyst} and~\ref{tab:muyieldsyst}. A description of the sources of systematic uncertainties is described here.
+
+The jet energy scale is one of the main uncertainties, which has an effect that grows with the jet multiplicity. This can
+be explained, by noting that, for a higher jet multiplicity, the event has more low transverse momentum jets, which are more
+sensitive to the minimum transverse momentum requirement.
+To estimate the uncertainty on the jet energy scale,
+the jet's four-momentum is varied based on the uncertainties generated by the effect of close-by jets, the effect of multiple proton-proton interactions,
+and the flavour composition of the jets (light quark versus gluon). For events with more than seven jets, the uncertainty with seven jets was used.
+An additional $p_T$ dependent uncertainty was associated to jets that match B-hadrons.
+The jet reconstruction efficiency was measured as the
+fraction of jets reconstructed from tracks that match a calorimeter jet and the difference observed was taken as a jet reconstruction efficiency uncertainty~\cite{ttjets_jer},
+which was applied in this measurement by randomly removing a fraction of the jets in the simulation events accordingly.
+
+Jets were also smeared according to the jet energy resolution uncertainty,
+after checking that there is an agreement in this quantity between data and simulation~\cite{ttjets_jer,jetreso2010}. No nominal correction was
+applied for the jet energy resolution, since studies~\cite{jetreso2010}
+show good agreement between data and simulation.
+
+
+Another one of the main uncertainties, is the $b$-tagging performance, which was measured in data and simulation. The differences in the data and simulation $b$-tagging
+efficiencies and mistag rates were corrected in the simulation by applying a scale factor to all events~\cite{mv1note}.
+The uncertainty in the measurement of the $b$-tagging performance was propagated to the scale factors and its effect in the final observable was estimated by varying the
+scale factors used in simulation accordingly. The effect of this uncertainty is significant in the low jet multiplicity bins, but it does not grow as much as the jet energy
+scale uncertainty with the number of jets in the event. The scale factors used and their uncertainties can be seen in Section~\ref{sec:atlas_btag},
+in Figure~\ref{fig:btag_ptrel}.
+
+To mitigate the effect of multiple proton-proton interactions, the jets under consideration are required to have a jet vertex fraction greater than 0.75 in
+absolute value~\cite{ttjets_confnote}.
+A scale factor was applied based on the efficiency ratio in data and simulation events and the uncertainty in the efficiency measurement was propagated
+to the scale factor, as mentioned in Section~\ref{sec:atlas_jet}.
+The leptons' trigger, reconstruction and identification efficiencies were also measured in simulation and in data and scale factors were also derived with the appropriate
+uncertainties (see Section~\ref{sec:atlas_electron} and Section~\ref{sec:atlas_muon}). The efficiencies were measured in data through $Z$ and $W$ boson decays.
+
+The missing transverse energy is measured by summing all corrected lepton and jet energies and demanding that the transverse energy is conserved. Calorimeter cells
+not associated to reconstructed objects with $p_T > 20$ GeV, have their energies added in the missing transverse energy ``CellOut'' component.
+``Soft'' jets, that is, cells from jets with $p_T > 7$ GeV and $p_T < 20$ GeV, and the ``CellOut'' components are varied by 6.6\% to estimate the effect of the multiple
+proton-proton interactions in the selection. This number was calculated by studying the dependency of the missing transverse energy on the multiple particle
+interactions~\cite{ttjets_confnote}. Consult Section~\ref{sec:atlas_met} for more information.
+
+The Alpgen \ttbar prediction has an uncertainty from the choice of the CTEQ6L1 Parton Distribution Function (PDF)~\cite{cteq6}, which was
+evaluated by using the MSTW PDF set at leading-order with 68\% Confidence Level~\cite{mstw,pdflhc}
+to reweight the \ttbar sample. The systematic uncertainty related to the PDF choice was calculated by
+including the difference in the nominal value caused by the choice of the PDF, as well as adding in quadrature the difference between the nominal value and the
+results when using all eigenvector sets from the MSTW PDF~\cite{pdflhc}. The uncertainty due to the parton shower modelling was also estimated by comparing the
+results obtained with Alpgen+Herwig and Alpgen+Pythia \ttbar simulations. The ISR/FSR variations between the Alpgen+Pythia central yields and the
+Alpgen+Pythia yields with $\alpha_S$ increased and
+decreased were also used to estimate the extra radiation impact in the results.
+The Powheg+Pythia and the Alpgen+Pythia \ttbar samples were compared to include the systematic uncertainty related to the difference
+between fixed order matrix element calculations and associated matching schemes.
+
+The W+jets charge asymmetry measurement also has an uncertainty associated to it, from statistical uncertainties on the data-driven measurement and uncertainties
+from the simulation-dependent part of the method, including lepton and jets reconstruction, charge mis-identification, Monte Carlo generators, backgrounds and
+Parton Distribution Function uncertainties. The heavy flavour fraction estimate includes, besides simulation uncertainties, a 25\% uncertainty when extrapolating the results
+from the 2-jet bin to higher jet multiplicity. The W+jets Monte Carlo simulation also includes an uncertainty from the choice of the renormalisation and factorisation scales
+(estimated by varying the \texttt{iqopt3} parameter~\footnote{This changes the method in which the scale is defined in Alpgen, by multiplying the standard scale by $\sqrt{m_W^2 + p_{T,W}^2}$. See~\cite{alpgen} for more information.} in Alpgen) and from generator cuts (estimated by varying the \texttt{ptjmin} parameter~\footnote{This changes the minimum transverse momentum cut for light jets in Alpgen. See~\cite{alpgen} for more information.} in Alpgen).
+
+The integrated luminosity in data was measured using van der Meer~\cite{ttjets_lumi} scans and
+it was used to normalise many simulation samples accordingly. Its uncertainty was found
+to be 3.9\%\footnote{An uncertainty of 3.9\% was used instead of 3.7\%, as in the reference, due to the higher uncertainties in the second half of the 2011 data taking.}~\cite{ttjets_lumi}.
+The single top production cross section uncertainties were taken to be 4\% in the $t$-channel, 4\% in the $s$-channel and 8\% in the $Wt$-channel from approximate NNLO calculations.
+The diboson production cross section uncertainty was taken to be 5\%. For Z+jets, 4\% added in quadrature with 24\% per jet was taken for the theoretical
+cross section uncertainty.
+
+The QCD multi-jet background uncertainty can be estimated in the muon channel from the shape difference between the two methods used for the data-driven estimate.
+In the electron channel, the missing transverse energy selection requirement was varied between 15 GeV and 25 GeV for the control region.
+The normalisation uncertainty was taken to be 50\% in the electron channel and 20\% in the muon channel as a result of comparing the Matrix Method estimates
+with other methods.
+
+\input{tables/SystematicYieldElAlpgen}
+\input{tables/SystematicYieldMuAlpgen}
+
+\section{Unfolding the effect of the detector}
+\label{sec:ttjets_unfolding}
+
+When reconstructing the jet, lepton and missing transverse energy quantities,
+the detector changes the physical observables in many ways.
+An unfolding procedure is
+necessary to measure the actual cross section as a function of the jet multiplicity and correct the effect of the
+detector.
+The reference used as the particle level result is obtained after applying only the transverse momentum, isolation and $\eta$ requirements
+on the Monte Carlo simulation metadata.
+The Alpgen+Herwig sample, used in the previous data to simulation comparison plots is used as a reference sample for the
+unfolding procedure.
+The systematic uncertainty associated with using a particular reference sample is estimated.
+The propagation of uncertainties
+through the unfolding method is described in Section~\ref{sec:ttjets_unfold_unc}.
+
+The particle-level selection demands one electron or muon and no other lepton with the same pseudo-rapidity and transverse momentum
+requirements as the reconstruction-level selection. The electron's four-momentum is summed with photons around it in a $\Delta R < 0.1$ region,
+to simulate the effect of radiation emitted when interacting with the detector.
+The sum of 
+final state particles' transverse momentum around the lepton (excluding its own momentum and disregarding neutrinos) with
+$p_T > 500\mev$ and $\Delta R < 0.3$ is required to be smaller than $2\gev$, to simulate the acceptance effect of the isolation cuts applied to the
+leptons in the reconstruction-level selection~\footnote{For electrons, photons in the $\Delta R < 0.1$ region are excluded from the particle-level
+isolation calculation, since they were used to built the electron's four-momentum, simulating its interaction with the detector.}.
+The same overlap removal criteria are also demanded for the leptons, as in the reconstruction-level selection,
+to simulate their acceptance.
+The jets are built at the particle-level selection, using the Anti-$k_t$ algorithm with the same $R=0.4$ configuration applied to the simulation meta-data and the
+same transverse momentum and pseudorapidity ranges are demanded.
+The missing transverse energy at particle-level is calculated summing the simulation meta-data for particles that interact with the detector and taking their negative
+transverse momentum. The same missing transverse energy and transverse mass requirements are applied in the simulation.
+At least one of the particle-level jets is required to satisfy $\Delta R < 0.3$ between the jet axis and a $B$-hadron, to simulate the $b$-tagging criteria
+demanded in the reconstruction-level selection.
+
+The corrections in this method are expressed as:
+
+\begin{eqnarray}
+\Njetsp (i)&=& \mathcal{U}_{j \rightarrow i} [ \Njetsr (j) - \Njetsbkg (j) ] \nonumber \\
+&=&\frac{1}{\ensuremath{f_{\mathrm{reco}}}(i)} \sum_{j=3}^{8} f(i, j)
+(1 - \ensuremath{f_{\mathrm{np3}}}(j))(1 - \ensuremath{f^{'}_{\mathrm{fakes}}}(j) ) \times \nonumber \\
+&& [ \Njetsr (j) - \Njetsbkg (j) ]
+\label{eq:unfoldingB}
+\end{eqnarray}
+where $\Njetsr(j)$ represents the number of entries at reconstruction-level
+jet multiplicity $j$ and $\Njetsp(i)$ represents the number of entries at
+particle-level jet multiplicity $i$. Whenever the index is not explicitly
+mentioned and the lower case variables $\njetsr$ and $\njetsp$ are used,
+they will be taken to mean the jet multiplicity
+values for a single event. The operator $\mathcal{U}_{j \rightarrow i}$ represents the unfolding process to be applied
+in background subtracted input and it is defined by the equation above.
+
+Starting with the reconstructed jet multiplicity spectrum
+$\Njetsr (j)$, the background as estimated in
+Section~\ref{sec:ttjets_background} is subtracted through the $\Njetsbkg (j)$
+term.
+
+The next steps are represented by the unfolding operator $\mathcal{U}_{j \rightarrow i}$.
+In the steps that follow describing the unfolding operator,
+the jet multiplicity requirement at the reconstruction-level selection or the particle-level
+selection are not taken into account unless explicitly mentioned. The reason for this is that
+this selection requirement is analysed independently. That means that, for what follows, ``reconstructed events'' will
+be used to refer to events that pass the reconstruction-level selection, with no requirement on \njetsr, and
+``particle-level events'' refers to events that pass the particle-level selection, with no requirement on \njetsp.
+The abbreviation ``R'' is used for events that pass the reconstruction-level
+selection, regardless of the \njetsr requirement and ``P'' for
+events that pass the particle-level selection, regardless of the
+\njetsp requirement.
+
+The unfolding steps in the unfolding operator start (from right to left in Equation~\ref{eq:unfoldingB}) with
+the removal of events that were reconstructed
+but that fail the particle level cuts except the jet multiplicity
+requirement.
+The fraction of events reconstructed with
+$\njetsr \geq 3$ that failed the particle level cuts is defined as
+$f^{\prime}_{\mathrm{fakes}}$:
+
+\begin{equation}
+\displaystyle
+f_{\textrm{fakes}}^{\prime} = \frac{\textrm{Number of events in ``R'' with } \njetsr \geq 3 \textrm{, but not in ``P''}}{\textrm{Number of events in ``R'' with } \njetsr \geq 3}.
+\label{eq:ttjets_fpfakes}
+\end{equation}
+This factor estimates the fraction
+of fake \ttbar events reconstructed in the signal sample used.
+The value calculated for $1 - f^{\prime}_{\mathrm{fakes}}$ is shown in Figure~\ref{fig:MethodBffakesp}.
+It is important to mention that the jet multiplicity is a consequence of the jet
+requirements applied, that is, the acceptance cuts.
+This correction factor includes acceptance effects in the reconstruction procedure related to the jets,
+but not the particle-level effects. Note, as well, that Figure~\ref{fig:btag_ptrel} shows the $b$-tagging selection efficiency, which is
+no more than 20\%, which has a major impact in the acceptance. The $f^{\prime}_{\mathrm{fakes}}$ factor also contains a contribution
+from electron and muon misidentification and the jet vertex fraction selection requirement.
+
+Since the particle-level jet multiplicity cut was disregarded in the previous
+step, it must be taken into account separately. The $f_{\mathrm{np3}}$ factor is the
+fraction of events that pass the reconstruction-level and particle-level
+selections, but failed the requirement $\njetsp \geq 3$:
+
+\begin{equation}
+\displaystyle
+f_{np3} = \frac{\textrm{Number of events in ``R'' (with } \njetsr \geq 3 \textrm{) and in ``P'', but fail }\njetsp \geq 3}{\textrm{Number of events in ``R'' (with } \njetsr \geq 3 \textrm{) and in ``P''}}.
+\label{eq:ttjets_fnp3}
+\end{equation}
+The
+multiplication by $1 - f_{\mathrm{np3}}$ removes events that migrated from
+particle-level bins 0, 1 and 2 to reconstruction-level bins $\geq 3$.
+The value calculated for $1 - f_{\mathrm{np3}}$ is shown in Figure~\ref{fig:MethodBfnp3}.
+
+A migration correction from reconstruction-level to particle-level
+is applied as a matrix multiplication.
+Each element in the migration matrix, $f$,
+is the conditional probability
+that an event was at particle-level bin $j$,
+given that it was reconstructed at bin $i$, that is:
+
+\begin{equation}
+\displaystyle
+f(i, j) = \frac{\textrm{Number of events in ``R'' and ``P'' with }\njetsp = j \textrm{ and }\njetsr = i}{\textrm{Number of events in ``R'' with }\njetsr = i}.
+\label{eq:ttjets_f}
+\end{equation}
+The factor $f$ is already an \emph{unsmearing} factor
+which can be directly multiplied in Equation~\ref{eq:unfoldingB}.
+The factor $f$ is calculated by counting the number of events in the $\njetsr$
+and $\njetsp$ bins and normalising the matrix by the reconstruction-level bins,
+so that $\sum_{j=3}^{8} f(i, j) = 1 \forall i \in [3,8]$.
+The migration factor $f$ for the selection with a jet $p_T$ cut at 25 GeV
+is shown
+in Figure~\ref{fig:MethodBmigration}.
+
+Finally, a correction is applied to include events that exist
+at particle level, but that were lost
+during the reconstruction procedure.
+The fraction of events that exist at reconstruction level,
+given that they can be found at
+particle level, is given by $f_{\mathrm{reco}}$:
+
+\begin{equation}
+\displaystyle
+f_{\mathrm{reco}} = \frac{\textrm{Number of events in ``R'' and in ``P''}}{\textrm{Number of events in ``P''}}.
+\label{eq:ttjets_freco}
+\end{equation}
+The value calculated for $f_{\mathrm{reco}}$ is shown in Figure~\ref{fig:MethodBfreco}.
+Note that this effect is corrected after the unsmearing performed by the $f$ matrix and after the out-of-acceptance
+correction between reconstruction and particle-level performed by the $f^{\prime}_{\textrm{fakes}}$ and $f_{\textrm{np3}}$.
+As a consequence, this final step only corrects for the acceptance difference for the events accepted by the particle-level selection.
+
+The knowledge
+of $\njetsr$ for an event before the event selection is not trivial, since
+an overlap removal is done between jets and electrons, which removes
+one or zero jets, changing the value of $\njetsr$ by one or zero. However,
+it is not obvious which electron is to be selected (if any) and $\njetsr$
+cannot be pre-calculated exactly.
+This method uses the number of reconstructed jets, $\njetsr$,
+only at the stages
+in which the reconstruction-level selection was fulfilled, which avoids this
+difficulty.
+
+The effect of each of the corrections is shown in
+Figure~\ref{fig:MethodBclosure} for the Alpgen top-antitop sample,
+assuming perfect background subtraction. In this case, the unfolded result
+matches perfectly the particle-level result as expected, because the same sample was used to derive the correction factors
+and to apply them. The figure shows that the method is able to
+recover the original particle-level result from a reconstruction-level
+measurement.
+
+The equivalent plots for the selection jet $p_T$ cut at 40, 60 and 80 GeV
+are available in Section~\ref{subsec:methodBotherpt}.
+
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/FakesP_cut_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/FakesP_cut_AllMu.eps}}
+\caption{The $1 - f^{\prime}_{fakes}$ correction using the Alpgen \ttbar\ signal sample with a jet $p_T$ cut at 25 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBffakesp}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/Fnp3_cut_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/Fnp3_cut_AllMu.eps}}
+\caption{The $1 - f_{np3}$ correction using the Alpgen  \ttbar\ signal sample with a jet $p_T$ cut at 25 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBfnp3}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fij_cut_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fij_cut_AllMu.eps}}
+\caption{The migration matrix using the Alpgen  \ttbar\ signal sample with a selection using a jet $p_T$ cut at 25 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBmigration}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fReco_cut_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fReco_cut_AllMu.eps}}
+\caption{The $f_{reco}$ correction using the Alpgen  \ttbar\ signal sample with a jet $p_T$ cut at 25 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBfreco}
+\end{figure}
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterCorrections_cut_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterCorrections_cut_AllMu.eps}}
+\caption{The closure test using the Alpgen  \ttbar\ signal sample for input and corrections with a jet $p_T$
+  cut at 25 GeV for the selection.  The
+  results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBclosure}
+\end{sidewaysfigure}
+
+\section{Propagation of systematic uncertainties through the unfolding procedure}
+\label{sec:ttjets_unfold_unc}
+
+There are different sets of uncertainties that should be propagated through the method described previously.
+The background is subtracted from data using a bin-by-bin subtraction of the data histogram and the reconstruction systematic variations of the backgrounds
+are propagated to the background-subtracted data sample~\footnote{A positive systematic in the background would become a negative systematic variation in the new sample,
+but the absolute value of the variations would not change.}. This results in a set of systematic uncertainties which need to be
+propagated through the $\mathcal{U}_{j \rightarrow i}$ operator described previously.
+
+The systematic uncertainty in the reconstruction of the \ttbar signal sample
+used to estimate the unfolding correction factors should be considered separately, since the $\njetsr$ variable calculated in this sample
+is not actually used in the unfolding procedure
+except indirectly through the usage of the correction factors.
+%This uncertainty has already been estimated for the $\njetsr$ variable,
+%as it has been shown in the data to simulation comparison.
+It is proposed
+to calculate the fraction of the uncertainty in each $\Njetsr$ bin for the \ttbar sample used in deriving the correction factors and apply this fraction as a variation
+to the background-subtracted data sample.
+Note as well that this systematic variation is fully anti-correlated with the background reconstruction systematic variation
+in the background-subtracted data,
+since a positive variation in the background sample causes a negative variation in the background-subtracted sample. Therefore,  the background-subtracted data is multiplied by the positive fractional variation of the simulation \ttbar sample to get a negative systematic variation to be added in the
+equivalent background systematic variation.
+
+With the previous set of systematic uncertainties in the real data sample, a set of variations should be found in $I(j) = \Njetsr(j) - \Njetsbkg (j)$ from real data,
+which incorporate the systematic effect of the reconstruction in the signal and background estimates.
+It is not assumed that the propagation of uncertainties through the unfolding procedure $\Njetsp(i) = \mathcal{U}_{j \rightarrow i}[I(j)]$
+leads to an unfolded uncertainty in $\Njetsp$ with the same distribution as the uncertainty in $I$.
+The method implemented considers each source of systematic uncertainty $s$, at
+each bin $j$ in the background-subtracted data sample $I$ separately. $\delta(s, j)$ is used to refer to the absolute systematic variation caused by $s$, in bin $j$, so that
+the estimated sample with this variation is $I_s(s,j) = I(j) + \delta(s,j)$ for each bin $j$.
+The systematic variation $\delta(s,j)$ represents a Gaussian standard deviation due to the systematic uncertainty source $s$ and it can
+be calculated from the nominal background-subtracted data, $I(j)$, and the corresponding reconstruction-level systematic variation, $I_s(s,j)$, which is calculated
+for each uncertainty source, as described in Section~\ref{sec:ttjets_syst}.
+Pseudo-experiments are performed
+to establish the effect of the unfolding procedure $\mathcal{U}_{j \rightarrow i}$ on the source $s$.
+
+For each source $s$, a number $\mathcal{N}$ of pseudo-random samples of a Gaussian with mean zero and standard deviation one are taken and they are referred to as
+$\alpha(s, m)$, for integers $m \in [1,\mathcal{N}]$. A pseudo-random systematic variation is defined as:
+
+\begin{equation}
+\displaystyle
+I_{ps}(s, m, j) \triangleq I(j) + \alpha(s, m) \delta(s, j),
+\label{eq:ttjets_unfold_pseudosyst}
+\end{equation}
+which has mean
+$I(j)$ for each bin $j$ and standard deviation $\delta(s, j)$, as desired.
+Each $I_{ps}(s, m, j)$ is unfolded into $\mathcal{U}_{j \rightarrow i}[I_{ps}(s, m, j)]$, which has a mean given by:
+
+\begin{equation}
+\displaystyle
+\xi(s, i) \triangleq \frac{1}{\mathcal{N}} \sum_{m=1}^{\mathcal{N}} \mathcal{U}_{j \rightarrow i}[I_{ps}(s, m, j)].
+\label{eq:ttjets_unfold_mean}
+\end{equation}
+The measure $\gamma(s, i)$
+of the systematic effect of the source $s$ after the unfolding procedure is defined as the sample variance of $\mathcal{U}_{j \rightarrow i}[I_{ps}(s, m, j)]$:
+
+\begin{equation}
+\displaystyle
+\gamma(s, i) \triangleq \frac{1}{\mathcal{N} - 1} \sqrt{\sum_{m = 1}^{\mathcal{N}} (\mathcal{U}_{j \rightarrow i}[I_{ps}(s, m, j)] - \xi(s, j))^2}.
+\label{eq:ttjets_unfold_unc}
+\end{equation}
+This procedure gives us a $\gamma(s, i)$ for each bin $i$ and each systematic variation $s$, which is used as an estimate of this systematic variation after
+the unfolding procedure. In this analysis, the number of pseudo-experiments was taken to be $\mathcal{N} = 1000$ due to computational limitations.
+
+The procedure above is also implemented using the \ttbar simulation as an input.
+The \ttbar simulation reconstruction-level histogram is represented as
+$I_{\ttbar}(j)$, similarly to the $I(j)$ histogram for
+background-subtracted data. All reconstruction-level systematics
+in the \ttbar simulation can be propagated into an unfolded systematic
+variation in the same way as it was described previously, resulting
+in a measure of the systematic effect $s$ given by $\gamma_{\ttbar}(s, i)$
+for the bin $i$ of the unfolded \ttbar $\Njetsptt(i) = \mathcal{U}_{j\rightarrow i}[I_{\ttbar}(j)]$.
+The total effect of the reconstruction-level
+systematic variation $s$ in the background-subtracted
+and unfolded data is given by:
+
+\begin{equation}
+\displaystyle
+\gamma_{\textrm{reco}}(s, i) \triangleq \gamma(s, i) - \Njetsp(i) \cdot \frac{\gamma_{\ttbar}(s, i)}{\Njetsptt(i)},
+\label{eq:ttjets_totalsyst}
+\end{equation}
+while the nominal background-subtracted data is given by
+$\Njetsp(i) = \mathcal{U}_{j\rightarrow i}[I(j)]$.
+Note that the subtraction is used, since
+the background and \ttbar systematic uncertainties are fully anti-correlated.
+
+Another set of systematic uncertainties on the \ttbar modelling had a different treatment.
+These uncertainties include the Parton Distribution Functions (PDFs), the initial state radiation and final state ratiation (ISR/FSR),
+the parton shower modelling, the Monte Carlo generator systematics and the unfolding factors' statistical uncertainty~\footnote{The
+samples used for each configuration are described in Section~\ref{sec:ttjets_background}. The statistical uncertainty in the unfolding factors
+was taken into consideration, by applying the procedure described in this paragraph to a statistically independent sample to the \ttbar dataset used to
+derive the unfolding correction factors, but which was generated in the same way. The MC@NLO sample was used to derive the Monte Carlo generator systematics.}.
+The signal distribution at reconstruction-level
+$I_{\textrm{model}}(c, j)$ for each different
+configuration $c$ and bin $j$ is unfolded as $\mathcal{U}_{j \rightarrow i}[I_{\textrm{model}}(c, j)]$ and the systematic effect $\gamma_{\textrm{model}}(c, j)$ is defined as:
+
+\begin{equation}
+\displaystyle
+\gamma_{\textrm{model}}(c, i) \triangleq |\mathcal{U}_{j \rightarrow i}[I_{\textrm{model}}(c, j)] - I_{\textrm{particle}}(c, i)|,
+\end{equation}
+where $I_{\textrm{particle}}(c, i)$ is the particle-level jet multiplicity value for configuration $c$, in bin $i$.
+The total systematic uncertainty is calculated as:
+
+\begin{eqnarray}
+\displaystyle
+\gamma_{\textrm{total}}(i)&\triangleq& \sqrt{ \sum_s \gamma_{\textrm{reco}}^2(s, i) + \sum_c \gamma_{\textrm{model}}^2(c, i) },
+\label{eq:ttjets_totalsyst}
+\end{eqnarray}
+where it is implicit that for systematic uncertainties
+that contain
+asymmetric variations, the maximum (in absolute value) variation is used and
+symmetrised and does not enter the sum.
+
+The systematic uncertainties on the unfolded distributions are shown
+in Tables~\ref{tab:unfSystElMethodB} and~\ref{tab:unfSystMuMethodB}.
+The values shown are percentages of the unfolded data.
+
+\input{tables/MethodBUnfoldingSystElAlpgen.tex}
+\input{tables/MethodBUnfoldingSystMuAlpgen.tex}
+
+\section{Results at particle level and discussion}
+\label{sec:ttjets_unfolded}
+
+The unfolded jet multiplicity distributions are shown in
+Figures~\ref{fig:MethodBunfolded},~\ref{fig:MethodBunfolded40},~\ref{fig:MethodBunfolded60} and~\ref{fig:MethodBunfolded80}. These plots only
+show the final number of entries after the correction implemented.
+As a final step, the corrected number of entries was divided by the
+integrated luminosity to estimate the fiducial cross section in
+Figures~\ref{fig:xsMethodBunfolded},~\ref{fig:xsMethodBunfolded40},~\ref{fig:xsMethodBunfolded60} and~\ref{fig:xsMethodBunfolded80}.
+The black line shows the unfolded data and the shaded band indicates the
+propagated systematics. The green line shows the Alpgen \ttbar signal for
+comparison. 
+It can be seen that the unfolded data is compatible with the Alpgen \ttbar
+signal.
+% and with results provided by the main unfolding procedure, described in~\cite{ttjets_confnote}.
+The plots in a logarithm scale for the Y axis are also shown in Figures~\ref{fig:MethodBunfoldedlog},~\ref{fig:MethodBunfolded40log},~\ref{fig:MethodBunfolded60log} and~\ref{fig:MethodBunfolded80log} for the corrected number
+of events. The final fiducial cross section is shown in Figures~\ref{fig:xsMethodBunfoldedlog},~\ref{fig:xsMethodBunfolded40log},~\ref{fig:xsMethodBunfolded60log} and~\ref{fig:xsMethodBunfolded80log}.
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterUnfoldedSyst_UnfoldFullSystCutEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterUnfoldedSyst_UnfoldFullSystCutMu.eps}}
+\caption{The unfolded data using the Alpgen  \ttbar\ signal sample for corrections.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 25~GeV.}
+\label{fig:MethodBunfolded}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterUnfoldedSyst_UnfoldFullSystCut40El.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterUnfoldedSyst_UnfoldFullSystCut40Mu.eps}}
+\caption{The unfolded data using the Alpgen  \ttbar\ signal sample for corrections.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 40~GeV. }
+\label{fig:MethodBunfolded40}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterUnfoldedSyst_UnfoldFullSystCut60El.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterUnfoldedSyst_UnfoldFullSystCut60Mu.eps}}
+\caption{The unfolded data using the Alpgen  \ttbar\ signal sample for corrections.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 60~GeV. }
+\label{fig:MethodBunfolded60}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterUnfoldedSyst_UnfoldFullSystCut80El.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterUnfoldedSyst_UnfoldFullSystCut80Mu.eps}}
+\caption{The unfolded data using the Alpgen  \ttbar\ signal sample for corrections.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 80~GeV. }
+\label{fig:MethodBunfolded80}
+\end{sidewaysfigure}
+
+\clearpage
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/PeterUnfoldedSyst_UnfoldFullSystCutEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/PeterUnfoldedSyst_UnfoldFullSystCutMu.eps}}
+\caption{The unfolded cross section using the Alpgen  \ttbar\ signal sample for corrections.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 25~GeV.}
+\label{fig:xsMethodBunfolded}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/PeterUnfoldedSyst_UnfoldFullSystCut40El.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/PeterUnfoldedSyst_UnfoldFullSystCut40Mu.eps}}
+\caption{The unfolded cross section using the Alpgen  \ttbar\ signal sample for corrections.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 40~GeV. }
+\label{fig:xsMethodBunfolded40}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/PeterUnfoldedSyst_UnfoldFullSystCut60El.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/PeterUnfoldedSyst_UnfoldFullSystCut60Mu.eps}}
+\caption{The unfolded cross section using the Alpgen  \ttbar\ signal sample for corrections.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 60~GeV. }
+\label{fig:xsMethodBunfolded60}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/PeterUnfoldedSyst_UnfoldFullSystCut80El.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/PeterUnfoldedSyst_UnfoldFullSystCut80Mu.eps}}
+\caption{The unfolded cross section using the Alpgen  \ttbar\ signal sample for corrections.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 80~GeV. }
+\label{fig:xsMethodBunfolded80}
+\end{sidewaysfigure}
+
+\clearpage
+
+It can be seen that the Alpgen+Pythia with the $\alpha_S$ variation upwards overestimates data at the high jet multiplicity bins, while
+both Powheg and the Alpgen+Pythia with the downwards $\alpha_S$ variation agrees very well with data in all bins for the $p_T > 25\gev$ analysis.
+The nominal Alpgen+Pythia described data within the systematic uncertainty, but not as well as the version with the downwards $\alpha_S$ variation.
+Only \ttbar with one extra parton is simulated at the MC@NLO simulation,
+which has a good estimate of the production cross section in the 3 and 4 jets bin. 
+The MC@NLO simulation heavily underestimates data at large jet multiplicity, while Alpgen, which is a leading order generator, but includes up to 5 extra partons.
+
+A complementary analysis to this one performed using the ATLAS detector is the ``jet gap fraction'' analysis~\cite{gapfraction}, which studies the
+two-lepton final state of the \ttbar system and calculates the cross section of \ttbar production ($\sigma_{\ttbar}$) and the cross section disregarding
+events with an extra jet produced with $p_T > Q_0$. The measured ratio is:
+
+\begin{equation}
+\displaystyle
+f(Q_0) = \frac{\sigma_{\ttbar}(Q_0)}{\sigma_{\ttbar}}.
+\label{eq:jgfq0}
+\end{equation}
+This analysis also measures the effect of extra radiation in \ttbar decays, for the dilepton final state and it has shown that the simulation prediction
+has a large systematic effect, while the data uncertainty is smaller. It is interesting to compare the results of the analysis described in this document and
+the results for the jet gap fraction analysis.
+Figure~\ref{fig:jgf_Q0_08} shows the value of $f(Q_0)$ for the rapidity range $|y| < 0.8$ and it is clear that the jet gap fraction is over-estimated
+in MC@NLO, which means that the fraction of events in MC@NLO with extra jets is smaller than data, in agreement with the results in this document.
+The Alpgen+Herwig result in the jet gap fraction analysis also shows a better description of the extra radiation, although in this analysis the Alpgen+Pythia
+and variations are not included.
+
+\clearpage
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/log/PeterUnfoldedSyst_UnfoldFullSystCutEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/log/PeterUnfoldedSyst_UnfoldFullSystCutMu.eps}}
+\caption{The unfolded data using the Alpgen \ttbar\ signal sample for corrections in logarithm
+  scale for the Y axis.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 25~GeV.}
+\label{fig:MethodBunfoldedlog}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/log/PeterUnfoldedSyst_UnfoldFullSystCut40El.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/log/PeterUnfoldedSyst_UnfoldFullSystCut40Mu.eps}}
+\caption{The unfolded data using the Alpgen  \ttbar\ signal sample for corrections in logarithm
+  scale for the Y axis.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 40~GeV. }
+\label{fig:MethodBunfolded40log}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/log/PeterUnfoldedSyst_UnfoldFullSystCut60El.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/log/PeterUnfoldedSyst_UnfoldFullSystCut60Mu.eps}}
+\caption{The unfolded data using the Alpgen  \ttbar\ signal sample for corrections in logarithm
+  scale for the Y axis.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 60~GeV. }
+\label{fig:MethodBunfolded60log}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/log/PeterUnfoldedSyst_UnfoldFullSystCut80El.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/log/PeterUnfoldedSyst_UnfoldFullSystCut80Mu.eps}}
+\caption{The unfolded data using the Alpgen  \ttbar\ signal sample for corrections in logarithm
+  scale for the Y axis.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 80~GeV. }
+\label{fig:MethodBunfolded80log}
+\end{sidewaysfigure}
+
+% Cross sections
+\clearpage
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/log/PeterUnfoldedSyst_UnfoldFullSystCutEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/log/PeterUnfoldedSyst_UnfoldFullSystCutMu.eps}}
+\caption{The unfolded cross section using the Alpgen \ttbar\ signal sample for corrections in logarithm
+  scale for the Y axis.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 25~GeV.}
+\label{fig:xsMethodBunfoldedlog}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/log/PeterUnfoldedSyst_UnfoldFullSystCut40El.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/log/PeterUnfoldedSyst_UnfoldFullSystCut40Mu.eps}}
+\caption{The unfolded cross section using the Alpgen  \ttbar\ signal sample for corrections in logarithm
+  scale for the Y axis.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 40~GeV. }
+\label{fig:xsMethodBunfolded40log}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/log/PeterUnfoldedSyst_UnfoldFullSystCut60El.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/log/PeterUnfoldedSyst_UnfoldFullSystCut60Mu.eps}}
+\caption{The unfolded cross section using the Alpgen  \ttbar\ signal sample for corrections in logarithm
+  scale for the Y axis.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 60~GeV. }
+\label{fig:xsMethodBunfolded60log}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/log/PeterUnfoldedSyst_UnfoldFullSystCut80El.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/xs/log/PeterUnfoldedSyst_UnfoldFullSystCut80Mu.eps}}
+\caption{The unfolded cross section using the Alpgen  \ttbar\ signal sample for corrections in logarithm
+  scale for the Y axis.  The results for
+  the electron (left) and muon (right) channels are shown. The systematic
+  uncertainties from reconstruction and background estimation are
+  included. The $p_T$ cut on the jets is 80~GeV. }
+\label{fig:xsMethodBunfolded80log}
+\end{sidewaysfigure}
+
+\clearpage
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.7\textwidth]{external/jgf_Q0_08.eps}
+\caption{Jet gap fraction for $|y| < 0.8$, extracted from~\cite{gapfraction}.}
+\label{fig:jgf_Q0_08}
+\end{figure}
+
+\clearpage
+
+\section{Correction factors and consistency checks for selections with jet cuts at 40 GeV, 60 GeV and 80 GeV}
+\label{subsec:methodBotherpt}
+
+The closure tests for selection using jet $p_T$ cut at 40 GeV, 60 GeV and 80 GeV are shown in Figures~\ref{fig:MethodBclosure40},~\ref{fig:MethodBclosure60},~\ref{fig:MethodBclosure80}.
+The $1 - f^{\prime}_{\mathrm{fakes}}$ factors for the selections using jet $p_T$ cut at 40 GeV, 60 GeV and 80 GeV are shown in the Figures~\ref{fig:MethodBffakesp40},~\ref{fig:MethodBffakesp60},~\ref{fig:MethodBffakesp80}.
+The $1 - f_{\mathrm{np3}}$ factors for the selections using jet $p_T$ cut at 40 GeV, 60 GeV and 80 GeV are shown in the Figures~\ref{fig:MethodBfnp340},~\ref{fig:MethodBfnp360},~\ref{fig:MethodBfnp380}.
+The $f$ migration correction factors for the selections using jet $p_T$ cut at 40 GeV, 60 GeV and 80 GeV are shown in the Figures~\ref{fig:MethodBmigration40},~\ref{fig:MethodBmigration60},~\ref{fig:MethodBmigration80}.
+The $f_{reco}$ acceptance correction factors for the selections using jet $p_T$ cut at 40 GeV, 60 GeV and 80 GeV are shown in the Figures~\ref{fig:MethodBfreco40},~\ref{fig:MethodBfreco60},~\ref{fig:MethodBfreco80}.
+
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterCorrections_cut40_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterCorrections_cut40_AllMu.eps}}
+\caption{The closure test using the Alpgen  \ttbar\ signal sample for input and corrections with a jet $p_T$
+  cut at 40 GeV for the selection.  The
+  results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBclosure40}
+\end{sidewaysfigure}
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/FakesP_cut40_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/FakesP_cut40_AllMu.eps}}
+\caption{The $1 - f^{\prime}_{fakes}$ correction using the Alpgen \ttbar\ signal sample with a jet $p_T$ cut at 40 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBffakesp40}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/Fnp3_cut40_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/Fnp3_cut40_AllMu.eps}}
+\caption{The $1 - f_{np3}$ correction using the Alpgen \ttbar\ signal sample with a jet $p_T$ cut at 40 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBfnp340}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fij_cut40_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fij_cut40_AllMu.eps}}
+\caption{The migration matrix using the Alpgen \ttbar\ signal sample with a selection using a jet $p_T$ cut at 40 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBmigration40}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fReco_cut40_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fReco_cut40_AllMu.eps}}
+\caption{The $f_{reco}$ correction using the Alpgen \ttbar\ signal sample with a jet $p_T$ cut at 40 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBfreco40}
+\end{figure}
+
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterCorrections_cut60_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterCorrections_cut60_AllMu.eps}}
+\caption{The closure test using the Alpgen  \ttbar\ signal sample for input and corrections with a jet $p_T$
+  cut at 60 GeV for the selection.  The
+  results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBclosure60}
+\end{sidewaysfigure}
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/FakesP_cut60_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/FakesP_cut60_AllMu.eps}}
+\caption{The $1 - f^{\prime}_{fakes}$ correction using the Alpgen \ttbar\ signal sample with a jet $p_T$ cut at 60 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBffakesp60}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/Fnp3_cut60_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/Fnp3_cut60_AllMu.eps}}
+\caption{The $1 - f_{np3}$ correction using the Alpgen \ttbar\ signal sample with a jet $p_T$ cut at 60 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBfnp360}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fij_cut60_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fij_cut60_AllMu.eps}}
+\caption{The migration matrix using the Alpgen \ttbar\ signal sample with a selection using a jet $p_T$ cut at 60 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBmigration60}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fReco_cut60_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fReco_cut60_AllMu.eps}}
+\caption{The $f_{reco}$ correction using the Alpgen \ttbar\ signal sample with a jet $p_T$ cut at 60 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBfreco60}
+\end{figure}
+
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterCorrections_cut80_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/PeterCorrections_cut80_AllMu.eps}}
+\caption{The closure test using the Alpgen  \ttbar\ signal sample for input and corrections with a jet $p_T$
+  cut at 80 GeV for the selection.  The
+  results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBclosure80}
+\end{sidewaysfigure}
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/FakesP_cut80_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/FakesP_cut80_AllMu.eps}}
+\caption{The $1 - f^{\prime}_{fakes}$ correction using the Alpgen \ttbar\ signal sample with a jet $p_T$ cut at 80 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBffakesp80}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/Fnp3_cut80_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/Fnp3_cut80_AllMu.eps}}
+\caption{The $1 - f_{np3}$ correction using the Alpgen  \ttbar\ signal sample with a jet $p_T$ cut at 80 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBfnp380}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fij_cut80_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fij_cut80_AllMu.eps}}
+\caption{The migration matrix using the Alpgen  \ttbar\ signal sample with a selection using a jet $p_T$ cut at 80 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBmigration80}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fReco_cut80_AllEl.eps}}
+\subfloat{\includegraphics[width=0.49\textwidth]{figures/corrections/MethodB/fReco_cut80_AllMu.eps}}
+\caption{The $f_{reco}$ correction using the Alpgen  \ttbar\ signal sample with a jet $p_T$ cut at 80 GeV.  The results for the electron (left) and muon (right) channels are shown.}
+\label{fig:MethodBfreco80}
+\end{figure}
+
+The systematic uncertainties for the unfolded data with the 40, 60 and 80 GeV
+selections are given in Tables~\ref{tab:unfSyst40ElMethodB},~\ref{tab:unfSyst40MuMethodB},~\ref{tab:unfSyst60ElMethodB},~\ref{tab:unfSyst60MuMethodB},~\ref{tab:unfSyst80ElMethodB},~\ref{tab:unfSyst80MuMethodB}. All values are given as percentages of the unfolded data.
+
+\clearpage
+
+\input{tables/MethodBUnfoldingSyst40ElAlpgen.tex}
+\input{tables/MethodBUnfoldingSyst40MuAlpgen.tex}
+
+\input{tables/MethodBUnfoldingSyst60ElAlpgen.tex}
+\input{tables/MethodBUnfoldingSyst60MuAlpgen.tex}
+
+\input{tables/MethodBUnfoldingSyst80ElAlpgen.tex}
+\input{tables/MethodBUnfoldingSyst80MuAlpgen.tex}
+
+\clearpage
+
